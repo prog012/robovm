@@ -23,11 +23,12 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.opengles.*;
@@ -81,10 +82,10 @@ import org.robovm.apple.metal.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     public void addToRunLoop(NSRunLoop runloop, NSRunLoopMode mode) {
-        addToRunLoop(runloop, mode.value());
+        addToRunLoop(runloop, mode.value().toString());
     }
     public void removeFromRunLoop(NSRunLoop runloop, NSRunLoopMode mode) {
-        removeFromRunLoop(runloop, mode.value());
+        removeFromRunLoop(runloop, mode.value().toString());
     }
     
     public static CADisplayLink create(OnUpdateListener listener) {

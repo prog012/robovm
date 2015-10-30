@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -54,17 +55,17 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("animationControllerForPresentedController:presentingController:sourceController:")
-    public UIViewControllerAnimatedTransitioning getAnimationControllerForPresentedController(UIViewController presented, UIViewController presenting, UIViewController source) { throw new UnsupportedOperationException(); }
+    public UIViewControllerAnimatedTransitioning getAnimationControllerForPresentedController(UIViewController presented, UIViewController presenting, UIViewController source) { return null; }
     @NotImplemented("animationControllerForDismissedController:")
-    public UIViewControllerAnimatedTransitioning getAnimationControllerForDismissedController(UIViewController dismissed) { throw new UnsupportedOperationException(); }
+    public UIViewControllerAnimatedTransitioning getAnimationControllerForDismissedController(UIViewController dismissed) { return null; }
     @NotImplemented("interactionControllerForPresentation:")
-    public UIViewControllerInteractiveTransitioning getInteractionControllerForPresentation(UIViewControllerAnimatedTransitioning animator) { throw new UnsupportedOperationException(); }
+    public UIViewControllerInteractiveTransitioning getInteractionControllerForPresentation(UIViewControllerAnimatedTransitioning animator) { return null; }
     @NotImplemented("interactionControllerForDismissal:")
-    public UIViewControllerInteractiveTransitioning getInteractionControllerForDismissal(UIViewControllerAnimatedTransitioning animator) { throw new UnsupportedOperationException(); }
+    public UIViewControllerInteractiveTransitioning getInteractionControllerForDismissal(UIViewControllerAnimatedTransitioning animator) { return null; }
     /**
      * @since Available in iOS 8.0 and later.
      */
     @NotImplemented("presentationControllerForPresentedViewController:presentingViewController:sourceViewController:")
-    public UIPresentationController getPresentationControllerForPresentedViewController(UIViewController presented, UIViewController presenting, UIViewController source) { throw new UnsupportedOperationException(); }
+    public UIPresentationController getPresentationControllerForPresentedViewController(UIViewController presented, UIViewController presenting, UIViewController source) { return null; }
     /*</methods>*/
 }

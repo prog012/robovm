@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -54,16 +55,16 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("collectionView:layout:sizeForItemAtIndexPath:")
-    public @ByVal CGSize getItemSize(UICollectionView collectionView, UICollectionViewLayout collectionViewLayout, NSIndexPath indexPath) { throw new UnsupportedOperationException(); }
+    public @ByVal CGSize getItemSize(UICollectionView collectionView, UICollectionViewLayout collectionViewLayout, NSIndexPath indexPath) { return null; }
     @NotImplemented("collectionView:layout:insetForSectionAtIndex:")
-    public @ByVal UIEdgeInsets getSectionInset(UICollectionView collectionView, UICollectionViewLayout collectionViewLayout, @MachineSizedSInt long section) { throw new UnsupportedOperationException(); }
+    public @ByVal UIEdgeInsets getSectionInset(UICollectionView collectionView, UICollectionViewLayout collectionViewLayout, @MachineSizedSInt long section) { return null; }
     @NotImplemented("collectionView:layout:minimumLineSpacingForSectionAtIndex:")
-    public @MachineSizedFloat double getSectionMinimumLineSpacing(UICollectionView collectionView, UICollectionViewLayout collectionViewLayout, @MachineSizedSInt long section) { throw new UnsupportedOperationException(); }
+    public @MachineSizedFloat double getSectionMinimumLineSpacing(UICollectionView collectionView, UICollectionViewLayout collectionViewLayout, @MachineSizedSInt long section) { return 0; }
     @NotImplemented("collectionView:layout:minimumInteritemSpacingForSectionAtIndex:")
-    public @MachineSizedFloat double getSectionMinimumInteritemSpacing(UICollectionView collectionView, UICollectionViewLayout collectionViewLayout, @MachineSizedSInt long section) { throw new UnsupportedOperationException(); }
+    public @MachineSizedFloat double getSectionMinimumInteritemSpacing(UICollectionView collectionView, UICollectionViewLayout collectionViewLayout, @MachineSizedSInt long section) { return 0; }
     @NotImplemented("collectionView:layout:referenceSizeForHeaderInSection:")
-    public @ByVal CGSize getSectionHeaderReferenceSize(UICollectionView collectionView, UICollectionViewLayout collectionViewLayout, @MachineSizedSInt long section) { throw new UnsupportedOperationException(); }
+    public @ByVal CGSize getSectionHeaderReferenceSize(UICollectionView collectionView, UICollectionViewLayout collectionViewLayout, @MachineSizedSInt long section) { return null; }
     @NotImplemented("collectionView:layout:referenceSizeForFooterInSection:")
-    public @ByVal CGSize getSectionFooterReferenceSize(UICollectionView collectionView, UICollectionViewLayout collectionViewLayout, @MachineSizedSInt long section) { throw new UnsupportedOperationException(); }
+    public @ByVal CGSize getSectionFooterReferenceSize(UICollectionView collectionView, UICollectionViewLayout collectionViewLayout, @MachineSizedSInt long section) { return null; }
     /*</methods>*/
 }

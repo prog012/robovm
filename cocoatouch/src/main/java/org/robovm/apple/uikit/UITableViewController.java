@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -52,6 +53,8 @@ import org.robovm.apple.corelocation.*;
     public UITableViewController() {}
     protected UITableViewController(SkipInit skipInit) { super(skipInit); }
     public UITableViewController(UITableViewStyle style) { super((SkipInit) null); initObject(init(style)); }
+    public UITableViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public UITableViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "tableView")
@@ -83,6 +86,10 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "initWithStyle:")
     protected native @Pointer long init(UITableViewStyle style);
+    @Method(selector = "initWithNibName:bundle:")
+    protected native @Pointer long init(String nibNameOrNil, NSBundle nibBundleOrNil);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "tableView:willDisplayCell:forRowAtIndexPath:")
     public native void willDisplayCell(UITableView tableView, UITableViewCell cell, NSIndexPath indexPath);
     /**

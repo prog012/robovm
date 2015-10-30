@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -46,6 +47,7 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*/
     public PKPushRegistry() {}
     protected PKPushRegistry(SkipInit skipInit) { super(skipInit); }
+    @WeaklyLinked
     public PKPushRegistry(DispatchQueue queue) { super((SkipInit) null); initObject(init(queue)); }
     /*</constructors>*/
     /*<properties>*/
@@ -56,12 +58,13 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "desiredPushTypes")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringSetMarshaler.class) Set<String> getDesiredPushTypes();
     @Property(selector = "setDesiredPushTypes:")
-    public native void setDesiredPushTypes(@org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringSetMarshaler.class) Set<String> v);
+    public native void setDesiredPushTypes(@org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringSetMarshaler.class)Set<String> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "pushTokenForType:")
     public native NSData getPushTokenForType(String type);
+    @WeaklyLinked
     @Method(selector = "initWithQueue:")
     protected native @Pointer long init(DispatchQueue queue);
     /*</methods>*/

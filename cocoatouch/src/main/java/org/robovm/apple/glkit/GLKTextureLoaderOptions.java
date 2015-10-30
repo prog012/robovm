@@ -23,12 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
+import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.foundation.*;
 import org.robovm.apple.opengles.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.dispatch.*;
@@ -46,7 +47,7 @@ import org.robovm.apple.dispatch.*;
     public static class Marshaler {
         @MarshalsPointer
         public static GLKTextureLoaderOptions toObject(Class<GLKTextureLoaderOptions> cls, long handle, long flags) {
-            NSDictionary<NSString, NSObject> o = (NSDictionary<NSString, NSObject>) NSObject.Marshaler.toObject(NSDictionary.class, handle, flags);
+            NSDictionary o = (NSDictionary) NSObject.Marshaler.toObject(NSDictionary.class, handle, flags);
             if (o == null) {
                 return null;
             }
@@ -63,7 +64,7 @@ import org.robovm.apple.dispatch.*;
     public static class AsListMarshaler {
         @MarshalsPointer
         public static List<GLKTextureLoaderOptions> toObject(Class<? extends NSObject> cls, long handle, long flags) {
-            NSArray<NSDictionary<NSString, NSObject>> o = (NSArray<NSDictionary<NSString, NSObject>>) NSObject.Marshaler.toObject(cls, handle, flags);
+            NSArray<NSDictionary> o = (NSArray<NSDictionary>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
             if (o == null) {
                 return null;
             }
@@ -78,7 +79,7 @@ import org.robovm.apple.dispatch.*;
             if (l == null) {
                 return 0L;
             }
-            NSArray<NSDictionary<NSString, NSObject>> array = new NSMutableArray<>();
+            NSArray<NSDictionary> array = new NSMutableArray<>();
             for (GLKTextureLoaderOptions i : l) {
                 array.add(i.getDictionary());
             }
@@ -88,7 +89,7 @@ import org.robovm.apple.dispatch.*;
     /*</marshalers>*/
 
     /*<constructors>*/
-    GLKTextureLoaderOptions(NSDictionary<NSString, NSObject> data) {
+    GLKTextureLoaderOptions(NSDictionary data) {
         super(data);
     }
     public GLKTextureLoaderOptions() {}

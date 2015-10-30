@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -41,7 +42,7 @@ import org.robovm.apple.coremidi.MIDIEndpoint.MIDIEndpointPtr;
     /*<ptr>*/public static class MIDIPortPtr extends Ptr<MIDIPort, MIDIPortPtr> {}/*</ptr>*/
     private static java.util.concurrent.atomic.AtomicLong refconId = new java.util.concurrent.atomic.AtomicLong();
     protected long localRefconId;
-    private static Map<Long, MIDIReadProc> readProcs = new HashMap<Long, MIDIReadProc>();
+    private static LongMap<MIDIReadProc> readProcs = new LongMap<>();
     private static final java.lang.reflect.Method cbReadProc;
     
     static {

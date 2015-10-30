@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -79,6 +80,11 @@ import org.robovm.apple.corelocation.*;
     protected native @Pointer long init(UIViewController presentedViewController, UIViewController presentingViewController);
     @Method(selector = "adaptivePresentationStyle")
     public native UIModalPresentationStyle getAdaptivePresentationStyle();
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    @Method(selector = "adaptivePresentationStyleForTraitCollection:")
+    public native UIModalPresentationStyle getAdaptivePresentationStyleForTraitCollection(UITraitCollection traitCollection);
     @Method(selector = "containerViewWillLayoutSubviews")
     public native void containerViewWillLayoutSubviews();
     @Method(selector = "containerViewDidLayoutSubviews")

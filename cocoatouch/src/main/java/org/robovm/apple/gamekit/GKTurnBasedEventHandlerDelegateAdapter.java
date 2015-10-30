@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -54,27 +55,27 @@ import org.robovm.apple.uikit.*;
      */
     @Deprecated
     @NotImplemented("handleInviteFromGameCenter:")
-    public void handleInvite(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playersToInvite) { throw new UnsupportedOperationException(); }
+    public void handleInvite(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> playersToInvite) {}
     /**
      * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
     @NotImplemented("handleTurnEventForMatch:didBecomeActive:")
-    public void handleTurnEvent(GKTurnBasedMatch match, boolean didBecomeActive) { throw new UnsupportedOperationException(); }
+    public void handleTurnEvent(GKTurnBasedMatch match, boolean didBecomeActive) {}
     /**
      * @since Available in iOS 5.0 and later.
      * @deprecated Deprecated in iOS 6.0.
      */
     @Deprecated
     @NotImplemented("handleTurnEventForMatch:")
-    public void handleTurnEvent(GKTurnBasedMatch match) { throw new UnsupportedOperationException(); }
+    public void handleTurnEvent(GKTurnBasedMatch match) {}
     /**
      * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 6.0.
      */
     @Deprecated
     @NotImplemented("handleMatchEnded:")
-    public void handleMatchEnded(GKTurnBasedMatch match) { throw new UnsupportedOperationException(); }
+    public void handleMatchEnded(GKTurnBasedMatch match) {}
     /*</methods>*/
 }

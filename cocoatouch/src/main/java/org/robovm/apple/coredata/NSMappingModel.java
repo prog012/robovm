@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -56,23 +57,6 @@ import org.robovm.apple.foundation.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, NSEntityMapping> getEntityMappingsByName();
     /*</properties>*/
     /*<members>*//*</members>*/
-    /**
-     * 
-     * @param sourceModel
-     * @param destinationModel
-     * @return
-     * @since Available in iOS 3.0 and later.
-     * @throws NSErrorException
-     */
-    public static NSMappingModel createInferred(NSManagedObjectModel sourceModel, NSManagedObjectModel destinationModel) throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        NSMappingModel result = createInferred(sourceModel, destinationModel, err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
-
     /*<methods>*/
     @Method(selector = "initWithContentsOfURL:")
     protected native @Pointer long init(NSURL url);
@@ -81,7 +65,16 @@ import org.robovm.apple.foundation.*;
     /**
      * @since Available in iOS 3.0 and later.
      */
+    public static NSMappingModel createInferred(NSManagedObjectModel sourceModel, NSManagedObjectModel destinationModel) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSMappingModel result = createInferred(sourceModel, destinationModel, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 3.0 and later.
+     */
     @Method(selector = "inferredMappingModelForSourceModel:destinationModel:error:")
-    protected static native NSMappingModel createInferred(NSManagedObjectModel sourceModel, NSManagedObjectModel destinationModel, NSError.NSErrorPtr error);
+    private static native NSMappingModel createInferred(NSManagedObjectModel sourceModel, NSManagedObjectModel destinationModel, NSError.NSErrorPtr error);
     /*</methods>*/
 }

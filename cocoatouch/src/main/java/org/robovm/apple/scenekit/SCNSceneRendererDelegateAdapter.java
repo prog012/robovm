@@ -23,13 +23,14 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
-import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
@@ -54,15 +55,24 @@ import org.robovm.apple.opengles.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @NotImplemented("renderer:updateAtTime:")
-    public void update(SCNSceneRenderer aRenderer, double time) { throw new UnsupportedOperationException(); }
+    public void update(SCNSceneRenderer aRenderer, double time) {}
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @NotImplemented("renderer:didApplyAnimationsAtTime:")
-    public void didApplyAnimations(SCNSceneRenderer aRenderer, double time) { throw new UnsupportedOperationException(); }
+    public void didApplyAnimations(SCNSceneRenderer aRenderer, double time) {}
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @NotImplemented("renderer:didSimulatePhysicsAtTime:")
-    public void didSimulatePhysics(SCNSceneRenderer aRenderer, double time) { throw new UnsupportedOperationException(); }
+    public void didSimulatePhysics(SCNSceneRenderer aRenderer, double time) {}
     @NotImplemented("renderer:willRenderScene:atTime:")
-    public void willRenderScene(SCNSceneRenderer aRenderer, SCNScene scene, double time) { throw new UnsupportedOperationException(); }
+    public void willRenderScene(SCNSceneRenderer aRenderer, SCNScene scene, double time) {}
     @NotImplemented("renderer:didRenderScene:atTime:")
-    public void didRenderScene(SCNSceneRenderer aRenderer, SCNScene scene, double time) { throw new UnsupportedOperationException(); }
+    public void didRenderScene(SCNSceneRenderer aRenderer, SCNScene scene, double time) {}
     /*</methods>*/
 }

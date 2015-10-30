@@ -23,13 +23,14 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
-import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
@@ -52,20 +53,44 @@ import org.robovm.apple.opengles.*;
     
     /*</properties>*/
     /*<methods>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "runAction:")
     void runAction(SCNAction action);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "runAction:completionHandler:")
     void runAction(SCNAction action, @Block Runnable block);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "runAction:forKey:")
     void runAction(SCNAction action, String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "runAction:forKey:completionHandler:")
     void runAction(SCNAction action, String key, @Block Runnable block);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "hasActions")
     boolean hasActions();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "actionForKey:")
     SCNAction getAction(String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "removeActionForKey:")
     void removeAction(String key);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "removeAllActions")
     void removeAllActions();
     /*</methods>*/

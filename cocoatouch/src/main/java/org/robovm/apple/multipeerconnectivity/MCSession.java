@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -48,6 +49,7 @@ import org.robovm.apple.security.*;
     public MCSession() {}
     protected MCSession(SkipInit skipInit) { super(skipInit); }
     public MCSession(MCPeerID myPeerID) { super((SkipInit) null); initObject(init(myPeerID)); }
+    @WeaklyLinked
     public MCSession(MCPeerID myPeerID, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<SecIdentity> identity, MCEncryptionPreference encryptionPreference) { super((SkipInit) null); initObject(init(myPeerID, identity, encryptionPreference)); }
     /*</constructors>*/
     /*<properties>*/
@@ -57,6 +59,7 @@ import org.robovm.apple.security.*;
     public native void setDelegate(MCSessionDelegate v);
     @Property(selector = "myPeerID")
     public native MCPeerID getMyPeerID();
+    @WeaklyLinked
     @Property(selector = "securityIdentity")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<SecIdentity> getSecurityIdentity();
     @Property(selector = "encryptionPreference")
@@ -65,38 +68,6 @@ import org.robovm.apple.security.*;
     public native NSArray<MCPeerID> getConnectedPeers();
     /*</properties>*/
     /*<members>*//*</members>*/
-    /**
-     * 
-     * @param data
-     * @param peerIDs
-     * @param mode
-     * @return
-     * @throws NSErrorException
-     */
-    public boolean sendData(NSData data, NSArray<MCPeerID> peerIDs, MCSessionSendDataMode mode) throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        boolean result = sendData(data, peerIDs, mode, err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
-    
-    /**
-     * 
-     * @param streamName
-     * @param peerID
-     * @return
-     * @throws NSErrorException
-     */
-    public NSOutputStream startStream(String streamName, MCPeerID peerID) throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        NSOutputStream result = startStream(streamName, peerID, err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
     /*<methods>*/
     /**
      * @since Available in iOS 7.0 and later.
@@ -111,16 +82,29 @@ import org.robovm.apple.security.*;
     
     @Method(selector = "initWithPeer:")
     protected native @Pointer long init(MCPeerID myPeerID);
+    @WeaklyLinked
     @Method(selector = "initWithPeer:securityIdentity:encryptionPreference:")
     protected native @Pointer long init(MCPeerID myPeerID, @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<SecIdentity> identity, MCEncryptionPreference encryptionPreference);
+    public boolean sendData(NSData data, NSArray<MCPeerID> peerIDs, MCSessionSendDataMode mode) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = sendData(data, peerIDs, mode, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "sendData:toPeers:withMode:error:")
-    protected native boolean sendData(NSData data, NSArray<MCPeerID> peerIDs, MCSessionSendDataMode mode, NSError.NSErrorPtr error);
+    private native boolean sendData(NSData data, NSArray<MCPeerID> peerIDs, MCSessionSendDataMode mode, NSError.NSErrorPtr error);
     @Method(selector = "disconnect")
     public native void disconnect();
     @Method(selector = "sendResourceAtURL:withName:toPeer:withCompletionHandler:")
     public native NSProgress sendResource(NSURL resourceURL, String resourceName, MCPeerID peerID, @Block VoidBlock1<NSError> completionHandler);
+    public NSOutputStream startStream(String streamName, MCPeerID peerID) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSOutputStream result = startStream(streamName, peerID, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "startStreamWithName:toPeer:error:")
-    protected native NSOutputStream startStream(String streamName, MCPeerID peerID, NSError.NSErrorPtr error);
+    private native NSOutputStream startStream(String streamName, MCPeerID peerID, NSError.NSErrorPtr error);
     @Method(selector = "nearbyConnectionDataForPeer:withCompletionHandler:")
     public native void requestNearbyConnectionData(MCPeerID peerID, @Block VoidBlock2<NSData, NSError> completionHandler);
     @Method(selector = "connectPeer:withNearbyConnectionData:")

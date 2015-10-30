@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -693,12 +694,12 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="CGContextBeginTransparencyLayer", optional=true)
-    public native void beginTransparencyLayer(NSDictionary<?, ?> auxiliaryInfo);
+    public native void beginTransparencyLayer(NSDictionary auxiliaryInfo);
     /**
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="CGContextBeginTransparencyLayerWithRect", optional=true)
-    public native void beginTransparencyLayer(@ByVal CGRect rect, NSDictionary<?, ?> auxiliaryInfo);
+    public native void beginTransparencyLayer(@ByVal CGRect rect, NSDictionary auxiliaryInfo);
     /**
      * @since Available in iOS 2.0 and later.
      */

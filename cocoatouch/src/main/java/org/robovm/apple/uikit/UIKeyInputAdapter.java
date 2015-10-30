@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -54,10 +55,10 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("hasText")
-    public boolean hasText() { throw new UnsupportedOperationException(); }
+    public boolean hasText() { return false; }
     @NotImplemented("insertText:")
-    public void insertText(String text) { throw new UnsupportedOperationException(); }
+    public void insertText(String text) {}
     @NotImplemented("deleteBackward")
-    public void deleteBackward() { throw new UnsupportedOperationException(); }
+    public void deleteBackward() {}
     /*</methods>*/
 }

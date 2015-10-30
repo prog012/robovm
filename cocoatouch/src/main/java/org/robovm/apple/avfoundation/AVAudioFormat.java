@@ -23,19 +23,21 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,6 +56,7 @@ import org.robovm.apple.mediatoolbox.*;
     /*<constructors>*/
     public AVAudioFormat() {}
     protected AVAudioFormat(SkipInit skipInit) { super(skipInit); }
+    @WeaklyLinked
     public AVAudioFormat(AudioStreamBasicDescription asbd) { super((SkipInit) null); initObject(init(asbd)); }
     public AVAudioFormat(AudioStreamBasicDescription asbd, AVAudioChannelLayout layout) { super((SkipInit) null); initObject(init(asbd, layout)); }
     public AVAudioFormat(double sampleRate, int channels) { super((SkipInit) null); initObject(init(sampleRate, channels)); }
@@ -73,6 +76,7 @@ import org.robovm.apple.mediatoolbox.*;
     public native double getSampleRate();
     @Property(selector = "isInterleaved")
     public native boolean isInterleaved();
+    @WeaklyLinked
     @Property(selector = "streamDescription")
     public native AudioStreamBasicDescription getStreamDescription();
     @Property(selector = "channelLayout")
@@ -82,6 +86,7 @@ import org.robovm.apple.mediatoolbox.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @WeaklyLinked
     @Method(selector = "initWithStreamDescription:")
     protected native @Pointer long init(AudioStreamBasicDescription asbd);
     @Method(selector = "initWithStreamDescription:channelLayout:")

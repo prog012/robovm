@@ -23,29 +23,34 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /*</javadoc>*/
-@Marshaler(AVAssetExportPreset.Marshaler.class)
-/*<annotations>*/@Library("AVFoundation")/*</annotations>*/
+/*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+@Marshaler(/*<name>*/AVAssetExportPreset/*</name>*/.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAssetExportPreset/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    extends /*<extends>*/GlobalValueEnumeration<NSString>/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
+    static { Bro.bind(/*<name>*/AVAssetExportPreset/*</name>*/.class); }
+
+    /*<marshalers>*/
     public static class Marshaler {
         @MarshalsPointer
         public static AVAssetExportPreset toObject(Class<AVAssetExportPreset> cls, long handle, long flags) {
@@ -63,18 +68,17 @@ import org.robovm.apple.mediatoolbox.*;
             return NSObject.Marshaler.toNative(o.value(), flags);
         }
     }
-    
     public static class AsListMarshaler {
         @SuppressWarnings("unchecked")
         @MarshalsPointer
         public static List<AVAssetExportPreset> toObject(Class<? extends NSObject> cls, long handle, long flags) {
-            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(cls, handle, flags);
+            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
             if (o == null) {
                 return null;
             }
             List<AVAssetExportPreset> list = new ArrayList<>();
-            for (NSString str : o) {
-                list.add(AVAssetExportPreset.valueOf(str));
+            for (int i = 0; i < o.size(); i++) {
+                list.add(AVAssetExportPreset.valueOf(o.get(i)));
             }
             return list;
         }
@@ -83,71 +87,62 @@ import org.robovm.apple.mediatoolbox.*;
             if (l == null) {
                 return 0L;
             }
-            NSMutableArray<NSString> array = new NSMutableArray<>();
-            for (AVAssetExportPreset i : l) {
-                array.add(i.value());
+            NSArray<NSString> array = new NSMutableArray<>();
+            for (AVAssetExportPreset o : l) {
+                array.add(o.value());
             }
             return NSObject.Marshaler.toNative(array, flags);
         }
     }
-    
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(AVAssetExportPreset.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*</marshalers>*/
+
+    /*<constants>*/
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static final AVAssetExportPreset LowQuality = new AVAssetExportPreset("LowQualityValue");
+    public static final AVAssetExportPreset LowQuality = new AVAssetExportPreset("LowQuality");
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static final AVAssetExportPreset MediumQuality = new AVAssetExportPreset("MediumQualityValue");
+    public static final AVAssetExportPreset MediumQuality = new AVAssetExportPreset("MediumQuality");
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static final AVAssetExportPreset HighestQuality = new AVAssetExportPreset("HighestQualityValue");
+    public static final AVAssetExportPreset HighestQuality = new AVAssetExportPreset("HighestQuality");
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static final AVAssetExportPreset Size640x480 = new AVAssetExportPreset("Size640x480Value");
+    public static final AVAssetExportPreset Size640x480 = new AVAssetExportPreset("Size640x480");
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static final AVAssetExportPreset Size960x540 = new AVAssetExportPreset("Size960x540Value");
+    public static final AVAssetExportPreset Size960x540 = new AVAssetExportPreset("Size960x540");
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static final AVAssetExportPreset Size1280x720 = new AVAssetExportPreset("Size1280x720Value");
+    public static final AVAssetExportPreset Size1280x720 = new AVAssetExportPreset("Size1280x720");
     /**
      * @since Available in iOS 5.0 and later.
      */
-    public static final AVAssetExportPreset Size1920x1080 = new AVAssetExportPreset("Size1920x1080Value");
+    public static final AVAssetExportPreset Size1920x1080 = new AVAssetExportPreset("Size1920x1080");
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static final AVAssetExportPreset AppleM4A = new AVAssetExportPreset("AppleM4AValue");
+    public static final AVAssetExportPreset AppleM4A = new AVAssetExportPreset("AppleM4A");
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static final AVAssetExportPreset Passthrough = new AVAssetExportPreset("PassthroughValue");
+    public static final AVAssetExportPreset Passthrough = new AVAssetExportPreset("Passthrough");
+    /*</constants>*/
     
-    private static AVAssetExportPreset[] values = new AVAssetExportPreset[] {LowQuality, MediumQuality, HighestQuality, 
-        Size640x480, Size960x540, Size1280x720, Size1920x1080, AppleM4A, Passthrough};
-    private final LazyGlobalValue<NSString> lazyGlobalValue;
+    private static /*<name>*/AVAssetExportPreset/*</name>*/[] values = new /*<name>*/AVAssetExportPreset/*</name>*/[] {/*<value_list>*/LowQuality, MediumQuality, HighestQuality, Size640x480, Size960x540, Size1280x720, Size1920x1080, AppleM4A, Passthrough/*</value_list>*/};
     
-    private AVAssetExportPreset(String getterName) {
-        lazyGlobalValue = new LazyGlobalValue<>(getClass(), getterName);
-    }
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
-    public NSString value() {
-        return lazyGlobalValue.value();
+    /*<name>*/AVAssetExportPreset/*</name>*/ (String getterName) {
+        super(Values.class, getterName);
     }
     
-    public static AVAssetExportPreset valueOf(NSString value) {
-        for (AVAssetExportPreset v : values) {
+    public static /*<name>*/AVAssetExportPreset/*</name>*/ valueOf(/*<type>*/NSString/*</type>*/ value) {
+        for (/*<name>*/AVAssetExportPreset/*</name>*/ v : values) {
             if (v.value().equals(value)) {
                 return v;
             }
@@ -155,51 +150,59 @@ import org.robovm.apple.mediatoolbox.*;
         throw new IllegalArgumentException("No constant with value " + value + " found in " 
             + /*<name>*/AVAssetExportPreset/*</name>*/.class.getName());
     }
-    /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVAssetExportPresetLowQuality", optional=true)
-    protected static native NSString LowQualityValue();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVAssetExportPresetMediumQuality", optional=true)
-    protected static native NSString MediumQualityValue();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVAssetExportPresetHighestQuality", optional=true)
-    protected static native NSString HighestQualityValue();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVAssetExportPreset640x480", optional=true)
-    protected static native NSString Size640x480Value();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVAssetExportPreset960x540", optional=true)
-    protected static native NSString Size960x540Value();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVAssetExportPreset1280x720", optional=true)
-    protected static native NSString Size1280x720Value();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @GlobalValue(symbol="AVAssetExportPreset1920x1080", optional=true)
-    protected static native NSString Size1920x1080Value();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVAssetExportPresetAppleM4A", optional=true)
-    protected static native NSString AppleM4AValue();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVAssetExportPresetPassthrough", optional=true)
-    protected static native NSString PassthroughValue();
-    /*</methods>*/
+    
+    /*<methods>*//*</methods>*/
+    
+    /*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+    public static class Values {
+    	static { Bro.bind(Values.class); }
+
+        /*<values>*/
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPresetLowQuality", optional=true)
+        public static native NSString LowQuality();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPresetMediumQuality", optional=true)
+        public static native NSString MediumQuality();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPresetHighestQuality", optional=true)
+        public static native NSString HighestQuality();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPreset640x480", optional=true)
+        public static native NSString Size640x480();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPreset960x540", optional=true)
+        public static native NSString Size960x540();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPreset1280x720", optional=true)
+        public static native NSString Size1280x720();
+        /**
+         * @since Available in iOS 5.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPreset1920x1080", optional=true)
+        public static native NSString Size1920x1080();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPresetAppleM4A", optional=true)
+        public static native NSString AppleM4A();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetExportPresetPassthrough", optional=true)
+        public static native NSString Passthrough();
+        /*</values>*/
+    }
 }

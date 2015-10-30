@@ -23,15 +23,15 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.opengles.*;
+import org.robovm.apple.audiounit.*;
 import org.robovm.apple.coreaudio.*;
-import org.robovm.apple.coremedia.*;
+import org.robovm.apple.coremidi.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -48,26 +48,26 @@ import org.robovm.apple.coremedia.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CAFSMPTETime() {}
-    public CAFSMPTETime(byte mHours, byte mMinutes, byte mSeconds, byte mFrames, int mSubFrameSampleOffset) {
-        this.setMHours(mHours);
-        this.setMMinutes(mMinutes);
-        this.setMSeconds(mSeconds);
-        this.setMFrames(mFrames);
-        this.setMSubFrameSampleOffset(mSubFrameSampleOffset);
+    public CAFSMPTETime(byte hours, byte minutes, byte seconds, byte frames, int subFrameSampleOffset) {
+        this.setHours(hours);
+        this.setMinutes(minutes);
+        this.setSeconds(seconds);
+        this.setFrames(frames);
+        this.setSubFrameSampleOffset(subFrameSampleOffset);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native byte getMHours();
-    @StructMember(0) public native CAFSMPTETime setMHours(byte mHours);
-    @StructMember(1) public native byte getMMinutes();
-    @StructMember(1) public native CAFSMPTETime setMMinutes(byte mMinutes);
-    @StructMember(2) public native byte getMSeconds();
-    @StructMember(2) public native CAFSMPTETime setMSeconds(byte mSeconds);
-    @StructMember(3) public native byte getMFrames();
-    @StructMember(3) public native CAFSMPTETime setMFrames(byte mFrames);
-    @StructMember(4) public native int getMSubFrameSampleOffset();
-    @StructMember(4) public native CAFSMPTETime setMSubFrameSampleOffset(int mSubFrameSampleOffset);
+    @StructMember(0) public native byte getHours();
+    @StructMember(0) public native CAFSMPTETime setHours(byte hours);
+    @StructMember(1) public native byte getMinutes();
+    @StructMember(1) public native CAFSMPTETime setMinutes(byte minutes);
+    @StructMember(2) public native byte getSeconds();
+    @StructMember(2) public native CAFSMPTETime setSeconds(byte seconds);
+    @StructMember(3) public native byte getFrames();
+    @StructMember(3) public native CAFSMPTETime setFrames(byte frames);
+    @StructMember(4) public native int getSubFrameSampleOffset();
+    @StructMember(4) public native CAFSMPTETime setSubFrameSampleOffset(int subFrameSampleOffset);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

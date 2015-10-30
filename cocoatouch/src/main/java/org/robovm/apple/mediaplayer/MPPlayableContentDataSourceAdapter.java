@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -50,12 +51,12 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("beginLoadingChildItemsAtIndexPath:completionHandler:")
-    public void beginLoadingChildItems(NSIndexPath indexPath, @Block VoidBlock1<NSError> completionHandler) { throw new UnsupportedOperationException(); }
+    public void beginLoadingChildItems(NSIndexPath indexPath, @Block VoidBlock1<NSError> completionHandler) {}
     @NotImplemented("childItemsDisplayPlaybackProgressAtIndexPath:")
-    public boolean childItemsDisplayPlaybackProgress(NSIndexPath indexPath) { throw new UnsupportedOperationException(); }
+    public boolean childItemsDisplayPlaybackProgress(NSIndexPath indexPath) { return false; }
     @NotImplemented("numberOfChildItemsAtIndexPath:")
-    public @MachineSizedSInt long getNumberOfChildItems(NSIndexPath indexPath) { throw new UnsupportedOperationException(); }
+    public @MachineSizedSInt long getNumberOfChildItems(NSIndexPath indexPath) { return 0; }
     @NotImplemented("contentItemAtIndexPath:")
-    public MPContentItem getContentItem(NSIndexPath indexPath) { throw new UnsupportedOperationException(); }
+    public MPContentItem getContentItem(NSIndexPath indexPath) { return null; }
     /*</methods>*/
 }

@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -35,15 +37,13 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.security.*;
 import org.robovm.apple.dispatch.*;
 /*</imports>*/
-import org.robovm.apple.coretext.CTAttributedStringAttribute;
-import org.robovm.apple.coretext.CTAttributedStringAttributes;
 
 /*<javadoc>*/
 /**
  * @since Available in iOS 3.2 and later.
  */
 /*</javadoc>*/
-/*<annotations>*/@Library("Foundation") @NativeClass/*</annotations>*/
+/*<annotations>*/@Library("Foundation") @NativeClass @WeaklyLinked/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSMutableAttributedString/*</name>*/ 
     extends /*<extends>*/NSAttributedString/*</extends>*/ 
     /*<implements>*//*</implements>*/ {
@@ -155,6 +155,7 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
      * @since Available in iOS 7.0 and later.
      * @throws NSErrorException
      */
+    @WeaklyLinked
     public boolean read(NSURL url, NSAttributedStringDocumentAttributes opts) throws NSErrorException {
         return NSMutableAttributedStringExtensions.readFromFileURL(this, url, opts);
     }
@@ -166,12 +167,14 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
      * @since Available in iOS 7.0 and later.
      * @throws NSErrorException
      */
+    @WeaklyLinked
     public boolean read(NSData data, NSAttributedStringDocumentAttributes opts) throws NSErrorException {
         return NSMutableAttributedStringExtensions.readFromData(this, data, opts);
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public void fixAttributes(NSRange range) {
         NSMutableAttributedStringExtensions.fixAttributesInRange(this, range);
     }
@@ -179,11 +182,11 @@ import org.robovm.apple.coretext.CTAttributedStringAttributes;
     @Method(selector = "replaceCharactersInRange:withString:")
     public native void replace(@ByVal NSRange range, String str);
     @Method(selector = "setAttributes:range:")
-    public native void setAttributes(NSDictionary<NSString, NSObject> attrs, @ByVal NSRange range);
+    public native void setAttributes(NSDictionary attrs, @ByVal NSRange range);
     @Method(selector = "addAttribute:value:range:")
     public native void addAttribute(NSString name, NSObject value, @ByVal NSRange range);
     @Method(selector = "addAttributes:range:")
-    public native void addAttributes(NSDictionary<NSString, NSObject> attrs, @ByVal NSRange range);
+    public native void addAttributes(NSDictionary attrs, @ByVal NSRange range);
     @Method(selector = "removeAttribute:range:")
     public native void removeAttribute(NSString name, @ByVal NSRange range);
     @Method(selector = "replaceCharactersInRange:withAttributedString:")

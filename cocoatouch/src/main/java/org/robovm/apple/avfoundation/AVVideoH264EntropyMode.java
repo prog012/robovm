@@ -23,29 +23,34 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /*</javadoc>*/
-@Marshaler(AVVideoH264EntropyMode.Marshaler.class)
-/*<annotations>*/@Library("AVFoundation")/*</annotations>*/
+/*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+@Marshaler(/*<name>*/AVVideoH264EntropyMode/*</name>*/.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVVideoH264EntropyMode/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    extends /*<extends>*/GlobalValueEnumeration<NSString>/*</extends>*/
     /*<implements>*//*</implements>*/ {
-    
+
+    static { Bro.bind(/*<name>*/AVVideoH264EntropyMode/*</name>*/.class); }
+
+    /*<marshalers>*/
     public static class Marshaler {
         @MarshalsPointer
         public static AVVideoH264EntropyMode toObject(Class<AVVideoH264EntropyMode> cls, long handle, long flags) {
@@ -63,35 +68,53 @@ import org.robovm.apple.mediatoolbox.*;
             return NSObject.Marshaler.toNative(o.value(), flags);
         }
     }
+    public static class AsListMarshaler {
+        @SuppressWarnings("unchecked")
+        @MarshalsPointer
+        public static List<AVVideoH264EntropyMode> toObject(Class<? extends NSObject> cls, long handle, long flags) {
+            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
+            if (o == null) {
+                return null;
+            }
+            List<AVVideoH264EntropyMode> list = new ArrayList<>();
+            for (int i = 0; i < o.size(); i++) {
+                list.add(AVVideoH264EntropyMode.valueOf(o.get(i)));
+            }
+            return list;
+        }
+        @MarshalsPointer
+        public static long toNative(List<AVVideoH264EntropyMode> l, long flags) {
+            if (l == null) {
+                return 0L;
+            }
+            NSArray<NSString> array = new NSMutableArray<>();
+            for (AVVideoH264EntropyMode o : l) {
+                array.add(o.value());
+            }
+            return NSObject.Marshaler.toNative(array, flags);
+        }
+    }
+    /*</marshalers>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(AVVideoH264EntropyMode.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public static final AVVideoH264EntropyMode CAVLC = new AVVideoH264EntropyMode("CAVLCValue");
+    public static final AVVideoH264EntropyMode CAVLC = new AVVideoH264EntropyMode("CAVLC");
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public static final AVVideoH264EntropyMode CABAC = new AVVideoH264EntropyMode("CABACValue");
+    public static final AVVideoH264EntropyMode CABAC = new AVVideoH264EntropyMode("CABAC");
+    /*</constants>*/
     
-    private static AVVideoH264EntropyMode[] values = new AVVideoH264EntropyMode[] {CAVLC, CABAC};
-    private final LazyGlobalValue<NSString> lazyGlobalValue;
+    private static /*<name>*/AVVideoH264EntropyMode/*</name>*/[] values = new /*<name>*/AVVideoH264EntropyMode/*</name>*/[] {/*<value_list>*/CAVLC, CABAC/*</value_list>*/};
     
-    private AVVideoH264EntropyMode(String getterName) {
-        lazyGlobalValue = new LazyGlobalValue<>(getClass(), getterName);
-    }
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
-    public NSString value() {
-        return lazyGlobalValue.value();
+    /*<name>*/AVVideoH264EntropyMode/*</name>*/ (String getterName) {
+        super(Values.class, getterName);
     }
     
-    public static AVVideoH264EntropyMode valueOf(NSString value) {
-        for (AVVideoH264EntropyMode v : values) {
+    public static /*<name>*/AVVideoH264EntropyMode/*</name>*/ valueOf(/*<type>*/NSString/*</type>*/ value) {
+        for (/*<name>*/AVVideoH264EntropyMode/*</name>*/ v : values) {
             if (v.value().equals(value)) {
                 return v;
             }
@@ -99,16 +122,24 @@ import org.robovm.apple.mediatoolbox.*;
         throw new IllegalArgumentException("No constant with value " + value + " found in " 
             + /*<name>*/AVVideoH264EntropyMode/*</name>*/.class.getName());
     }
-    /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoH264EntropyModeCAVLC", optional=true)
-    protected static native NSString CAVLCValue();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoH264EntropyModeCABAC", optional=true)
-    protected static native NSString CABACValue();
-    /*</methods>*/
+    
+    /*<methods>*//*</methods>*/
+    
+    /*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+    public static class Values {
+    	static { Bro.bind(Values.class); }
+
+        /*<values>*/
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoH264EntropyModeCAVLC", optional=true)
+        public static native NSString CAVLC();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoH264EntropyModeCABAC", optional=true)
+        public static native NSString CABAC();
+        /*</values>*/
+    }
 }

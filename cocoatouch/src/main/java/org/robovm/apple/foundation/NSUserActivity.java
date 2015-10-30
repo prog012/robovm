@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -55,7 +57,7 @@ import org.robovm.apple.dispatch.*;
     public NSUserActivity(String activityType) { super((SkipInit) null); initObject(init(activityType)); }
     /*</constructors>*/
     public NSUserActivity(NSUserActivityType activityType) {
-        this(activityType.value());
+        this(activityType.value().toString());
     }
     /*<properties>*/
     @Property(selector = "activityType")
@@ -65,9 +67,9 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "setTitle:")
     public native void setTitle(String v);
     @Property(selector = "userInfo")
-    public native NSDictionary<?, ?> getUserInfo();
+    public native NSDictionary getUserInfo();
     @Property(selector = "setUserInfo:")
-    public native void setUserInfo(NSDictionary<?, ?> v);
+    public native void setUserInfo(NSDictionary v);
     @Property(selector = "needsSave")
     public native boolean needsSave();
     @Property(selector = "setNeedsSave:")
@@ -90,7 +92,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithActivityType:")
     protected native @Pointer long init(String activityType);
     @Method(selector = "addUserInfoEntriesFromDictionary:")
-    public native void addUserInfoEntries(NSDictionary<?, ?> otherDictionary);
+    public native void addUserInfoEntries(NSDictionary otherDictionary);
     @Method(selector = "becomeCurrent")
     public native void becomeCurrent();
     @Method(selector = "invalidate")

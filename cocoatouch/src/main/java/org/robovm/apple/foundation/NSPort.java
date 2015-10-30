@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -61,6 +63,7 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*/
     public NSPort() {}
     protected NSPort(SkipInit skipInit) { super(skipInit); }
+    public NSPort(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isValid")
@@ -70,10 +73,10 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     public void scheduleInRunLoop(NSRunLoop runLoop, NSRunLoopMode mode) {
-        scheduleInRunLoop(runLoop, mode.value());
+        scheduleInRunLoop(runLoop, mode.value().toString());
     }
     public void removeFromRunLoop(NSRunLoop runLoop, NSRunLoopMode mode) {
-        removeFromRunLoop(runLoop, mode.value());
+        removeFromRunLoop(runLoop, mode.value().toString());
     }
     /*<methods>*/
     @GlobalValue(symbol="NSPortDidBecomeInvalidNotification", optional=true)
@@ -96,6 +99,8 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "port")
     public static native NSPort create();
     @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder aCoder);
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

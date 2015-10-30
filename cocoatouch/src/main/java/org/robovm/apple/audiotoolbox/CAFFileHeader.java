@@ -23,15 +23,15 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.opengles.*;
+import org.robovm.apple.audiounit.*;
 import org.robovm.apple.coreaudio.*;
-import org.robovm.apple.coremedia.*;
+import org.robovm.apple.coremidi.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,22 +46,20 @@ import org.robovm.apple.coremedia.*;
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
-    /*<constructors>*/
-    public CAFFileHeader() {}
-    public CAFFileHeader(int mFileType, short mFileVersion, short mFileFlags) {
-        this.setMFileType(mFileType);
-        this.setMFileVersion(mFileVersion);
-        this.setMFileFlags(mFileFlags);
+    public CAFFileHeader() {
+        this.setFileType(AudioFileType.valueOf(CAFFileHeaderInfo.Type.value()));
+        this.setFileVersion((short) CAFFileHeaderInfo.Version_Initial.value());
     }
-    /*</constructors>*/
+    /*<constructors>*//*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native int getMFileType();
-    @StructMember(0) public native CAFFileHeader setMFileType(int mFileType);
-    @StructMember(1) public native short getMFileVersion();
-    @StructMember(1) public native CAFFileHeader setMFileVersion(short mFileVersion);
-    @StructMember(2) public native short getMFileFlags();
-    @StructMember(2) public native CAFFileHeader setMFileFlags(short mFileFlags);
+    
     /*</members>*/
+    @StructMember(0) public native AudioFileType getFileType();
+    @StructMember(0) private native CAFFileHeader setFileType(AudioFileType fileType);
+    @StructMember(1) public native short getFileVersion();
+    @StructMember(1) private native CAFFileHeader setFileVersion(short fileVersion);
+    @StructMember(2) public native short getFileFlags();
+    @StructMember(2) private native CAFFileHeader setFileFlags(short fileFlags);
     /*<methods>*//*</methods>*/
 }

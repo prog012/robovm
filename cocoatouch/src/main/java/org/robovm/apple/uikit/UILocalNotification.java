@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -51,6 +52,7 @@ import org.robovm.apple.corelocation.*;
     /*<constructors>*/
     public UILocalNotification() {}
     protected UILocalNotification(SkipInit skipInit) { super(skipInit); }
+    public UILocalNotification(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "fireDate")
@@ -72,11 +74,13 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 8.0 and later.
      */
+    @WeaklyLinked
     @Property(selector = "region")
     public native CLRegion getRegion();
     /**
      * @since Available in iOS 8.0 and later.
      */
+    @WeaklyLinked
     @Property(selector = "setRegion:")
     public native void setRegion(CLRegion v);
     /**
@@ -124,9 +128,9 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "setApplicationIconBadgeNumber:")
     public native void setApplicationIconBadgeNumber(@MachineSizedSInt long v);
     @Property(selector = "userInfo")
-    public native NSDictionary<?, ?> getUserInfo();
+    public native NSDictionary getUserInfo();
     @Property(selector = "setUserInfo:")
-    public native void setUserInfo(NSDictionary<?, ?> v);
+    public native void setUserInfo(NSDictionary v);
     /**
      * @since Available in iOS 8.0 and later.
      */
@@ -147,6 +151,8 @@ import org.robovm.apple.corelocation.*;
     public static native String getDefaultSoundName();
     
     @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder aCoder);
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

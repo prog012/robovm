@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -155,23 +157,11 @@ import org.robovm.apple.dispatch.*;
         return data;
     }
 
-    /**
-     * 
-     * @param file
-     * @param readOptionsMask
-     * @return
-     * @throws NSErrorException
-     */
     public static NSData read(java.io.File file, NSDataReadingOptions readOptionsMask) throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        NSData result = (NSData) readFile(file.getAbsolutePath(), readOptionsMask, err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
+        return readFile(file.getAbsolutePath(), readOptionsMask);
     }
     public static NSData read(java.io.File file) {
-        return (NSData) readFile(file.getAbsolutePath());
+        return readFile(file.getAbsolutePath());
     }
     /**
      * @since Available in iOS 2.0 and later.
@@ -181,50 +171,12 @@ import org.robovm.apple.dispatch.*;
     public static NSData readMapped(java.io.File file) {
         return (NSData) readMappedFile(file.getAbsolutePath());
     }
-    /**
-     * 
-     * @param url
-     * @param readOptionsMask
-     * @return
-     * @throws NSErrorException
-     */
-    public NSData read(NSURL url, NSDataReadingOptions readOptionsMask) throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        NSData result = read(url, readOptionsMask, err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
     
     public void write(java.io.File file, boolean useAuxiliaryFile) {
         writeFile(file.getAbsolutePath(), useAuxiliaryFile);
     }
-    /**
-     * 
-     * @param file
-     * @param writeOptionsMask
-     * @throws NSErrorException
-     */
     public void write(java.io.File file, NSDataWritingOptions writeOptionsMask) throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        writeFile(file.getAbsolutePath(), writeOptionsMask, err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-    }
-    /**
-    *
-    *
-    * @throws NSErrorException
-    */
-    public boolean write(NSURL url, NSDataWritingOptions writeOptionsMask) throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        boolean result = write(url, writeOptionsMask, err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
+        writeFile(file.getAbsolutePath(), writeOptionsMask);
     }
     /*<methods>*/
     @Method(selector = "getBytes:length:")
@@ -232,13 +184,25 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "subdataWithRange:")
     public native NSData getSubdata(@ByVal NSRange range);
     @Method(selector = "writeToFile:atomically:")
-    protected native boolean writeFile(String path, boolean useAuxiliaryFile);
+    protected native boolean writeFile(String path, boolean atomically);
     @Method(selector = "writeToURL:atomically:")
     public native boolean write(NSURL url, boolean atomically);
+    protected boolean writeFile(String path, NSDataWritingOptions writeOptionsMask) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = writeFile(path, writeOptionsMask, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "writeToFile:options:error:")
-    protected native boolean writeFile(String path, NSDataWritingOptions writeOptionsMask, NSError.NSErrorPtr errorPtr);
+    private native boolean writeFile(String path, NSDataWritingOptions writeOptionsMask, NSError.NSErrorPtr errorPtr);
+    public boolean write(NSURL url, NSDataWritingOptions writeOptionsMask) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = write(url, writeOptionsMask, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "writeToURL:options:error:")
-    protected native boolean write(NSURL url, NSDataWritingOptions writeOptionsMask, NSError.NSErrorPtr errorPtr);
+    private native boolean write(NSURL url, NSDataWritingOptions writeOptionsMask, NSError.NSErrorPtr errorPtr);
     /**
      * @since Available in iOS 4.0 and later.
      */
@@ -250,10 +214,22 @@ import org.robovm.apple.dispatch.*;
     protected native @Pointer long init(@Pointer long bytes, @MachineSizedUInt long length, boolean b);
     @Method(selector = "initWithData:")
     protected native @Pointer long init(NSData data);
+    protected static NSData readFile(String path, NSDataReadingOptions readOptionsMask) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSData result = readFile(path, readOptionsMask, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "dataWithContentsOfFile:options:error:")
-    protected static native NSData readFile(String path, NSDataReadingOptions readOptionsMask, NSError.NSErrorPtr errorPtr);
+    private static native NSData readFile(String path, NSDataReadingOptions readOptionsMask, NSError.NSErrorPtr errorPtr);
+    public static NSData read(NSURL url, NSDataReadingOptions readOptionsMask) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSData result = read(url, readOptionsMask, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "dataWithContentsOfURL:options:error:")
-    protected static native NSData read(NSURL url, NSDataReadingOptions readOptionsMask, NSError.NSErrorPtr errorPtr);
+    private static native NSData read(NSURL url, NSDataReadingOptions readOptionsMask, NSError.NSErrorPtr errorPtr);
     @Method(selector = "dataWithContentsOfFile:")
     protected static native NSData readFile(String path);
     @Method(selector = "dataWithContentsOfURL:")

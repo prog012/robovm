@@ -23,13 +23,14 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.corelocation.*;
 import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
@@ -54,25 +55,17 @@ import org.robovm.apple.avfoundation.*;
     
     /*</properties>*/
     /*<members>*//*</members>*/
-    /**
-     * 
-     * @param changeBlock
-     * @return
-     * @throws NSErrorException
-     */
-    public boolean performChangesAndWait(@Block Runnable changeBlock) throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        boolean result = performChangesAndWait(changeBlock, err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
     /*<methods>*/
     @Method(selector = "performChanges:completionHandler:")
     public native void performChanges(@Block Runnable changeBlock, @Block VoidBlock2<Boolean, NSError> completionHandler);
+    public boolean performChangesAndWait(@Block Runnable changeBlock) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = performChangesAndWait(changeBlock, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "performChangesAndWait:error:")
-    protected native boolean performChangesAndWait(@Block Runnable changeBlock, NSError.NSErrorPtr error);
+    private native boolean performChangesAndWait(@Block Runnable changeBlock, NSError.NSErrorPtr error);
     @Method(selector = "registerChangeObserver:")
     public native void registerChangeObserver(PHPhotoLibraryChangeObserver observer);
     @Method(selector = "unregisterChangeObserver:")

@@ -23,15 +23,15 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.opengles.*;
+import org.robovm.apple.audiounit.*;
 import org.robovm.apple.coreaudio.*;
-import org.robovm.apple.coremedia.*;
+import org.robovm.apple.coremidi.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -48,17 +48,15 @@ import org.robovm.apple.coremedia.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CAFPeakChunk() {}
-    public CAFPeakChunk(int mEditCount, CAFPositionPeak mPeaks) {
-        this.setMEditCount(mEditCount);
-        this.setMPeaks(mPeaks);
+    public CAFPeakChunk(int editCount) {
+        this.setEditCount(editCount);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native int getMEditCount();
-    @StructMember(0) public native CAFPeakChunk setMEditCount(int mEditCount);
-    @StructMember(1) public native @Array({1}) CAFPositionPeak getMPeaks();
-    @StructMember(1) public native CAFPeakChunk setMPeaks(@Array({1}) CAFPositionPeak mPeaks);
+    @StructMember(0) public native int getEditCount();
+    @StructMember(0) public native CAFPeakChunk setEditCount(int editCount);
     /*</members>*/
+    @StructMember(1) public native CAFPositionPeak.CAFPositionPeakPtr getPeaks();
     /*<methods>*//*</methods>*/
 }

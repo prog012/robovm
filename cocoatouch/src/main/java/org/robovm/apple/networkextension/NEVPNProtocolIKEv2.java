@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -77,6 +78,16 @@ import org.robovm.apple.foundation.*;
      */
     @Property(selector = "setServerCertificateCommonName:")
     public native void setServerCertificateCommonName(String v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @Property(selector = "certificateType")
+    public native NEVPNIKEv2CertificateType getCertificateType();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @Property(selector = "setCertificateType:")
+    public native void setCertificateType(NEVPNIKEv2CertificateType v);
     /**
      * @since Available in iOS 8.0 and later.
      */

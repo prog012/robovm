@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -43,7 +44,7 @@ import org.robovm.apple.uikit.*;
     }
     
     private static java.util.concurrent.atomic.AtomicLong releaseInfo = new java.util.concurrent.atomic.AtomicLong();
-    private static Map<Long, ReleaseDataCallback> callbacks = new HashMap<>();
+    private static final LongMap<ReleaseDataCallback> callbacks = new LongMap<>();
     private static final java.lang.reflect.Method cbReleaseData;
     
     static {

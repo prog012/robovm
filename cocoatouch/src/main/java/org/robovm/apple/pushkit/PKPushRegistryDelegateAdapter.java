@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -49,10 +50,10 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("pushRegistry:didUpdatePushCredentials:forType:")
-    public void didUpdatePushCredentials(PKPushRegistry registry, PKPushCredentials credentials, String type) { throw new UnsupportedOperationException(); }
+    public void didUpdatePushCredentials(PKPushRegistry registry, PKPushCredentials credentials, String type) {}
     @NotImplemented("pushRegistry:didReceiveIncomingPushWithPayload:forType:")
-    public void didReceiveIncomingPush(PKPushRegistry registry, PKPushPayload payload, String type) { throw new UnsupportedOperationException(); }
+    public void didReceiveIncomingPush(PKPushRegistry registry, PKPushPayload payload, String type) {}
     @NotImplemented("pushRegistry:didInvalidatePushTokenForType:")
-    public void didInvalidatePushToken(PKPushRegistry registry, String type) { throw new UnsupportedOperationException(); }
+    public void didInvalidatePushToken(PKPushRegistry registry, String type) {}
     /*</methods>*/
 }

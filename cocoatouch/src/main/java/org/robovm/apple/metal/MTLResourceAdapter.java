@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -45,17 +46,17 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
     @NotImplemented("label")
-    public String getLabel() { throw new UnsupportedOperationException(); }
+    public String getLabel() { return null; }
     @NotImplemented("setLabel:")
-    public void setLabel(String v) { throw new UnsupportedOperationException(); }
+    public void setLabel(String v) {}
     @NotImplemented("device")
-    public MTLDevice getDevice() { throw new UnsupportedOperationException(); }
+    public MTLDevice getDevice() { return null; }
     @NotImplemented("cpuCacheMode")
-    public MTLCPUCacheMode getCpuCacheMode() { throw new UnsupportedOperationException(); }
+    public MTLCPUCacheMode getCpuCacheMode() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("setPurgeableState:")
-    public MTLPurgeableState setPurgeableState(MTLPurgeableState state) { throw new UnsupportedOperationException(); }
+    public MTLPurgeableState setPurgeableState(MTLPurgeableState state) { return null; }
     /*</methods>*/
 }

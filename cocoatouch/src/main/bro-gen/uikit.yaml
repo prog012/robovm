@@ -168,12 +168,14 @@ enums:
 
 categories:
     CIColor: # DONE
+        annotations: ['@WeaklyLinked']
         methods:
             '-init.*':
                 name: init
                 visibility: protected
                 return_type: '@Pointer long'
     CIImage: # DONE
+        annotations: ['@WeaklyLinked']
         methods:
             '-init.*':
                 name: init
@@ -183,9 +185,11 @@ categories:
                     options:
                         type: CIImageOptions
     NSAttributedString: # DONE
+        annotations: ['@WeaklyLinked']
         methods:
             '-init.*':
                 name: init
+                throws: NSErrorException
                 visibility: protected
                 return_type: '@Pointer long'
                 parameters:
@@ -197,7 +201,7 @@ categories:
                 name: getBoundingRect
             '-dataFromRange:documentAttributes:error:':
                 name: getData
-                visibility: protected
+                throws: NSErrorException
                 parameters:
                     dict:
                         type: NSAttributedStringDocumentAttributes
@@ -209,13 +213,14 @@ categories:
                 name: draw
             '-fileWrapperFromRange:documentAttributes:error:':
                 name: getFileWrapper
-                visibility: protected
+                throws: NSErrorException
                 parameters:
                     dict:
                         type: NSAttributedStringDocumentAttributes
             '-size':
                 name: getSize
     NSBundle: # DONE
+        annotations: ['@WeaklyLinked']
         methods:
             '-loadNibNamed:owner:options:':
                 name: loadNib
@@ -223,85 +228,62 @@ categories:
                     options:
                         type: UINibLoadingOptions
     NSCoder: # DONE
+        annotations: ['@WeaklyLinked']
         methods:
             '-(decode.*)ForKey:':
                 name: '#{g[0]}'
             '-(encode.*):forKey:':
                 name: '#{g[0]}'
     NSIndexPath: # DONE
+        annotations: ['@WeaklyLinked']
         methods:
             '+indexPathForRow:inSection:':
                 name: createIndexPathForRowInSection
             '+indexPathForItem:inSection:':
                 name: createIndexPathForItemInSection
     NSMutableAttributedString: # DONE
+        annotations: ['@WeaklyLinked']
         methods:
             '-fixAttributesInRange:':
                 name: fixAttributesInRange
             '-readFromData:options:documentAttributes:error:':
                 name: readFromData
+                throws: NSErrorException
                 visibility: protected
                 parameters:
                     opts:
                         type: NSAttributedStringDocumentAttributes
             '-readFromFileURL:options:documentAttributes:error:':
                 name: readFromFileURL
+                throws: NSErrorException
                 visibility: protected
                 parameters:
                     opts:
                         type: NSAttributedStringDocumentAttributes
     NSString: # DONE
+        owner_type: '@Pointer long'
+        annotations: ['@WeaklyLinked']
         methods:
             '-boundingRectWithSize:options:attributes:context:':
                 name: getBoundingRect
-                parameters:
-                    attributes:
-                        type: 'NSDictionary<NSString, NSObject>'
-            '-drawAtPoint:forWidth:withFont:fontSize:lineBreakMode:baselineAdjustment:':
-                name: draw
-            '-drawAtPoint:forWidth:withFont:lineBreakMode:':
-                name: draw
-            '-drawAtPoint:forWidth:withFont:minFontSize:actualFontSize:lineBreakMode:baselineAdjustment:':
+            '-drawAtPoint:forWidth.*':
                 name: draw
             '-drawAtPoint:withAttributes:':
                 name: draw
-                parameters:
-                    attrs:
-                        type: 'NSDictionary<NSString, NSObject>'
             '-drawAtPoint:withFont:':
                 name: draw
             '-drawInRect:withAttributes:':
                 name: draw
-                parameters:
-                    attrs:
-                        type: 'NSDictionary<NSString, NSObject>'
-            '-drawInRect:withFont:':
-                name: draw
-            '-drawInRect:withFont:lineBreakMode:':
-                name: draw
-            '-drawInRect:withFont:lineBreakMode:alignment:':
+            '-drawInRect:withFont:.*':
                 name: draw
             '-drawWithRect:options:attributes:context:':
                 name: draw
-                parameters:
-                    attributes:
-                        type: 'NSDictionary<NSString, NSObject>'
             '-sizeWithAttributes:':
                 name: getSize
-                parameters:
-                    attrs:
-                        type: 'NSDictionary<NSString, NSObject>'
-            '-sizeWithFont:':
-                name: getSize
-            '-sizeWithFont:constrainedToSize:':
-                name: getSize
-            '-sizeWithFont:constrainedToSize:lineBreakMode:':
-                name: getSize
-            '-sizeWithFont:forWidth:lineBreakMode:':
-                name: getSize
-            '-sizeWithFont:minFontSize:actualFontSize:forWidth:lineBreakMode:':
+            '-sizeWithFont.*':
                 name: getSize
     NSValue: # DONE
+        annotations: ['@WeaklyLinked']
         methods:
             '-CG(.*Value)':
                 name: 'get#{g[0]}'
@@ -317,9 +299,6 @@ categories:
     UIResponderStandardEditActions@NSObject: {protocol: true}
 
 classes:
-    UIKit:
-        annotations: ['@Marshaler(NSString.AsStringMarshaler.class)']
-
     # Custom bits
     UIAccessibilityTraits:
         visibility: 'public final'
@@ -330,9 +309,12 @@ classes:
     UIEdgeInsets: {}
     UIOffset: {}
     
+    UIRemoteNotification:
+        extends: NSDictionaryWrapper
     
     UIPrintError:
         extends: NSError
+        annotations: ['@StronglyLinked']
         
     UIRunLoopMode:
         extends: NSRunLoopMode
@@ -355,7 +337,7 @@ classes:
                 name: stopProvidingItem
             '+writePlaceholderAtURL:withMetadata:error:':
                 name: writePlaceholder
-                visibility: protected # throws NSErrorException
+                throws: NSErrorException
                 parameters:
                     metadata:
                         type: NSURLProperties
@@ -783,12 +765,8 @@ classes:
         methods:
             '-setTitleTextAttributes:forState:':
                 name: setTitleTextAttributesDictionary
-                parameters:
-                    attributes:
-                        type: 'NSDictionary<NSString, NSObject>'
             '-titleTextAttributesForState:':
                 name: getTitleTextAttributesDictionary
-                return_type: 'NSDictionary<NSString, NSObject>'
     UIBezierPath: # DONE
         methods:
             '+bezierPath':
@@ -875,6 +853,9 @@ classes:
             '-preferredLayoutAttributesFittingAttributes:':
                 name: getPreferredLayoutAttributesFittingAttributes
     UICollectionView: # DONE
+        properties:
+            'transform3D':
+                annotations: ['@WeaklyLinked']
         methods:
             '-init.*':
                 name: init
@@ -1210,7 +1191,7 @@ classes:
             '-fileAttributesToWriteToURL:forSaveOperation:error:':
                 name: getFileAttributesToWrite
                 return_type: NSFileAttributes
-                visibility: protected # throws NSErrorException
+                throws: NSErrorException
             '-fileNameExtensionForType:saveOperation:':
                 name: getFileNameExtension
             '-openWithCompletionHandler:':
@@ -1219,7 +1200,7 @@ classes:
                 name: performAsynchronousFileAccess
             '-readFromURL:error:':
                 name: read
-                visibility: protected # throws NSErrorException
+                throws: NSErrorException
             '-revertToContentsOfURL:completionHandler:':
                 name: revert
             '-saveToURL:forSaveOperation:completionHandler:':
@@ -1228,23 +1209,23 @@ classes:
                 name: updateChangeCount
             '-loadFromContents:ofType:error:':
                 trim_after_first_colon: true
-                visibility: protected # throws NSErrorException
+                throws: NSErrorException
             '-contentsForType:error:':
                 name: getContentsForType
-                visibility: protected # throws NSErrorException
+                throws: NSErrorException
             '-updateChangeCount:':
                 trim_after_first_colon: true
             '-changeCountTokenForSaveOperation:':
                 name: getChangeCountToken
             '-writeContents:andAttributes:safelyToURL:forSaveOperation:error:':
                 trim_after_first_colon: true
-                visibility: protected # throws NSErrorException
+                throws: NSErrorException
                 parameters:
                     additionalFileAttributes:
                         type: NSFileAttributes
             '-writeContents:toURL:forSaveOperation:originalContentsURL:error:':
                 trim_after_first_colon: true
-                visibility: protected # throws NSErrorException
+                throws: NSErrorException
             '-handleError:userInteractionPermitted:':
                 trim_after_first_colon: true
             '-finishedHandlingError:recovered:':
@@ -1507,11 +1488,14 @@ classes:
             '-setAngle:magnitude:':
                 trim_after_first_colon: true
     UIImage: # DONE
+        protocols: [UIAccessibility, UIAccessibilityIdentification]
         properties:
             'images':
                 type: NSArray<UIImage>
             'imageOrientation':
                 name: orientation
+            'CIImage':
+                annotations: ['@WeaklyLinked']
         methods:
             '+animatedImageNamed:duration:':
                 name: createAnimated
@@ -1537,10 +1521,12 @@ classes:
                 name: create
             '+imageWithCIImage:':
                 name: create
+                annotations: ['@WeaklyLinked']
             '+imageWithData:':
                 name: create
             '+imageWithCIImage:scale:orientation:':
                 name: create
+                annotations: ['@WeaklyLinked']
             '+imageWithData:scale:':
                 name: create
             '-initWithContentsOfFile:':
@@ -1566,6 +1552,9 @@ classes:
                 name: draw
             '-drawAsPatternInRect:':
                 name: drawAsPattern
+            '-initWithCIImage.*':
+                name: init
+                annotations: ['@WeaklyLinked']
             '-init.*':
                 name: init
     UIImageAsset: # DONE
@@ -1656,20 +1645,26 @@ classes:
         properties:
             'regionTriggersOnce':
                 getter: regionTriggersOnce
+            'region':
+                annotations: ['@WeaklyLinked']
     UILongPressGestureRecognizer: {} # DONE
     UIManagedDocument: # DONE
         properties: 
+            '(managedObjectContext|managedObjectModel)':
+                annotations: ['@WeaklyLinked']
             'persistentStoreOptions':
                 type: NSPersistentStoreOptions
+                annotations: ['@WeaklyLinked']
         methods:
             '+persistentStoreName':
                 name: getPersistentStoreName
             '-additionalContentForURL:error:':
                 name: getAdditionalContent
-                visibility: protected # throw NSErrorException
+                throws: NSErrorException
             '-configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:':
                 name: configurePersistentStoreCoordinator
-                visibility: protected # throw NSErrorException
+                throws: NSErrorException
+                annotations: ['@WeaklyLinked']
                 parameters:
                     storeOptions:
                         type: NSPersistentStoreOptions
@@ -1677,10 +1672,10 @@ classes:
                 name: getPersistentStoreType
             '-readAdditionalContentFromURL:error:':
                 name: readAdditionalContent
-                visibility: protected # throw NSErrorException
+                throws: NSErrorException
             '-writeAdditionalContent:toURL:originalContentsURL:error:':
                 name: writeAdditionalContent
-                visibility: protected # throw NSErrorException
+                throws: NSErrorException
     UIMarkupTextPrintFormatter: # DONE
         methods:
             '-init.*':
@@ -1719,7 +1714,6 @@ classes:
                 type: NSArray<UINavigationItem>
             'titleTextAttributes':
                 name: titleTextAttributesDictionary
-                type: 'NSDictionary<NSString, NSObject>'
         methods:
             '-backgroundImageForBarMetrics:':
                 name: getBackgroundImage
@@ -1849,7 +1843,7 @@ classes:
         properties:
             'items':
                 name: items0
-                type: 'NSArray<NSDictionary<NSString, NSObject>>'
+                type: 'NSArray<NSDictionary>'
                 visibility: private
             'images':
                 type: NSArray<UIImage>
@@ -1908,7 +1902,7 @@ classes:
                 visibility: private
                 parameters:
                     items:
-                        type: 'NSArray<NSDictionary<NSString, NSObject>>'
+                        type: 'NSArray<NSDictionary>'
     UIPercentDrivenInteractiveTransition: # DONE
         methods:
             '-updateInteractiveTransition:':
@@ -1971,6 +1965,8 @@ classes:
                 name: init
             '-(adaptivePresentationStyle|presentedView)':
                 property: true
+            '-adaptivePresentationStyleForTraitCollection:':
+                name: getAdaptivePresentationStyleForTraitCollection
             '-frameOfPresentedViewInContainerView':
                 property: true
             '-presentationTransitionDidEnd:':
@@ -2122,6 +2118,7 @@ classes:
             '-init':
                 exclude: true
     UIResponder: # DONE
+        protocols: [UIAccessibility]
         properties:
             'keyCommands':
                 type: NSArray<UIKeyCommand>
@@ -2163,6 +2160,7 @@ classes:
                 return_type: NSArray<UIScreen>
             '-displayLinkWithTarget:selector:':
                 name: createDisplayLink
+                annotations: ['@WeaklyLinked']
             '-snapshotViewAfterScreenUpdates:':
                 name: snapshotView
     UIScreenEdgePanGestureRecognizer: {} # DONE
@@ -2199,7 +2197,6 @@ classes:
                 name: getScopeBarButtonDividerImage
             '-scopeBarButtonTitleTextAttributesForState:':
                 name: getScopeBarButtonTitleTextAttributesDictionary
-                return_type: 'NSDictionary<NSString, NSObject>'
             '-searchFieldBackgroundImageForState:':
                 name: getSearchFieldBackgroundImage
             '-setImage:forSearchBarIcon:state:':
@@ -2220,9 +2217,6 @@ classes:
                 trim_after_first_colon: true 
             '-setScopeBarButtonTitleTextAttributes:forState:':
                 name: setScopeBarButtonTitleTextAttributesDictionary
-                parameters:
-                    attributes:
-                        type: 'NSDictionary<NSString, NSObject>'
     UISearchController: # DONE
         methods:
             '-init.*':
@@ -2264,7 +2258,6 @@ classes:
                 name: getTitle
             '-titleTextAttributesForState:':
                 name: getTitleTextAttributesDictionary
-                return_type: 'NSDictionary<NSString, NSObject>'
             '-removeSegmentAtIndex:animated:':
                 name: removeSegment
             '-setTitle:forSegmentAtIndex:':
@@ -2283,9 +2276,6 @@ classes:
                 name: setDividerImage
             '-setTitleTextAttributes:forState:':
                 name: setTitleTextAttributesDictionary
-                parameters:
-                    attributes:
-                        type: 'NSDictionary<NSString, NSObject>'
             '-setContentPositionAdjustment:forSegmentType:barMetrics:':
                 name: setContentPositionAdjustment
     UISimpleTextPrintFormatter: # DONE
@@ -2580,10 +2570,8 @@ classes:
         properties:
             'defaultTextAttributes':
                 name: defaultTextAttributesDictionary
-                type: 'NSDictionary<NSString, NSObject>'
             'typingAttributes':
                 name: typingAttributesDictionary
-                type: 'NSDictionary<NSString, NSObject>'
         methods:
             '-borderRectForBounds:':
                 name: getBorderRect
@@ -2627,10 +2615,8 @@ classes:
         properties:
             'linkTextAttributes':
                 name: linkTextAttributesDictionary
-                type: 'NSDictionary<NSString, NSObject>'
             'typingAttributes':
                 name: typingAttributesDictionary
-                type: 'NSDictionary<NSString, NSObject>'
         methods:
             '-init.*':
                 name: init
@@ -2724,6 +2710,8 @@ classes:
                 type: NSArray<UIGestureRecognizer>
             'motionEffects':
                 type: NSArray<UIMotionEffect>
+            'layer':
+                annotations: ['@WeaklyLinked']
         methods:
             '-init.*':
                 name: init
@@ -2742,6 +2730,7 @@ classes:
             '+layerClass':
                 name: getLayerClass
                 return_type: 'Class<? extends CALayer>'
+                annotations: ['@WeaklyLinked']
             '+performSystemAnimation:onViews:options:animations:completion:':
                 trim_after_first_colon: true
                 parameters:
@@ -2907,6 +2896,9 @@ classes:
                 name: dismissModalViewController
             '-dismissViewControllerAnimated:completion:':
                 name: dismissViewController
+                parameters:
+                    flag:
+                        name: animated
             '-performSegueWithIdentifier:sender:':
                 name: performSegue
             '-transitionFromViewController:toViewController:duration:options:animations:completion:':
@@ -2950,6 +2942,9 @@ classes:
                 trim_after_first_colon: true
             '-presentViewController:animated:completion:':
                 trim_after_first_colon: true
+                parameters:
+                    flag:
+                        name: animated
             '-setEditing:animated:':
                 trim_after_first_colon: true
             '-setToolbarItems:animated:':
@@ -3093,8 +3088,12 @@ protocols:
         methods:
             '-adaptivePresentationStyleForPresentationController:':
                 name: getAdaptivePresentationStyle
+            '-adaptivePresentationStyleForPresentationController:traitCollection:':
+                name: getAdaptivePresentationStyle
             '-presentationController:viewControllerForAdaptivePresentationStyle:':
                 name: getViewController
+            '-presentationController:willPresentWithAdaptiveStyle:transitionCoordinator:':
+                name: willPresent
     UIAlertViewDelegate: # DONE
         methods:
             '-alertView:clickedButtonAtIndex:':
@@ -3112,7 +3111,7 @@ protocols:
             '-alertViewShouldEnableFirstOtherButton:':
                 name: shouldEnableFirstOtherButton
     # UIAppearance is bound as a class with static methods rather than an interface.
-#    UIAppearance: {}
+    # UIAppearance: {}
     UIAppearanceContainer: # DONE
         skip_adapter: true
     UIApplicationDelegate: # DONE
@@ -3835,18 +3834,23 @@ protocols:
         methods:
             '-textField:shouldChangeCharactersInRange:replacementString:':
                 name: shouldChangeCharacters
+                default: true
             '-textFieldDidBeginEditing:':
                 name: didBeginEditing
             '-textFieldDidEndEditing:':
                 name: didEndEditing
             '-textFieldShouldBeginEditing:':
                 name: shouldBeginEditing
+                default: true
             '-textFieldShouldClear:':
                 name: shouldClear
+                default: true
             '-textFieldShouldEndEditing:':
                 name: shouldEndEditing
+                default: true
             '-textFieldShouldReturn:':
                 name: shouldReturn
+                default: true
     UITextInput: # DONE
         properties:
             'markedTextStyle':
@@ -4048,6 +4052,7 @@ protocols:
                 name: didFailLoad
             '-webView:shouldStartLoadWithRequest:navigationType:':
                 name: shouldStartLoad
+                default: true
             '-webViewDidFinishLoad:':
                 name: didFinishLoad
             '-webViewDidStartLoad:':
@@ -4058,6 +4063,11 @@ protocols:
         properties:
             'isAccessibilityElement':
                 name: accessibilityElement
+            'accessibilityElementsHidden':
+                name: accessibilityElementsHidden
+                getter: areAccessibilityElementsHidden
+            'accessibilityViewIsModal':
+                name: accessibilityViewModal
     UIAccessibilityAction: # DONE
         properties:
             'accessibilityCustomActions':
@@ -4221,64 +4231,143 @@ functions:
         name: 'Function__#{g[0]}'
 
 values:
-    NS(TabColumnTerminatorsAttribute)Name:
-        class: NSTextTabOptions
+    NS(TabColumnTerminators)AttributeName:
+        dictionary: NSTextTabOptions
         name: '#{g[0]}'
         type: NSString
-        visibility: protected
+        parameters:
+            TabColumnTerminators:
+                name: tabColumnTerminatingCharacters
+                type: NSCharacterSet
     NSTextStorage(.*Notification):
         class: NSTextStorage
         name: '#{g[0]}'
         type: NSString
-    NS(.*DocumentAttribute):
-        class: NSAttributedStringDocumentAttribute
+    NS(.*)DocumentAttribute:
+        dictionary: NSAttributedStringDocumentAttributes
+        enum: NSAttributedStringDocumentAttribute
         name: '#{g[0]}'
         type: NSString
-        visibility: protected
-    NS(TextLayoutSectionsAttribute):
-        class: NSAttributedStringDocumentAttribute
+        methods:
+            DocumentType:
+                type: NSDocumentType
+            CharacterEncoding:
+                type: NSStringEncoding
+            DefaultAttributes:
+                type: NSAttributedStringAttributes
+            PaperSize:
+                type: CGSize
+            PaperMargin:
+                type: UIEdgeInsets
+            ViewSize:
+                type: CGSize
+            ViewZoom:
+                type: double
+            ReadOnly:
+                type: boolean
+            BackgroundColor:
+                type: UIColor
+            HyphenationFactor:
+                type: double
+            DefaultTabInterval:
+                type: double
+    NS(TextLayoutSections)Attribute:
+        dictionary: NSAttributedStringDocumentAttributes
+        enum: NSAttributedStringDocumentAttribute
+        constructor_visibility: public
         name: '#{g[0]}'
         type: NSString
-        visibility: protected
-    NS(.*Attribute)Name:
-        class: NSAttributedStringAttribute
+    NS(.*)AttributeName:
+        dictionary: NSAttributedStringAttributes
+        enum: NSAttributedStringAttribute
+        constructor_visibility: public
         name: '#{g[0]}'
         type: NSString
-        visibility: protected
     UITextAttribute(Font):
-        class: NSAttributedStringAttribute
-        name: 'Text#{g[0]}Attribute'
+        dictionary: NSAttributedStringAttributes
+        enum: NSAttributedStringAttribute
+        constructor_visibility: public
+        name: 'Text#{g[0]}'
         type: NSString
-        visibility: protected
+        methods:
+            Font:
+                type: UIFont
+            ParagraphStyle:
+                type: NSParagraphStyle
+            ForegroundColor:
+                type: UIColor
+            BackgroundColor:
+                type: UIColor
+            Kern:
+                name: kerning
+                type: double
+            StrikethroughStyle:
+                type: NSUnderlineStyle
+            UnderlineStyle:
+                type: NSUnderlineStyle
+            StrokeColor:
+                type: UIColor
+            StrokeWidth:
+                type: double
+            Shadow:
+                type: NSShadow
+            TextEffect:
+                type: NSTextEffect
+            Attachment:
+                type: NSTextAttachment
+            Link:
+                type: NSURL
+            BaselineOffset:
+                type: double
+            UnderlineColor:
+                type: UIColor
+            StrikethroughColor:
+                type: UIColor
+            Obliqueness:
+                type: double
+            Expansion:
+                type: double
+            VerticalGlyphForm:
+                name: verticalText
+                type: boolean
+            SpeechPunctuation:
+                type: boolean
+            SpeechLanguage:
+                type: String
+            SpeechPitch:
+                type: double
     UITextAttribute(.*):
-        class: NSAttributedStringAttribute
-        name: '#{g[0]}Attribute'
+        dictionary: NSAttributedStringAttributes
+        enum: NSAttributedStringAttribute
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
     NSTextEffect(.*):
-        class: NSTextEffect
-        name: '#{g[0]}Value'
+        enum: NSTextEffect
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
     NS(.*)TextDocumentType:
-        class: NSDocumentType
-        name: '#{g[0]}Value'
+        enum: NSDocumentType
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
     NSTextLayoutSection(.*):
-        class: NSTextLayoutSection
-        name: '#{g[0]}Key'
+        dictionary: NSTextLayoutSection
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
+        methods:
+            Orientation:
+                type: NSTextLayoutOrientation
+            Range:
+                type: NSRange
+                hint: Struct<?>
     UILayoutPriority(.*):
         class: UILayoutPriority
         name: '#{g[0]}'
 
     # NSRunLoopMode
     UI(Tracking)RunLoopMode:
-        class: UIRunLoopMode
-        name: '#{g[0]}Value'
-        visibility: protected
+        enum: UIRunLoopMode
+        name: '#{g[0]}'
+        type: NSString
 
     # NSError
     UIPrintErrorDomain:
@@ -4287,10 +4376,9 @@ values:
 
     # UIAccessibility
     UIAccessibility(ScreenChanged|LayoutChanged|Announcement|PageScrolled|PauseAssistiveTechnology|ResumeAssistiveTechnology)Notification:
-        class: UIAccessibilityNotification
+        enum: UIAccessibilityNotification
         name: '#{g[0]}Notification'
-        readonly: true
-        visibility: protected
+        type: int
     UIAccessibility(.*Notification):
         class: UIAccessibilityGlobals
         name: '#{g[0]}'
@@ -4316,10 +4404,10 @@ values:
         type: long
         readonly: true
     UIAccessibilitySpeechAttribute(.*):
-        class: NSAttributedStringAttribute
-        name: 'Speech#{g[0]}Attribute'
+        dictionary: NSAttributedStringAttributes
+        enum: NSAttributedStringAttribute
+        name: 'Speech#{g[0]}'
         type: NSString
-        visibility: protected
 
     # UIActivity
     UIActivityType(.*):
@@ -4328,15 +4416,42 @@ values:
 
     # UIApplication
     UIApplicationLaunchOptionsUserActivity(Type)Key:
-        class: UIApplicationLaunchOptionsUserActivityInfo
-        name: '#{g[0]}Key'
-        type: NSString
-        visibility: protected
-    UIApplicationLaunchOptions(.*Key):
-        class: UIApplicationLaunchOptions
+        dictionary: UIApplicationLaunchOptionsUserActivityInfo
         name: '#{g[0]}'
         type: NSString
-        visibility: protected
+        mutable: false
+        methods:
+            Type:
+                type: String
+    UIApplicationLaunchOptions(.*)Key:
+        dictionary: UIApplicationLaunchOptions
+        name: '#{g[0]}'
+        type: NSString
+        mutable: false
+        methods:
+            URL:
+                type: NSURL
+            SourceApplication:
+                type: String
+            LocalNotification:
+                type: UILocalNotification
+            Annotation:
+                type: NSPropertyList
+            Location:
+                name: locationStart
+                type: boolean
+            NewsstandDownloads:
+                name: newsstandDownloadIdentifiers
+                type: List<String>
+            BluetoothCentrals:
+                name: bluetoothCentralIdentifiers
+                type: List<String>
+            BluetoothPeripherals:
+                name: bluetoothPeripheralIdentifiers
+                type: List<String>
+            UserActivityDictionary:
+                name: UserActivityInfo
+                type: UIApplicationLaunchOptionsUserActivityInfo
     UIApplication(.*Notification):
         class: UIApplication
         name: '#{g[0]}'
@@ -4360,9 +4475,8 @@ values:
         type: NSString
         visibility: protected
     UIContentSizeCategory(.*):
-        class: UIContentSizeCategory
-        name: '#{g[0]}Value'
-        visibility: protected
+        enum: UIContentSizeCategory
+        name: '#{g[0]}'
         type: NSString
     UIApplication(BackgroundFetchInterval.*):
         class: UIApplication
@@ -4377,16 +4491,14 @@ values:
         class: UIApplication
         name: 'get#{g[0]}'
     UIApplication(.*)ExtensionPointIdentifier:
-        class: UIApplicationExtensionPointIdentifier
-        name: '#{g[0]}Value'
-        visibility: protected
+        enum: UIApplicationExtensionPointIdentifier
+        name: '#{g[0]}'
         type: NSString
 
     # UICollectionView
     UICollectionElementKind(.*):
-        class: UICollectionElementKind
-        name: '#{g[0]}Value'
-        visibility: protected
+        enum: UICollectionElementKind
+        name: '#{g[0]}'
         type: NSString
 
     # UIDevice
@@ -4410,36 +4522,88 @@ values:
         name: '#{g[0]}'
 
     # UIFont
+    UIFontFeature(.*Identifier)Key:
+        dictionary: UIFontFeatureSetting
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            TypeIdentifier:
+                type: long
+            SelectorIdentifier:
+                type: long
     UIFontDescriptor(.*)Attribute:
-        class: UIFontDescriptorAttribute
-        name: '#{g[0]}Value'
-        type: NSString
-        visibility: protected
-    UIFontFeature(.*IdentifierKey):
-        class: UIFontDescriptorAttributes
+        dictionary: UIFontDescriptorAttributes
+        enum: UIFontDescriptorAttribute
         name: '#{g[0]}'
         type: NSString
-        visibility: protected
+        methods:
+            Family:
+                type: String
+            Name:
+                type: String
+            Face:
+                type: String
+            Size:
+                type: double
+            VisibleName:
+                type: String
+            Matrix:
+                type: CGAffineTransform
+            CharacterSet:
+                type: NSCharacterSet
+            CascadeList:
+                type: NSArray<UIFontDescriptor>
+            Traits:
+                type: UIFontDescriptorTraits
+            FixedAdvance:
+                type: double
+            TextStyle:
+                type: UIFontTextStyle
+            FeatureSettings:
+                type: List<UIFontFeatureSetting>
+        
     UIFontTextStyle(.*):
-        class: UIFontTextStyle
-        name: '#{g[0]}Value'
-        type: NSString
-        visibility: protected
-    UIFont(.*Trait):
-        class: UIFontDescriptorTraits
+        enum: UIFontTextStyle
         name: '#{g[0]}'
         type: NSString
-        visibility: protected
+    UIFont(.*Trait):
+        dictionary: UIFontDescriptorTraits
+        name: '#{g[0]}'
+        type: NSString
+        methods:
+            SymbolicTrait:
+                name: SymbolicTraits
+                type: UIFontDescriptorSymbolicTraits
+            WeightTrait:
+                type: double
+            WidthTrait:
+                type: double
+            SlantTrait:
+                type: double
     UIFontWeight(.*):
         enum: UIFontWeight
         name: '#{g[0]}'
 
     # UIImagePickerController
     UIImagePickerController(.*):
-        class: UIImagePickerControllerEditingInfo
-        name: '#{g[0]}Key'
+        dictionary: UIImagePickerControllerEditingInfo
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
+        methods:
+            MediaType:
+                type: String
+            OriginalImage:
+                type: UIImage
+            EditedImage:
+                type: UIImage
+            CropRect:
+                type: CGRect
+            MediaURL:
+                type: NSURL
+            ReferenceURL:
+                type: NSURL
+            MediaMetadata:
+                type: 'Map<String, NSObject>'
 
     # UIKeyCommand
     UIKeyInput(.*):
@@ -4464,10 +4628,12 @@ values:
 
     # UINib
     UINib(ExternalObjects):
-        class: UINibLoadingOptions
-        name: '#{g[0]}Key'
+        dictionary: UINibLoadingOptions
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
+        methods:
+            ExternalObjects:
+                type: 'Map<String, NSObject>'
 
     # UIOffset
     UIOffset(Zero):
@@ -4475,22 +4641,33 @@ values:
         name: '#{g[0]}'
 
     # UIPageViewController
-    UIPageViewControllerOption(.*Key):
-        class: UIPageViewControllerOptions
+    UIPageViewControllerOption(.*)Key:
+        dictionary: UIPageViewControllerOptions
         name: '#{g[0]}'
         type: NSString
-        visibility: protected
+        methods:
+            SpineLocation:
+                type: UIPageViewControllerSpineLocation
+            InterPageSpacing:
+                type: double
 
     # UIPasteboard
     UIPasteboard(.*Notification):
         class: UIPasteboard
         name: '#{g[0]}'
         type: NSString
-    UIPasteboardChanged(.*Key):
-        class: UIPasteboardChangedNotificationInfo
+    UIPasteboardChanged(.*)Key:
+        dictionary: UIPasteboardChangedNotification
         name: '#{g[0]}'
         type: NSString
-        visibility: protected
+        mutable: false
+        methods:
+            TypesAdded:
+                name: addedTypes
+                type: List<String>
+            TypesRemoved:
+                name: removedTypes
+                type: List<String>
     UIPasteboardNameGeneral:
         exclude: true # use UIPasteboard.getGeneralPasteboard() instead
     UI(PasteboardNameFind):
@@ -4501,7 +4678,8 @@ values:
         class: UIPasteboard
         name: 'get#{g[0]}TypeList'
         readonly: true
-        type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+        type: List<String>
+        marshaler: NSArray.AsStringListMarshaler
 
     # UIScreen
     UIScreen(.*Notification):
@@ -4548,11 +4726,18 @@ values:
         type: NSString
 
     # UITextInput
-    UITextInputText(.*Key):
-        class: UITextInputTextStyle
+    UITextInputText(.*)Key:
+        dictionary: UITextInputTextStyle
         name: '#{g[0]}'
         type: NSString
-        visibility: protected
+        methods:
+            BackgroundColor:
+                type: UIColor
+            Color:
+                name: textColor
+                type: UIColor
+            Font:
+                type: UIFont
 
     # UITextInputMode
     UITextInput(.*)Notification:
@@ -4571,9 +4756,9 @@ values:
         class: UIView
         name: '#{g[0]}'
     UILayoutFitting(.*)Size:
-        class: UILayoutFittingSize
-        name: '#{g[0]}Value'
-        visibility: protected
+        enum: UILayoutFittingSize
+        name: '#{g[0]}'
+        type: '@ByVal CGSize'
 
     # UIViewController
     UIViewController(ShowDetailTargetDidChangeNotification):
@@ -4582,16 +4767,14 @@ values:
         type: NSString
 
     # UIViewControllerContextTransitioning
-    UITransitionContext(.*ViewControllerKey):
-        class: UITransitionContextViewControllerType
+    UITransitionContext(.*ViewController)Key:
+        enum: UITransitionContextViewControllerType
         name: '#{g[0]}'
         type: NSString
-        visibility: protected
-    UITransitionContext(.*ViewKey):
-        class: UITransitionContextViewType
+    UITransitionContext(.*View)Key:
+        enum: UITransitionContextViewType
         name: '#{g[0]}'
         type: NSString
-        visibility: protected
 
     # UIWindow
     UIWindow(.*Notification):
@@ -4603,10 +4786,20 @@ values:
         name: '#{g[0]}'
         type: NSString
     UIKeyboard(.*)UserInfoKey:
-        class: UIKeyboardAnimation
-        name: '#{g[0]}Key'
+        dictionary: UIKeyboardAnimation
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
+        methods:
+            FrameBegin:
+                name: startFrame
+                type: CGRect
+            FrameEnd:
+                name: endFrame
+                type: CGRect
+            AnimationDuration:
+                type: double
+            AnimationCurve:
+                type: UIViewAnimationCurve
     UIWindow(Level.*):
         class: UIWindowLevel
         name: '#{g[0]}'

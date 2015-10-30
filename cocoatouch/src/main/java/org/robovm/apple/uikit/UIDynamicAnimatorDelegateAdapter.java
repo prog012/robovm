@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -54,8 +55,8 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("dynamicAnimatorWillResume:")
-    public void willResume(UIDynamicAnimator animator) { throw new UnsupportedOperationException(); }
+    public void willResume(UIDynamicAnimator animator) {}
     @NotImplemented("dynamicAnimatorDidPause:")
-    public void didPause(UIDynamicAnimator animator) { throw new UnsupportedOperationException(); }
+    public void didPause(UIDynamicAnimator animator) {}
     /*</methods>*/
 }

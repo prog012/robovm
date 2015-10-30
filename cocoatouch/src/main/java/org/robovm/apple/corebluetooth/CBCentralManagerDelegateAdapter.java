@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -50,20 +51,20 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("centralManagerDidUpdateState:")
-    public void didUpdateState(CBCentralManager central) { throw new UnsupportedOperationException(); }
+    public void didUpdateState(CBCentralManager central) {}
     @NotImplemented("centralManager:willRestoreState:")
-    public void willRestoreState(CBCentralManager central, CBCentralManagerRestoredState dict) { throw new UnsupportedOperationException(); }
+    public void willRestoreState(CBCentralManager central, CBCentralManagerRestoredState dict) {}
     @NotImplemented("centralManager:didRetrievePeripherals:")
-    public void didRetrievePeripherals(CBCentralManager central, NSArray<CBPeripheral> peripherals) { throw new UnsupportedOperationException(); }
+    public void didRetrievePeripherals(CBCentralManager central, NSArray<CBPeripheral> peripherals) {}
     @NotImplemented("centralManager:didRetrieveConnectedPeripherals:")
-    public void didRetrieveConnectedPeripherals(CBCentralManager central, NSArray<CBPeripheral> peripherals) { throw new UnsupportedOperationException(); }
+    public void didRetrieveConnectedPeripherals(CBCentralManager central, NSArray<CBPeripheral> peripherals) {}
     @NotImplemented("centralManager:didDiscoverPeripheral:advertisementData:RSSI:")
-    public void didDiscoverPeripheral(CBCentralManager central, CBPeripheral peripheral, CBAdvertisementData advertisementData, NSNumber rssi) { throw new UnsupportedOperationException(); }
+    public void didDiscoverPeripheral(CBCentralManager central, CBPeripheral peripheral, CBAdvertisementData advertisementData, NSNumber rssi) {}
     @NotImplemented("centralManager:didConnectPeripheral:")
-    public void didConnectPeripheral(CBCentralManager central, CBPeripheral peripheral) { throw new UnsupportedOperationException(); }
+    public void didConnectPeripheral(CBCentralManager central, CBPeripheral peripheral) {}
     @NotImplemented("centralManager:didFailToConnectPeripheral:error:")
-    public void didFailToConnectPeripheral(CBCentralManager central, CBPeripheral peripheral, NSError error) { throw new UnsupportedOperationException(); }
+    public void didFailToConnectPeripheral(CBCentralManager central, CBPeripheral peripheral, NSError error) {}
     @NotImplemented("centralManager:didDisconnectPeripheral:error:")
-    public void didDisconnectPeripheral(CBCentralManager central, CBPeripheral peripheral, NSError error) { throw new UnsupportedOperationException(); }
+    public void didDisconnectPeripheral(CBCentralManager central, CBPeripheral peripheral, NSError error) {}
     /*</methods>*/
 }

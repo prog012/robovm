@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -33,12 +34,15 @@ import org.robovm.apple.addressbook.*;
 
 /*<javadoc>*/
 /*</javadoc>*/
-@Marshaler(PKPaymentNetwork.Marshaler.class)
-/*<annotations>*/@Library("PassKit")/*</annotations>*/
+/*<annotations>*/@Library("PassKit") @StronglyLinked/*</annotations>*/
+@Marshaler(/*<name>*/PKPaymentNetwork/*</name>*/.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PKPaymentNetwork/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    extends /*<extends>*/GlobalValueEnumeration<NSString>/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
+    static { Bro.bind(/*<name>*/PKPaymentNetwork/*</name>*/.class); }
+
+    /*<marshalers>*/
     public static class Marshaler {
         @MarshalsPointer
         public static PKPaymentNetwork toObject(Class<PKPaymentNetwork> cls, long handle, long flags) {
@@ -56,18 +60,17 @@ import org.robovm.apple.addressbook.*;
             return NSObject.Marshaler.toNative(o.value(), flags);
         }
     }
-    
     public static class AsListMarshaler {
         @SuppressWarnings("unchecked")
         @MarshalsPointer
         public static List<PKPaymentNetwork> toObject(Class<? extends NSObject> cls, long handle, long flags) {
-            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(cls, handle, flags);
+            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
             if (o == null) {
                 return null;
             }
             List<PKPaymentNetwork> list = new ArrayList<>();
-            for (NSString str : o) {
-                list.add(PKPaymentNetwork.valueOf(str));
+            for (int i = 0; i < o.size(); i++) {
+                list.add(PKPaymentNetwork.valueOf(o.get(i)));
             }
             return list;
         }
@@ -76,37 +79,38 @@ import org.robovm.apple.addressbook.*;
             if (l == null) {
                 return 0L;
             }
-            NSMutableArray<NSString> array = new NSMutableArray<>();
-            for (PKPaymentNetwork i : l) {
-                array.add(i.value());
+            NSArray<NSString> array = new NSMutableArray<>();
+            for (PKPaymentNetwork o : l) {
+                array.add(o.value());
             }
             return NSObject.Marshaler.toNative(array, flags);
         }
     }
+    /*</marshalers>*/
+
+    /*<constants>*/
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    public static final PKPaymentNetwork Amex = new PKPaymentNetwork("Amex");
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    public static final PKPaymentNetwork MasterCard = new PKPaymentNetwork("MasterCard");
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    public static final PKPaymentNetwork Visa = new PKPaymentNetwork("Visa");
+    /*</constants>*/
     
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(PKPaymentNetwork.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
-    public static final PKPaymentNetwork Amex = new PKPaymentNetwork("AmexValue");
-    public static final PKPaymentNetwork MasterCard = new PKPaymentNetwork("MasterCardValue");
-    public static final PKPaymentNetwork Visa = new PKPaymentNetwork("VisaValue");
+    private static /*<name>*/PKPaymentNetwork/*</name>*/[] values = new /*<name>*/PKPaymentNetwork/*</name>*/[] {/*<value_list>*/Amex, MasterCard, Visa/*</value_list>*/};
     
-    private static PKPaymentNetwork[] values = new PKPaymentNetwork[] {Amex, MasterCard, Visa};
-    private final LazyGlobalValue<NSString> lazyGlobalValue;
-    
-    private PKPaymentNetwork(String getterName) {
-        lazyGlobalValue = new LazyGlobalValue<>(getClass(), getterName);
+    /*<name>*/PKPaymentNetwork/*</name>*/ (String getterName) {
+        super(Values.class, getterName);
     }
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
-    public NSString value() {
-        return lazyGlobalValue.value();
-    }
     
-    public static PKPaymentNetwork valueOf(NSString value) {
-        for (PKPaymentNetwork v : values) {
+    public static /*<name>*/PKPaymentNetwork/*</name>*/ valueOf(/*<type>*/NSString/*</type>*/ value) {
+        for (/*<name>*/PKPaymentNetwork/*</name>*/ v : values) {
             if (v.value().equals(value)) {
                 return v;
             }
@@ -114,12 +118,29 @@ import org.robovm.apple.addressbook.*;
         throw new IllegalArgumentException("No constant with value " + value + " found in " 
             + /*<name>*/PKPaymentNetwork/*</name>*/.class.getName());
     }
-    /*<methods>*/
-    @GlobalValue(symbol="PKPaymentNetworkAmex", optional=true)
-    protected static native NSString AmexValue();
-    @GlobalValue(symbol="PKPaymentNetworkMasterCard", optional=true)
-    protected static native NSString MasterCardValue();
-    @GlobalValue(symbol="PKPaymentNetworkVisa", optional=true)
-    protected static native NSString VisaValue();
-    /*</methods>*/
+    
+    /*<methods>*//*</methods>*/
+    
+    /*<annotations>*/@Library("PassKit") @StronglyLinked/*</annotations>*/
+    public static class Values {
+    	static { Bro.bind(Values.class); }
+
+        /*<values>*/
+        /**
+         * @since Available in iOS 8.0 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkAmex", optional=true)
+        public static native NSString Amex();
+        /**
+         * @since Available in iOS 8.0 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkMasterCard", optional=true)
+        public static native NSString MasterCard();
+        /**
+         * @since Available in iOS 8.0 and later.
+         */
+        @GlobalValue(symbol="PKPaymentNetworkVisa", optional=true)
+        public static native NSString Visa();
+        /*</values>*/
+    }
 }

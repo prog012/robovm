@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -50,7 +52,7 @@ import org.robovm.apple.dispatch.*;
                 @Override
                 public void invoke(NSNotification a) {
                     NSData d = null;
-                    NSDictionary<NSString, NSObject> data = a.getUserInfo();
+                    NSDictionary<?, ?> data = a.getUserInfo();
                     if (data.containsKey(NotificationDataItem())) {
                         d = (NSData)data.get(NotificationDataItem());
                     }
@@ -63,7 +65,7 @@ import org.robovm.apple.dispatch.*;
                 @Override
                 public void invoke(NSNotification a) {
                     NSData d = null;
-                    NSDictionary<NSString, NSObject> data = a.getUserInfo();
+                    NSDictionary<?, ?> data = a.getUserInfo();
                     if (data.containsKey(NotificationDataItem())) {
                         d = (NSData)data.get(NotificationDataItem());
                     }
@@ -76,7 +78,7 @@ import org.robovm.apple.dispatch.*;
                 @Override
                 public void invoke(NSNotification a) {
                     NSFileHandle f = null;
-                    NSDictionary<NSString, NSObject> data = a.getUserInfo();
+                    NSDictionary<?, ?> data = a.getUserInfo();
                     if (data.containsKey(NotificationDataItem())) {
                         f = (NSFileHandle)data.get(NotificationFileHandleItem());
                     }
@@ -137,75 +139,31 @@ import org.robovm.apple.dispatch.*;
     public void readInBackgroundAndNotify(NSRunLoopMode...modes) {
         List<String> list = new ArrayList<>();
         for (NSRunLoopMode mode : modes) {
-            list.add(mode.value());
+            list.add(mode.value().toString());
         }
         readInBackgroundAndNotify(list);
     }
     public void readToEndOfFileInBackgroundAndNotify(NSRunLoopMode...modes) {
         List<String> list = new ArrayList<>();
         for (NSRunLoopMode mode : modes) {
-            list.add(mode.value());
+            list.add(mode.value().toString());
         }
         readToEndOfFileInBackgroundAndNotify(list);
     }
     public void acceptConnectionInBackgroundAndNotify(NSRunLoopMode...modes) {
         List<String> list = new ArrayList<>();
         for (NSRunLoopMode mode : modes) {
-            list.add(mode.value());
+            list.add(mode.value().toString());
         }
         acceptConnectionInBackgroundAndNotify(list);
     }
     public void waitForDataInBackgroundAndNotify(NSRunLoopMode...modes) {
         List<String> list = new ArrayList<>();
         for (NSRunLoopMode mode : modes) {
-            list.add(mode.value());
+            list.add(mode.value().toString());
         }
         waitForDataInBackgroundAndNotify(list);
     }
-    
-    /**
-     * 
-     * @param url
-     * @throws NSErrorException
-     * @since Available in iOS 4.0 and later.
-     */
-    public static NSFileHandle createForReading(NSURL url) throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        NSFileHandle result = createForReading(url, err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
-    /**
-     * 
-     * @param url
-     * @throws NSErrorException
-     * @since Available in iOS 4.0 and later.
-     */
-    public static NSFileHandle createForWriting(NSURL url) throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        NSFileHandle result = createForWriting(url, err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
-    /**
-     * 
-     * @param url
-     * @throws NSErrorException
-     * @since Available in iOS 4.0 and later.
-     */
-    public static NSFileHandle createForUpdating(NSURL url) throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        NSFileHandle result = createForUpdating(url, err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
-    
     /*<methods>*/
     @GlobalValue(symbol="NSFileHandleReadCompletionNotification", optional=true)
     public static native NSString ReadCompletionNotification();
@@ -257,18 +215,45 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
+    public static NSFileHandle createForReading(NSURL url) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSFileHandle result = createForReading(url, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
     @Method(selector = "fileHandleForReadingFromURL:error:")
-    protected static native NSFileHandle createForReading(NSURL url, NSError.NSErrorPtr error);
+    private static native NSFileHandle createForReading(NSURL url, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    public static NSFileHandle createForWriting(NSURL url) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSFileHandle result = createForWriting(url, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Method(selector = "fileHandleForWritingToURL:error:")
-    protected static native NSFileHandle createForWriting(NSURL url, NSError.NSErrorPtr error);
+    private static native NSFileHandle createForWriting(NSURL url, NSError.NSErrorPtr error);
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    public static NSFileHandle createForUpdating(NSURL url) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSFileHandle result = createForUpdating(url, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Method(selector = "fileHandleForUpdatingURL:error:")
-    protected static native NSFileHandle createForUpdating(NSURL url, NSError.NSErrorPtr error);
+    private static native NSFileHandle createForUpdating(NSURL url, NSError.NSErrorPtr error);
     @Method(selector = "readInBackgroundAndNotifyForModes:")
     public native void readInBackgroundAndNotify(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> modes);
     @Method(selector = "readInBackgroundAndNotify")

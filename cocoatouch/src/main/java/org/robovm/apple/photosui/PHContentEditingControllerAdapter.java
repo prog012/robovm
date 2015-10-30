@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -46,17 +47,17 @@ import org.robovm.apple.uikit.*;
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
     @NotImplemented("shouldShowCancelConfirmation")
-    public boolean shouldShowCancelConfirmation() { throw new UnsupportedOperationException(); }
+    public boolean shouldShowCancelConfirmation() { return false; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("canHandleAdjustmentData:")
-    public boolean canHandleAdjustmentData(PHAdjustmentData adjustmentData) { throw new UnsupportedOperationException(); }
+    public boolean canHandleAdjustmentData(PHAdjustmentData adjustmentData) { return false; }
     @NotImplemented("startContentEditingWithInput:placeholderImage:")
-    public void startContentEditing(PHContentEditingInput contentEditingInput, UIImage placeholderImage) { throw new UnsupportedOperationException(); }
+    public void startContentEditing(PHContentEditingInput contentEditingInput, UIImage placeholderImage) {}
     @NotImplemented("finishContentEditingWithCompletionHandler:")
-    public void finishContentEditing(@Block VoidBlock1<PHContentEditingOutput> completionHandler) { throw new UnsupportedOperationException(); }
+    public void finishContentEditing(@Block VoidBlock1<PHContentEditingOutput> completionHandler) {}
     @NotImplemented("cancelContentEditing")
-    public void cancelContentEditing() { throw new UnsupportedOperationException(); }
+    public void cancelContentEditing() {}
     /*</methods>*/
 }

@@ -1,5 +1,5 @@
 package: org.robovm.apple.corefoundation
-include: [dispatch.yaml, foundation.yaml]
+include: [foundation.yaml, dispatch.yaml, coreservices.yaml, coremedia.yaml, uikit.yaml, coretext.yaml]
 library: CoreFoundation
 framework: CoreFoundation
 clang_args: ['-x', 'objective-c']
@@ -132,6 +132,7 @@ classes:
     __CFAttributedString:
         name: CFAttributedString
         extends: CFType
+        annotations: ['@WeaklyLinked']
     __CFBag:
         name: CFBag
         extends: CFType
@@ -189,6 +190,7 @@ classes:
     CFMutableAttributedString:
         name: CFMutableAttributedString
         extends: CFAttributedString
+        annotations: ['@WeaklyLinked']
     CFMutableBag:
         name: CFMutableBag
         extends: CFBag
@@ -903,7 +905,7 @@ functions:
         return_marshaler: CFType.NoRetainMarshaler
         parameters:
             userInfo:
-                type: 'NSDictionary<NSString, NSObject>'
+                type: NSDictionary
     CFErrorCreateWithUserInfoKeysAndValues:
         exclude: true
     CFErrorCopyDescription:
@@ -911,7 +913,7 @@ functions:
     CFErrorCopy(UserInfo):
         class: CFError
         name: 'get#{g[0]}'
-        return_type: 'NSDictionary<NSString, NSObject>'
+        return_type: NSDictionary
     CFErrorCopy(.*):
         class: CFError
         name: 'get#{g[0]}'
@@ -1055,6 +1057,10 @@ functions:
         name: '#{g[0]}'
         return_type: CFMessagePortErrorCode
         visibility: protected
+    CFMessagePort(SetDispatchQueue):
+        class: CFMessagePort
+        name: '#{g[0]}'
+        annotations: ['@WeaklyLinked']
     CFMessagePort(.*):
         class: CFMessagePort
         name: '#{g[0]}'
@@ -1084,7 +1090,7 @@ functions:
             object:
                 type: CFType
             userInfo:
-                type: 'NSDictionary<NSString, ?>'
+                type: NSDictionary
             options:
                 type: CFNotificationPostingOptions
     CFNotificationCenter(.*):
@@ -1306,6 +1312,14 @@ functions:
         class: CFReadStream
         name: 'get#{g[0]}'
         return_marshaler: CFType.NoRetainMarshaler
+    CFReadStream(SetDispatchQueue):
+        class: CFReadStream
+        name: '#{g[0]}'
+        annotations: ['@WeaklyLinked']
+    CFReadStreamCopy(DispatchQueue):
+        class: CFReadStream
+        name: 'get#{g[0]}'
+        annotations: ['@WeaklyLinked']
     CFReadStreamCopy(.*):
         class: CFReadStream
         name: 'get#{g[0]}'
@@ -1758,6 +1772,14 @@ functions:
         class: CFWriteStream
         name: 'get#{g[0]}'
         return_marshaler: CFType.NoRetainMarshaler
+    CFWriteStream(SetDispatchQueue):
+        class: CFWriteStream
+        name: '#{g[0]}'
+        annotations: ['@WeaklyLinked']
+    CFWriteStreamCopy(DispatchQueue):
+        class: CFWriteStream
+        name: 'get#{g[0]}'
+        annotations: ['@WeaklyLinked']
     CFWriteStreamCopy(.*):
         class: CFWriteStream
         name: 'get#{g[0]}'
@@ -1863,13 +1885,13 @@ values:
 
     # CFRunLoop
     kCFRunLoop(Default)Mode:
-        class: CFRunLoopMode
-        name: '#{g[0]}Value'
-        visibility: protected
+        enum: CFRunLoopMode
+        name: '#{g[0]}'
+        type: CFString
     kCFRunLoop(Common)Modes:
-        class: CFRunLoopMode
-        name: '#{g[0]}Value'
-        visibility: protected
+        enum: CFRunLoopMode
+        name: '#{g[0]}'
+        type: CFString
     
     # CFSocket
     kCFSocket(.*):

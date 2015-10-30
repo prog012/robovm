@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -55,10 +57,10 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("URLSession:downloadTask:didFinishDownloadingToURL:")
-    public void didFinishDownloading(NSURLSession session, NSURLSessionDownloadTask downloadTask, NSURL location) { throw new UnsupportedOperationException(); }
+    public void didFinishDownloading(NSURLSession session, NSURLSessionDownloadTask downloadTask, NSURL location) {}
     @NotImplemented("URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:")
-    public void didWriteData(NSURLSession session, NSURLSessionDownloadTask downloadTask, long bytesWritten, long totalBytesWritten, long totalBytesExpectedToWrite) { throw new UnsupportedOperationException(); }
+    public void didWriteData(NSURLSession session, NSURLSessionDownloadTask downloadTask, long bytesWritten, long totalBytesWritten, long totalBytesExpectedToWrite) {}
     @NotImplemented("URLSession:downloadTask:didResumeAtOffset:expectedTotalBytes:")
-    public void didResume(NSURLSession session, NSURLSessionDownloadTask downloadTask, long fileOffset, long expectedTotalBytes) { throw new UnsupportedOperationException(); }
+    public void didResume(NSURLSession session, NSURLSessionDownloadTask downloadTask, long fileOffset, long expectedTotalBytes) {}
     /*</methods>*/
 }

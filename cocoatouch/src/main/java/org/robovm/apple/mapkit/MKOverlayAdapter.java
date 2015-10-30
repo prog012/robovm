@@ -23,11 +23,11 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
@@ -49,18 +49,18 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
     @NotImplemented("coordinate")
-    public @ByVal CLLocationCoordinate2D getCoordinate() { throw new UnsupportedOperationException(); }
+    public @ByVal CLLocationCoordinate2D getCoordinate() { return null; }
     @NotImplemented("boundingMapRect")
-    public @ByVal MKMapRect getBoundingMapRect() { throw new UnsupportedOperationException(); }
+    public @ByVal MKMapRect getBoundingMapRect() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("intersectsMapRect:")
-    public boolean intersects(@ByVal MKMapRect mapRect) { throw new UnsupportedOperationException(); }
+    public boolean intersects(@ByVal MKMapRect mapRect) { return false; }
     /**
      * @since Available in iOS 7.0 and later.
      */
     @NotImplemented("canReplaceMapContent")
-    public boolean canReplaceMapContent() { throw new UnsupportedOperationException(); }
+    public boolean canReplaceMapContent() { return false; }
     /*</methods>*/
 }

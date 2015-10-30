@@ -23,13 +23,14 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
-import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
@@ -55,6 +56,9 @@ import org.robovm.apple.opengles.*;
     public static native @ByVal SCNVector3 getSCNVector3Value(NSValue thiz);
     @Property(selector = "SCNVector4Value")
     public static native @ByVal SCNVector4 getSCNVector4Value(NSValue thiz);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "SCNMatrix4Value")
     public static native @ByVal SCNMatrix4 getSCNMatrix4Value(NSValue thiz);
     /*</properties>*/
@@ -66,6 +70,9 @@ import org.robovm.apple.opengles.*;
     @Method(selector = "valueWithSCNVector4:")
     protected static native NSValue create(ObjCClass clazz, @ByVal SCNVector4 v);
     public static NSValue create(@ByVal SCNVector4 v) { return create(ObjCClass.getByType(NSValue.class), v); }
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "valueWithSCNMatrix4:")
     protected static native NSValue create(ObjCClass clazz, @ByVal SCNMatrix4 v);
     public static NSValue create(@ByVal SCNMatrix4 v) { return create(ObjCClass.getByType(NSValue.class), v); }

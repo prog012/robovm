@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -46,8 +47,8 @@ import org.robovm.apple.corefoundation.*;
         void externalChange(ABAddressBook addressBook, NSDictionary<?, ?> info);
     }
     
-    private static java.util.concurrent.atomic.AtomicLong changeCallbackId = new java.util.concurrent.atomic.AtomicLong();
-    private static Map<Long, ExternalChangeCallback> externalChangeCallbacks = new HashMap<Long, ExternalChangeCallback>();
+    private static final java.util.concurrent.atomic.AtomicLong changeCallbackId = new java.util.concurrent.atomic.AtomicLong();
+    private static final LongMap<ExternalChangeCallback> externalChangeCallbacks = new LongMap<>();
     private static final java.lang.reflect.Method cbExternalChange;
     
     static {
@@ -81,9 +82,9 @@ import org.robovm.apple.corefoundation.*;
     public void unregisterExternalChangeCallback(ExternalChangeCallback callback) {
         long refconId = 0;
         synchronized (externalChangeCallbacks) {
-            for (Map.Entry<Long, ExternalChangeCallback> entry : externalChangeCallbacks.entrySet()) {
-                if (entry.getValue() == callback) {
-                    refconId = entry.getKey();
+            for (LongMap.Entry<ExternalChangeCallback> entry : externalChangeCallbacks.entries()) {
+                if (entry.value == callback) {
+                    refconId = entry.key;
                     externalChangeCallbacks.remove(refconId);
                     break;
                 }
@@ -104,7 +105,7 @@ import org.robovm.apple.corefoundation.*;
     /**
      * @since Available in iOS 6.0 and later.
      */
-    public static @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) ABAddressBook create(NSDictionary<NSString, ?> options) throws NSErrorException {
+    public static ABAddressBook create(NSDictionary options) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        ABAddressBook result = create(options, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
@@ -114,7 +115,7 @@ import org.robovm.apple.corefoundation.*;
      * @since Available in iOS 6.0 and later.
      */
     @Bridge(symbol="ABAddressBookCreateWithOptions", optional=true)
-    private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) ABAddressBook create(NSDictionary<NSString, ?> options, NSError.NSErrorPtr error);
+    private static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) ABAddressBook create(NSDictionary options, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 6.0.

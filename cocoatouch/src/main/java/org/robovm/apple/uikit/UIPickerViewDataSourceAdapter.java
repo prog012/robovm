@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -54,8 +55,8 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("numberOfComponentsInPickerView:")
-    public @MachineSizedSInt long getNumberOfComponents(UIPickerView pickerView) { throw new UnsupportedOperationException(); }
+    public @MachineSizedSInt long getNumberOfComponents(UIPickerView pickerView) { return 0; }
     @NotImplemented("pickerView:numberOfRowsInComponent:")
-    public @MachineSizedSInt long getNumberOfRows(UIPickerView pickerView, @MachineSizedSInt long component) { throw new UnsupportedOperationException(); }
+    public @MachineSizedSInt long getNumberOfRows(UIPickerView pickerView, @MachineSizedSInt long component) { return 0; }
     /*</methods>*/
 }

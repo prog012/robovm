@@ -23,19 +23,21 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,15 +56,14 @@ import org.robovm.apple.mediatoolbox.*;
     /*<constructors>*/
     public AVAudioRecorder() {}
     protected AVAudioRecorder(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
     public AVAudioRecorder(NSURL url, AVAudioSettings settings) throws NSErrorException {
-        super((SkipInit)null);
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        initObject(init(url, settings, err));
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(url, settings, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
     }
+    /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isRecording")
     public native boolean isRecording();
@@ -99,7 +100,7 @@ import org.robovm.apple.mediatoolbox.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithURL:settings:error:")
-    protected native @Pointer long init(NSURL url, AVAudioSettings settings, NSError.NSErrorPtr outError);
+    private native @Pointer long init(NSURL url, AVAudioSettings settings, NSError.NSErrorPtr outError);
     @Method(selector = "prepareToRecord")
     public native boolean prepareToRecord();
     @Method(selector = "record")

@@ -23,19 +23,21 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -75,6 +77,7 @@ import org.robovm.apple.mediatoolbox.*;
     public AVVideoSettings getVideoOutputSettings() {
         return new AVVideoSettings(getOutputSettings());
     }
+    @WeaklyLinked
     public AVPixelBufferAttributes getPixelBufferOutputSettings() {
         return new AVPixelBufferAttributes(getOutputSettings().as(CFDictionary.class));
     }
@@ -82,7 +85,7 @@ import org.robovm.apple.mediatoolbox.*;
     @Property(selector = "track")
     public native AVAssetTrack getTrack();
     @Property(selector = "outputSettings")
-    protected native NSDictionary<NSString, NSObject> getOutputSettings();
+    protected native NSDictionary getOutputSettings();
     /**
      * @since Available in iOS 7.0 and later.
      */
@@ -107,8 +110,8 @@ import org.robovm.apple.mediatoolbox.*;
     }
     /*<methods>*/
     @Method(selector = "initWithTrack:outputSettings:")
-    protected native @Pointer long init(AVAssetTrack track, NSDictionary<NSString, NSObject> outputSettings);
+    protected native @Pointer long init(AVAssetTrack track, NSDictionary outputSettings);
     @Method(selector = "assetReaderTrackOutputWithTrack:outputSettings:")
-    protected static native AVAssetReaderTrackOutput create(AVAssetTrack track, NSDictionary<NSString, NSObject> outputSettings);
+    protected static native AVAssetReaderTrackOutput create(AVAssetTrack track, NSDictionary outputSettings);
     /*</methods>*/
 }

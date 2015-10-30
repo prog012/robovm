@@ -23,11 +23,12 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.opengles.*;
@@ -53,8 +54,8 @@ import org.robovm.apple.metal.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("animationDidStart:")
-    public void didStart(CAAnimation anim) { throw new UnsupportedOperationException(); }
+    public void didStart(CAAnimation anim) {}
     @NotImplemented("animationDidStop:finished:")
-    public void didStop(CAAnimation anim, boolean flag) { throw new UnsupportedOperationException(); }
+    public void didStop(CAAnimation anim, boolean flag) {}
     /*</methods>*/
 }

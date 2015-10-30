@@ -23,29 +23,34 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /*</javadoc>*/
-@Marshaler(AVAudioTimePitchAlgorithm.Marshaler.class)
-/*<annotations>*/@Library("AVFoundation")/*</annotations>*/
+/*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+@Marshaler(/*<name>*/AVAudioTimePitchAlgorithm/*</name>*/.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAudioTimePitchAlgorithm/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    extends /*<extends>*/GlobalValueEnumeration<NSString>/*</extends>*/
     /*<implements>*//*</implements>*/ {
-    
+
+    static { Bro.bind(/*<name>*/AVAudioTimePitchAlgorithm/*</name>*/.class); }
+
+    /*<marshalers>*/
     public static class Marshaler {
         @MarshalsPointer
         public static AVAudioTimePitchAlgorithm toObject(Class<AVAudioTimePitchAlgorithm> cls, long handle, long flags) {
@@ -63,43 +68,61 @@ import org.robovm.apple.mediatoolbox.*;
             return NSObject.Marshaler.toNative(o.value(), flags);
         }
     }
+    public static class AsListMarshaler {
+        @SuppressWarnings("unchecked")
+        @MarshalsPointer
+        public static List<AVAudioTimePitchAlgorithm> toObject(Class<? extends NSObject> cls, long handle, long flags) {
+            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
+            if (o == null) {
+                return null;
+            }
+            List<AVAudioTimePitchAlgorithm> list = new ArrayList<>();
+            for (int i = 0; i < o.size(); i++) {
+                list.add(AVAudioTimePitchAlgorithm.valueOf(o.get(i)));
+            }
+            return list;
+        }
+        @MarshalsPointer
+        public static long toNative(List<AVAudioTimePitchAlgorithm> l, long flags) {
+            if (l == null) {
+                return 0L;
+            }
+            NSArray<NSString> array = new NSMutableArray<>();
+            for (AVAudioTimePitchAlgorithm o : l) {
+                array.add(o.value());
+            }
+            return NSObject.Marshaler.toNative(array, flags);
+        }
+    }
+    /*</marshalers>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(AVAudioTimePitchAlgorithm.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public static final AVAudioTimePitchAlgorithm LowQualityZeroLatency = new AVAudioTimePitchAlgorithm("LowQualityZeroLatencyValue");
+    public static final AVAudioTimePitchAlgorithm LowQualityZeroLatency = new AVAudioTimePitchAlgorithm("LowQualityZeroLatency");
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public static final AVAudioTimePitchAlgorithm TimeDomain = new AVAudioTimePitchAlgorithm("TimeDomainValue");
+    public static final AVAudioTimePitchAlgorithm TimeDomain = new AVAudioTimePitchAlgorithm("TimeDomain");
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public static final AVAudioTimePitchAlgorithm Spectral = new AVAudioTimePitchAlgorithm("SpectralValue");
+    public static final AVAudioTimePitchAlgorithm Spectral = new AVAudioTimePitchAlgorithm("Spectral");
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public static final AVAudioTimePitchAlgorithm Varispeed = new AVAudioTimePitchAlgorithm("VarispeedValue");
+    public static final AVAudioTimePitchAlgorithm Varispeed = new AVAudioTimePitchAlgorithm("Varispeed");
+    /*</constants>*/
     
-    private static AVAudioTimePitchAlgorithm[] values = new AVAudioTimePitchAlgorithm[] {LowQualityZeroLatency, TimeDomain, Spectral, Varispeed};
-    private final LazyGlobalValue<NSString> lazyGlobalValue;
+    private static /*<name>*/AVAudioTimePitchAlgorithm/*</name>*/[] values = new /*<name>*/AVAudioTimePitchAlgorithm/*</name>*/[] {/*<value_list>*/LowQualityZeroLatency, TimeDomain, Spectral, Varispeed/*</value_list>*/};
     
-    private AVAudioTimePitchAlgorithm(String getterName) {
-        lazyGlobalValue = new LazyGlobalValue<>(getClass(), getterName);
-    }
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
-    public NSString value() {
-        return lazyGlobalValue.value();
+    /*<name>*/AVAudioTimePitchAlgorithm/*</name>*/ (String getterName) {
+        super(Values.class, getterName);
     }
     
-    public static AVAudioTimePitchAlgorithm valueOf(NSString value) {
-        for (AVAudioTimePitchAlgorithm v : values) {
+    public static /*<name>*/AVAudioTimePitchAlgorithm/*</name>*/ valueOf(/*<type>*/NSString/*</type>*/ value) {
+        for (/*<name>*/AVAudioTimePitchAlgorithm/*</name>*/ v : values) {
             if (v.value().equals(value)) {
                 return v;
             }
@@ -107,26 +130,34 @@ import org.robovm.apple.mediatoolbox.*;
         throw new IllegalArgumentException("No constant with value " + value + " found in " 
             + /*<name>*/AVAudioTimePitchAlgorithm/*</name>*/.class.getName());
     }
-    /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="AVAudioTimePitchAlgorithmLowQualityZeroLatency", optional=true)
-    protected static native NSString LowQualityZeroLatencyValue();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="AVAudioTimePitchAlgorithmTimeDomain", optional=true)
-    protected static native NSString TimeDomainValue();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="AVAudioTimePitchAlgorithmSpectral", optional=true)
-    protected static native NSString SpectralValue();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="AVAudioTimePitchAlgorithmVarispeed", optional=true)
-    protected static native NSString VarispeedValue();
-    /*</methods>*/
+    
+    /*<methods>*//*</methods>*/
+    
+    /*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+    public static class Values {
+    	static { Bro.bind(Values.class); }
+
+        /*<values>*/
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioTimePitchAlgorithmLowQualityZeroLatency", optional=true)
+        public static native NSString LowQualityZeroLatency();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioTimePitchAlgorithmTimeDomain", optional=true)
+        public static native NSString TimeDomain();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioTimePitchAlgorithmSpectral", optional=true)
+        public static native NSString Spectral();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioTimePitchAlgorithmVarispeed", optional=true)
+        public static native NSString Varispeed();
+        /*</values>*/
+    }
 }

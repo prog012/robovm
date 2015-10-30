@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -34,6 +35,7 @@ import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.corelocation.*;
 /*</imports>*/
+import org.robovm.rt.annotation.WeaklyLinked;
 import org.robovm.apple.iad.ADInterstitialPresentationPolicy;
 import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
 
@@ -68,6 +70,7 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     public UIViewController() {}
     protected UIViewController(SkipInit skipInit) { super(skipInit); }
     public UIViewController(String nibNameOrNil, NSBundle nibBundleOrNil) { super((SkipInit) null); initObject(init(nibNameOrNil, nibBundleOrNil)); }
+    public UIViewController(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "view")
@@ -351,68 +354,80 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public ADInterstitialPresentationPolicy getInterstitialPresentationPolicy() {
         return org.robovm.apple.iad.UIViewControllerExtensions.getInterstitialPresentationPolicy(this);
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public void setInterstitialPresentationPolicy(ADInterstitialPresentationPolicy v) {
         org.robovm.apple.iad.UIViewControllerExtensions.setInterstitialPresentationPolicy(this, v);
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public boolean isCanDisplayBannerAds() {
         return org.robovm.apple.iad.UIViewControllerExtensions.canDisplayBannerAds(this);
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public void setCanDisplayBannerAds(boolean v) {
         org.robovm.apple.iad.UIViewControllerExtensions.setCanDisplayBannerAds(this, v);
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public UIView getOriginalContentView() {
         return org.robovm.apple.iad.UIViewControllerExtensions.getOriginalContentView(this);
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public boolean isPresentingFullScreenAd() {
         return org.robovm.apple.iad.UIViewControllerExtensions.isPresentingFullScreenAd(this);
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public boolean isDisplayingBannerAd() {
         return org.robovm.apple.iad.UIViewControllerExtensions.isDisplayingBannerAd(this);
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public boolean requestInterstitialAdPresentation() {
         return org.robovm.apple.iad.UIViewControllerExtensions.requestInterstitialAdPresentation(this);
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public boolean shouldPresentInterstitialAd() {
         return org.robovm.apple.iad.UIViewControllerExtensions.shouldPresentInterstitialAd(this);
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public static void prepareInterstitialAds() {
         org.robovm.apple.iad.UIViewControllerExtensions.prepareInterstitialAds();
     }
     
     /* MediaPlayer extensions */
+    @WeaklyLinked
     public void presentMoviePlayerViewController(MPMoviePlayerViewController moviePlayerViewController) {
         org.robovm.apple.mediaplayer.UIViewControllerExtensions.presentMoviePlayerViewController(this, moviePlayerViewController);
     }
+    @WeaklyLinked
     public void dismissMoviePlayerViewController() {
         org.robovm.apple.mediaplayer.UIViewControllerExtensions.dismissMoviePlayerViewController(this);
     }
@@ -523,12 +538,12 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
      * @since Available in iOS 5.0 and later.
      */
     @Method(selector = "presentViewController:animated:completion:")
-    public native void presentViewController(UIViewController viewControllerToPresent, boolean flag, @Block Runnable completion);
+    public native void presentViewController(UIViewController viewControllerToPresent, boolean animated, @Block Runnable completion);
     /**
      * @since Available in iOS 5.0 and later.
      */
     @Method(selector = "dismissViewControllerAnimated:completion:")
-    public native void dismissViewController(boolean flag, @Block Runnable completion);
+    public native void dismissViewController(boolean animated, @Block Runnable completion);
     /**
      * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 6.0.
@@ -764,7 +779,9 @@ import org.robovm.apple.mediaplayer.MPMoviePlayerViewController;
     @Method(selector = "separateSecondaryViewControllerForSplitViewController:")
     public native UIViewController separateSecondaryViewController(UISplitViewController splitViewController);
     @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder aCoder);
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "traitCollectionDidChange:")
     public native void traitCollectionDidChange(UITraitCollection previousTraitCollection);
     @Method(selector = "beginRequestWithExtensionContext:")

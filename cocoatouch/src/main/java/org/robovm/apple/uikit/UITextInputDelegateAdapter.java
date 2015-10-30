@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -54,12 +55,12 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("selectionWillChange:")
-    public void selectionWillChange(UITextInput textInput) { throw new UnsupportedOperationException(); }
+    public void selectionWillChange(UITextInput textInput) {}
     @NotImplemented("selectionDidChange:")
-    public void selectionDidChange(UITextInput textInput) { throw new UnsupportedOperationException(); }
+    public void selectionDidChange(UITextInput textInput) {}
     @NotImplemented("textWillChange:")
-    public void textWillChange(UITextInput textInput) { throw new UnsupportedOperationException(); }
+    public void textWillChange(UITextInput textInput) {}
     @NotImplemented("textDidChange:")
-    public void textDidChange(UITextInput textInput) { throw new UnsupportedOperationException(); }
+    public void textDidChange(UITextInput textInput) {}
     /*</methods>*/
 }

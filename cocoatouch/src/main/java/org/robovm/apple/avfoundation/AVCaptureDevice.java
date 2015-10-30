@@ -23,19 +23,21 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -356,19 +358,6 @@ import org.robovm.apple.mediatoolbox.*;
     public native void setVideoHDREnabled(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
-    /**
-     * 
-     * @return
-     * @throws NSErrorException
-     */
-    public boolean lockForConfiguration() throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        boolean result = lockForConfiguration(err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
     /*<methods>*/
     /**
      * @since Available in iOS 4.0 and later.
@@ -415,8 +404,14 @@ import org.robovm.apple.mediatoolbox.*;
     
     @Method(selector = "hasMediaType:")
     public native boolean hasMediaType(AVMediaType mediaType);
+    public boolean lockForConfiguration() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = lockForConfiguration(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "lockForConfiguration:")
-    protected native boolean lockForConfiguration(NSError.NSErrorPtr outError);
+    private native boolean lockForConfiguration(NSError.NSErrorPtr outError);
     @Method(selector = "unlockForConfiguration")
     public native void unlockForConfiguration();
     @Method(selector = "supportsAVCaptureSessionPreset:")
@@ -436,8 +431,17 @@ import org.robovm.apple.mediatoolbox.*;
     /**
      * @since Available in iOS 6.0 and later.
      */
+    public boolean setTorchModeOn(float torchLevel) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = setTorchModeOn(torchLevel, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
     @Method(selector = "setTorchModeOnWithLevel:error:")
-    protected native boolean setTorchModeOn(float torchLevel, NSError.NSErrorPtr outError);
+    private native boolean setTorchModeOn(float torchLevel, NSError.NSErrorPtr outError);
     @Method(selector = "isFocusModeSupported:")
     public native boolean isFocusModeSupported(AVCaptureFocusMode focusMode);
     /**

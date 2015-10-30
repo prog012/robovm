@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -36,7 +37,6 @@ import org.robovm.apple.corefoundation.*;
 /*<annotations>*//*</annotations>*/
 public final class /*<name>*/AudioChannelLayoutTag/*</name>*/ extends Bits</*<name>*/AudioChannelLayoutTag/*</name>*/> {
     /*<values>*/
-    public static final AudioChannelLayoutTag None = new AudioChannelLayoutTag(0L);
     public static final AudioChannelLayoutTag UseChannelDescriptions = new AudioChannelLayoutTag(0L);
     public static final AudioChannelLayoutTag UseChannelBitmap = new AudioChannelLayoutTag(65536L);
     public static final AudioChannelLayoutTag Mono = new AudioChannelLayoutTag(6553601L);

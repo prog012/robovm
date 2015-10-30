@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -69,32 +71,37 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     
-    public long[] getIndexes() {
+    public int[] getIndexes() {
         int n = (int) getLength();
         MachineSizedUIntPtr p = Struct.allocate(MachineSizedUIntPtr.class, n);
         getIndexes(p);
-        return p.toLongArray(n);
+        return p.toIntArray(n);
     }
     
     /* UIKit extensions */
-    public long getSection() {
-        return NSIndexPathExtensions.getSection(this);
+    @WeaklyLinked
+    public int getSection() {
+        return (int) NSIndexPathExtensions.getSection(this);
     }
-    public long getRow() {
-        return NSIndexPathExtensions.getRow(this);
+    @WeaklyLinked
+    public int getRow() {
+        return (int) NSIndexPathExtensions.getRow(this);
     }
     /**
      * @since Available in iOS 6.0 and later.
      */
-    public long getItem() {
-        return NSIndexPathExtensions.getItem(this);
+    @WeaklyLinked
+    public int getItem() {
+        return (int) NSIndexPathExtensions.getItem(this);
     }
+    @WeaklyLinked
     public static NSIndexPath createWithRow(@MachineSizedSInt long row, @MachineSizedSInt long section) {
         return NSIndexPathExtensions.createIndexPathForRowInSection(row, section);
     }
     /**
      * @since Available in iOS 6.0 and later.
      */
+    @WeaklyLinked
     public static NSIndexPath createWithItem(@MachineSizedSInt long item, @MachineSizedSInt long section) {
         return NSIndexPathExtensions.createIndexPathForItemInSection(item, section);
     }

@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -46,31 +47,31 @@ import org.robovm.apple.coregraphics.*;
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
     @NotImplemented("isPreparedToPlay")
-    public boolean isPreparedToPlay() { throw new UnsupportedOperationException(); }
+    public boolean isPreparedToPlay() { return false; }
     @NotImplemented("currentPlaybackTime")
-    public double getCurrentPlaybackTime() { throw new UnsupportedOperationException(); }
+    public double getCurrentPlaybackTime() { return 0; }
     @NotImplemented("setCurrentPlaybackTime:")
-    public void setCurrentPlaybackTime(double v) { throw new UnsupportedOperationException(); }
+    public void setCurrentPlaybackTime(double v) {}
     @NotImplemented("currentPlaybackRate")
-    public float getCurrentPlaybackRate() { throw new UnsupportedOperationException(); }
+    public float getCurrentPlaybackRate() { return 0; }
     @NotImplemented("setCurrentPlaybackRate:")
-    public void setCurrentPlaybackRate(float v) { throw new UnsupportedOperationException(); }
+    public void setCurrentPlaybackRate(float v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("prepareToPlay")
-    public void prepareToPlay() { throw new UnsupportedOperationException(); }
+    public void prepareToPlay() {}
     @NotImplemented("play")
-    public void play() { throw new UnsupportedOperationException(); }
+    public void play() {}
     @NotImplemented("pause")
-    public void pause() { throw new UnsupportedOperationException(); }
+    public void pause() {}
     @NotImplemented("stop")
-    public void stop() { throw new UnsupportedOperationException(); }
+    public void stop() {}
     @NotImplemented("beginSeekingForward")
-    public void beginSeekingForward() { throw new UnsupportedOperationException(); }
+    public void beginSeekingForward() {}
     @NotImplemented("beginSeekingBackward")
-    public void beginSeekingBackward() { throw new UnsupportedOperationException(); }
+    public void beginSeekingBackward() {}
     @NotImplemented("endSeeking")
-    public void endSeeking() { throw new UnsupportedOperationException(); }
+    public void endSeeking() {}
     /*</methods>*/
 }

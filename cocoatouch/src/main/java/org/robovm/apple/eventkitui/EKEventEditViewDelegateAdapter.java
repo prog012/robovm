@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -50,8 +51,8 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("eventEditViewController:didCompleteWithAction:")
-    public void didComplete(EKEventEditViewController controller, EKEventEditViewAction action) { throw new UnsupportedOperationException(); }
+    public void didComplete(EKEventEditViewController controller, EKEventEditViewAction action) {}
     @NotImplemented("eventEditViewControllerDefaultCalendarForNewEvents:")
-    public EKCalendar getDefaultCalendarForNewEvents(EKEventEditViewController controller) { throw new UnsupportedOperationException(); }
+    public EKCalendar getDefaultCalendarForNewEvents(EKEventEditViewController controller) { return null; }
     /*</methods>*/
 }

@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -54,8 +55,8 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("documentMenu:didPickDocumentPicker:")
-    public void didPickDocumentPicker(UIDocumentMenuViewController documentMenu, UIDocumentPickerViewController documentPicker) { throw new UnsupportedOperationException(); }
+    public void didPickDocumentPicker(UIDocumentMenuViewController documentMenu, UIDocumentPickerViewController documentPicker) {}
     @NotImplemented("documentMenuWasCancelled:")
-    public void wasCancelled(UIDocumentMenuViewController documentMenu) { throw new UnsupportedOperationException(); }
+    public void wasCancelled(UIDocumentMenuViewController documentMenu) {}
     /*</methods>*/
 }

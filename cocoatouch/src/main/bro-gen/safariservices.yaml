@@ -13,6 +13,7 @@ enums:
 classes:
     SSReadingListError:
         extends: NSError
+        annotations: ['@StronglyLinked']
 
     SSReadingList: # DONE
         methods:
@@ -20,7 +21,7 @@ classes:
                 exclude: true
             '-addReadingListItemWithURL:title:previewText:error:':
                 name: addReadingListItem
-                visibility: protected # throws NSErrorException
+                throws: NSErrorException
             '+defaultReadingList':
                 property: true
             '+supportsURL:':

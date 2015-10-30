@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -30,7 +31,6 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.opengles.*;
-import org.robovm.apple.coremedia.*;
 import org.robovm.apple.metal.*;
 /*</imports>*/
 
@@ -63,7 +63,7 @@ import org.robovm.apple.metal.*;
     public static class AsListMarshaler {
         @MarshalsPointer
         public static List<CVPixelFormatDescription> toObject(Class<? extends CFType> cls, long handle, long flags) {
-            CFArray o = (CFArray) CFType.Marshaler.toObject(cls, handle, flags);
+            CFArray o = (CFArray) CFType.Marshaler.toObject(CFArray.class, handle, flags);
             if (o == null) {
                 return null;
             }
@@ -92,7 +92,7 @@ import org.robovm.apple.metal.*;
     }
     
     private static java.util.concurrent.atomic.AtomicLong refconId = new java.util.concurrent.atomic.AtomicLong();
-    private static Map<Long, FillExtendedPixelsCallback> callbacks = new HashMap<>();
+    private static LongMap<FillExtendedPixelsCallback> callbacks = new LongMap<>();
     private static final java.lang.reflect.Method cbFillExtendedPixels;
     
     static {

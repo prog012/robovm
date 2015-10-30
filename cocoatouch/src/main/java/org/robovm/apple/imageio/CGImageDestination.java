@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -61,17 +62,17 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CGImageDestinationCreateWithDataConsumer", optional=true)
-    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImageDestination create(CGDataConsumer consumer, String type, @MachineSizedUInt long count, NSDictionary<?, ?> options);
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImageDestination create(CGDataConsumer consumer, String type, @MachineSizedUInt long count, NSDictionary options);
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CGImageDestinationCreateWithData", optional=true)
-    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImageDestination create(NSData data, String type, @MachineSizedUInt long count, NSDictionary<?, ?> options);
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImageDestination create(NSData data, String type, @MachineSizedUInt long count, NSDictionary options);
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CGImageDestinationCreateWithURL", optional=true)
-    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImageDestination create(NSURL url, String type, @MachineSizedUInt long count, NSDictionary<?, ?> options);
+    public static native @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CGImageDestination create(NSURL url, String type, @MachineSizedUInt long count, NSDictionary options);
     /**
      * @since Available in iOS 4.0 and later.
      */
@@ -91,7 +92,7 @@ import org.robovm.apple.coregraphics.*;
      * @since Available in iOS 7.0 and later.
      */
     @Bridge(symbol="CGImageDestinationAddImageAndMetadata", optional=true)
-    public native void addImageAndMetadata(CGImage image, CGImageMetadata metadata, NSDictionary<?, ?> options);
+    public native void addImageAndMetadata(CGImage image, CGImageMetadata metadata, NSDictionary options);
     /**
      * @since Available in iOS 7.0 and later.
      */

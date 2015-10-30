@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -48,13 +50,18 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/
     /*</bind>*/
     /*<constants>*//*</constants>*/
+    public NSCodingAdapter() {}
+    public NSCodingAdapter(NSCoder coder) {
+        super((SkipInit)null);
+        initObject(init(coder));
+    }
     /*<constructors>*//*</constructors>*/
+    @Method(selector = "initWithCoder:")
+    private native @Pointer long init(NSCoder coder);
     /*<properties>*/
     
     /*</properties>*/
     /*<members>*//*</members>*/
-    /*<methods>*/
     @NotImplemented("encodeWithCoder:")
-    public void encode(NSCoder aCoder) { throw new UnsupportedOperationException(); }
-    /*</methods>*/
+    public void encode(NSCoder aCoder) {}
 }

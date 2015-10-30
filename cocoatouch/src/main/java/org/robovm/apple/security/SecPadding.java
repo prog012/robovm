@@ -23,12 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.dispatch.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
+import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -40,6 +41,7 @@ public enum /*<name>*/SecPadding/*</name>*/ implements ValuedEnum {
     None(0L),
     PKCS1(1L),
     OAEP(2L),
+    SigRaw(16384L),
     PKCS1MD2(32768L),
     PKCS1MD5(32769L),
     PKCS1SHA1(32770L),

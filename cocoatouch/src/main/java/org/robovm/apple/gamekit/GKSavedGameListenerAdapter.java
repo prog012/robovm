@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -49,8 +50,8 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("player:didModifySavedGame:")
-    public void didModifySavedGame(GKPlayer player, GKSavedGame savedGame) { throw new UnsupportedOperationException(); }
+    public void didModifySavedGame(GKPlayer player, GKSavedGame savedGame) {}
     @NotImplemented("player:hasConflictingSavedGames:")
-    public void hasConflictingSavedGames(GKPlayer player, NSArray<GKSavedGame> savedGames) { throw new UnsupportedOperationException(); }
+    public void hasConflictingSavedGames(GKPlayer player, NSArray<GKSavedGame> savedGames) {}
     /*</methods>*/
 }

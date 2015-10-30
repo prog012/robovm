@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -54,14 +55,14 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("willPresentSearchController:")
-    public void willPresent(UISearchController searchController) { throw new UnsupportedOperationException(); }
+    public void willPresent(UISearchController searchController) {}
     @NotImplemented("didPresentSearchController:")
-    public void didPresent(UISearchController searchController) { throw new UnsupportedOperationException(); }
+    public void didPresent(UISearchController searchController) {}
     @NotImplemented("willDismissSearchController:")
-    public void willDismiss(UISearchController searchController) { throw new UnsupportedOperationException(); }
+    public void willDismiss(UISearchController searchController) {}
     @NotImplemented("didDismissSearchController:")
-    public void didDismiss(UISearchController searchController) { throw new UnsupportedOperationException(); }
+    public void didDismiss(UISearchController searchController) {}
     @NotImplemented("presentSearchController:")
-    public void present(UISearchController searchController) { throw new UnsupportedOperationException(); }
+    public void present(UISearchController searchController) {}
     /*</methods>*/
 }

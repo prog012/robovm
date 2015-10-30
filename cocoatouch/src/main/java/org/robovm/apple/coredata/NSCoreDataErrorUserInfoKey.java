@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -31,7 +32,7 @@ import org.robovm.apple.foundation.*;
 
 /*<javadoc>*/
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreData")/*</annotations>*/
+/*<annotations>*/@Library("CoreData") @StronglyLinked/*</annotations>*/
 @Marshaler(/*<name>*/NSCoreDataErrorUserInfoKey/*</name>*/.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/NSCoreDataErrorUserInfoKey/*</name>*/ 
     extends /*<extends>*/NSErrorUserInfoKey/*</extends>*/
@@ -61,7 +62,7 @@ import org.robovm.apple.foundation.*;
         @SuppressWarnings("unchecked")
         @MarshalsPointer
         public static List<NSCoreDataErrorUserInfoKey> toObject(Class<? extends NSObject> cls, long handle, long flags) {
-            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(cls, handle, flags);
+            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
             if (o == null) {
                 return null;
             }
@@ -77,8 +78,8 @@ import org.robovm.apple.foundation.*;
                 return 0L;
             }
             NSArray<NSString> array = new NSMutableArray<>();
-            for (NSCoreDataErrorUserInfoKey i : l) {
-                array.add(i.value());
+            for (NSCoreDataErrorUserInfoKey o : l) {
+                array.add(o.value());
             }
             return NSObject.Marshaler.toNative(array, flags);
         }
@@ -138,7 +139,7 @@ import org.robovm.apple.foundation.*;
     
     /*<methods>*//*</methods>*/
     
-    /*<annotations>*/@Library("CoreData")/*</annotations>*/
+    /*<annotations>*/@Library("CoreData") @StronglyLinked/*</annotations>*/
     public static class Values {
     	static { Bro.bind(Values.class); }
 

@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -48,12 +49,12 @@ import org.robovm.apple.foundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("homeManagerDidUpdateHomes:")
-    public void didUpdateHomes(HMHomeManager manager) { throw new UnsupportedOperationException(); }
+    public void didUpdateHomes(HMHomeManager manager) {}
     @NotImplemented("homeManagerDidUpdatePrimaryHome:")
-    public void didUpdatePrimaryHome(HMHomeManager manager) { throw new UnsupportedOperationException(); }
+    public void didUpdatePrimaryHome(HMHomeManager manager) {}
     @NotImplemented("homeManager:didAddHome:")
-    public void didAddHome(HMHomeManager manager, HMHome home) { throw new UnsupportedOperationException(); }
+    public void didAddHome(HMHomeManager manager, HMHome home) {}
     @NotImplemented("homeManager:didRemoveHome:")
-    public void didRemoveHome(HMHomeManager manager, HMHome home) { throw new UnsupportedOperationException(); }
+    public void didRemoveHome(HMHomeManager manager, HMHome home) {}
     /*</methods>*/
 }

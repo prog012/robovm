@@ -23,29 +23,34 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /*</javadoc>*/
-@Marshaler(AVVideoProfileLevel.Marshaler.class)
-/*<annotations>*/@Library("AVFoundation")/*</annotations>*/
+/*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+@Marshaler(/*<name>*/AVVideoProfileLevel/*</name>*/.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVVideoProfileLevel/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    extends /*<extends>*/GlobalValueEnumeration<NSString>/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
+    static { Bro.bind(/*<name>*/AVVideoProfileLevel/*</name>*/.class); }
+
+    /*<marshalers>*/
     public static class Marshaler {
         @MarshalsPointer
         public static AVVideoProfileLevel toObject(Class<AVVideoProfileLevel> cls, long handle, long flags) {
@@ -63,76 +68,93 @@ import org.robovm.apple.mediatoolbox.*;
             return NSObject.Marshaler.toNative(o.value(), flags);
         }
     }
-    
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(AVVideoProfileLevel.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    public static class AsListMarshaler {
+        @SuppressWarnings("unchecked")
+        @MarshalsPointer
+        public static List<AVVideoProfileLevel> toObject(Class<? extends NSObject> cls, long handle, long flags) {
+            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
+            if (o == null) {
+                return null;
+            }
+            List<AVVideoProfileLevel> list = new ArrayList<>();
+            for (int i = 0; i < o.size(); i++) {
+                list.add(AVVideoProfileLevel.valueOf(o.get(i)));
+            }
+            return list;
+        }
+        @MarshalsPointer
+        public static long toNative(List<AVVideoProfileLevel> l, long flags) {
+            if (l == null) {
+                return 0L;
+            }
+            NSArray<NSString> array = new NSMutableArray<>();
+            for (AVVideoProfileLevel o : l) {
+                array.add(o.value());
+            }
+            return NSObject.Marshaler.toNative(array, flags);
+        }
+    }
+    /*</marshalers>*/
+
+    /*<constants>*/
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static final AVVideoProfileLevel H264Baseline30 = new AVVideoProfileLevel("H264Baseline30Value");
+    public static final AVVideoProfileLevel H264Baseline30 = new AVVideoProfileLevel("H264Baseline30");
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static final AVVideoProfileLevel H264Baseline31 = new AVVideoProfileLevel("H264Baseline31Value");
+    public static final AVVideoProfileLevel H264Baseline31 = new AVVideoProfileLevel("H264Baseline31");
     /**
      * @since Available in iOS 5.0 and later.
      */
-    public static final AVVideoProfileLevel H264Baseline41 = new AVVideoProfileLevel("H264Baseline41Value");
+    public static final AVVideoProfileLevel H264Baseline41 = new AVVideoProfileLevel("H264Baseline41");
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    public static final AVVideoProfileLevel H264BaselineAutoLevel = new AVVideoProfileLevel("H264BaselineAutoLevel");
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static final AVVideoProfileLevel H264Main30 = new AVVideoProfileLevel("H264Main30Value");
+    public static final AVVideoProfileLevel H264Main30 = new AVVideoProfileLevel("H264Main30");
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static final AVVideoProfileLevel H264Main31 = new AVVideoProfileLevel("H264Main31Value");
+    public static final AVVideoProfileLevel H264Main31 = new AVVideoProfileLevel("H264Main31");
     /**
      * @since Available in iOS 5.0 and later.
      */
-    public static final AVVideoProfileLevel H264Main32 = new AVVideoProfileLevel("H264Main32Value");
+    public static final AVVideoProfileLevel H264Main32 = new AVVideoProfileLevel("H264Main32");
     /**
      * @since Available in iOS 5.0 and later.
      */
-    public static final AVVideoProfileLevel H264Main41 = new AVVideoProfileLevel("H264Main41Value");
+    public static final AVVideoProfileLevel H264Main41 = new AVVideoProfileLevel("H264Main41");
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    public static final AVVideoProfileLevel H264MainAutoLevel = new AVVideoProfileLevel("H264MainAutoLevel");
     /**
      * @since Available in iOS 6.0 and later.
      */
-    public static final AVVideoProfileLevel H264High40 = new AVVideoProfileLevel("H264High40Value");
+    public static final AVVideoProfileLevel H264High40 = new AVVideoProfileLevel("H264High40");
     /**
      * @since Available in iOS 6.0 and later.
      */
-    public static final AVVideoProfileLevel H264High41 = new AVVideoProfileLevel("H264High41Value");
+    public static final AVVideoProfileLevel H264High41 = new AVVideoProfileLevel("H264High41");
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public static final AVVideoProfileLevel H264MainAutoLevel = new AVVideoProfileLevel("H264MainAutoLevelValue");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    public static final AVVideoProfileLevel H264BaselineAutoLevel = new AVVideoProfileLevel("H264BaselineAutoLevelValue");
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    public static final AVVideoProfileLevel H264HighAutoLevel = new AVVideoProfileLevel("H264HighAutoLevelValue");
+    public static final AVVideoProfileLevel H264HighAutoLevel = new AVVideoProfileLevel("H264HighAutoLevel");
+    /*</constants>*/
     
-    private static AVVideoProfileLevel[] values = new AVVideoProfileLevel[] {H264Baseline30, H264Baseline31, H264Baseline41, 
-        H264Main30, H264Main31, H264Main32, H264Main41, H264High40, H264High41, H264BaselineAutoLevel, H264MainAutoLevel, H264HighAutoLevel};
-    private final LazyGlobalValue<NSString> lazyGlobalValue;
+    private static /*<name>*/AVVideoProfileLevel/*</name>*/[] values = new /*<name>*/AVVideoProfileLevel/*</name>*/[] {/*<value_list>*/H264Baseline30, H264Baseline31, H264Baseline41, H264BaselineAutoLevel, H264Main30, H264Main31, H264Main32, H264Main41, H264MainAutoLevel, H264High40, H264High41, H264HighAutoLevel/*</value_list>*/};
     
-    private AVVideoProfileLevel(String getterName) {
-        lazyGlobalValue = new LazyGlobalValue<>(getClass(), getterName);
-    }
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
-    public NSString value() {
-        return lazyGlobalValue.value();
+    /*<name>*/AVVideoProfileLevel/*</name>*/ (String getterName) {
+        super(Values.class, getterName);
     }
     
-    public static AVVideoProfileLevel valueOf(NSString value) {
-        for (AVVideoProfileLevel v : values) {
+    public static /*<name>*/AVVideoProfileLevel/*</name>*/ valueOf(/*<type>*/NSString/*</type>*/ value) {
+        for (/*<name>*/AVVideoProfileLevel/*</name>*/ v : values) {
             if (v.value().equals(value)) {
                 return v;
             }
@@ -140,66 +162,74 @@ import org.robovm.apple.mediatoolbox.*;
         throw new IllegalArgumentException("No constant with value " + value + " found in " 
             + /*<name>*/AVVideoProfileLevel/*</name>*/.class.getName());
     }
-    /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoProfileLevelH264Baseline30", optional=true)
-    protected static native NSString H264Baseline30Value();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoProfileLevelH264Baseline31", optional=true)
-    protected static native NSString H264Baseline31Value();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoProfileLevelH264Baseline41", optional=true)
-    protected static native NSString H264Baseline41Value();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoProfileLevelH264BaselineAutoLevel", optional=true)
-    protected static native NSString H264BaselineAutoLevelValue();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoProfileLevelH264Main30", optional=true)
-    protected static native NSString H264Main30Value();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoProfileLevelH264Main31", optional=true)
-    protected static native NSString H264Main31Value();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoProfileLevelH264Main32", optional=true)
-    protected static native NSString H264Main32Value();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoProfileLevelH264Main41", optional=true)
-    protected static native NSString H264Main41Value();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoProfileLevelH264MainAutoLevel", optional=true)
-    protected static native NSString H264MainAutoLevelValue();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoProfileLevelH264High40", optional=true)
-    protected static native NSString H264High40Value();
-    /**
-     * @since Available in iOS 6.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoProfileLevelH264High41", optional=true)
-    protected static native NSString H264High41Value();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoProfileLevelH264HighAutoLevel", optional=true)
-    protected static native NSString H264HighAutoLevelValue();
-    /*</methods>*/
+    
+    /*<methods>*//*</methods>*/
+    
+    /*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+    public static class Values {
+    	static { Bro.bind(Values.class); }
+
+        /*<values>*/
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoProfileLevelH264Baseline30", optional=true)
+        public static native NSString H264Baseline30();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoProfileLevelH264Baseline31", optional=true)
+        public static native NSString H264Baseline31();
+        /**
+         * @since Available in iOS 5.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoProfileLevelH264Baseline41", optional=true)
+        public static native NSString H264Baseline41();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoProfileLevelH264BaselineAutoLevel", optional=true)
+        public static native NSString H264BaselineAutoLevel();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoProfileLevelH264Main30", optional=true)
+        public static native NSString H264Main30();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoProfileLevelH264Main31", optional=true)
+        public static native NSString H264Main31();
+        /**
+         * @since Available in iOS 5.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoProfileLevelH264Main32", optional=true)
+        public static native NSString H264Main32();
+        /**
+         * @since Available in iOS 5.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoProfileLevelH264Main41", optional=true)
+        public static native NSString H264Main41();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoProfileLevelH264MainAutoLevel", optional=true)
+        public static native NSString H264MainAutoLevel();
+        /**
+         * @since Available in iOS 6.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoProfileLevelH264High40", optional=true)
+        public static native NSString H264High40();
+        /**
+         * @since Available in iOS 6.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoProfileLevelH264High41", optional=true)
+        public static native NSString H264High41();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoProfileLevelH264HighAutoLevel", optional=true)
+        public static native NSString H264HighAutoLevel();
+        /*</values>*/
+    }
 }

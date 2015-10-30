@@ -23,15 +23,15 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.opengles.*;
+import org.robovm.apple.audiounit.*;
 import org.robovm.apple.coreaudio.*;
-import org.robovm.apple.coremedia.*;
+import org.robovm.apple.coremidi.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -48,20 +48,49 @@ import org.robovm.apple.coremedia.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CAFMarkerChunk() {}
-    public CAFMarkerChunk(int mSMPTE_TimeType, int mNumberMarkers, CAFMarker mMarkers) {
-        this.setMSMPTE_TimeType(mSMPTE_TimeType);
-        this.setMNumberMarkers(mNumberMarkers);
-        this.setMMarkers(mMarkers);
+    public CAFMarkerChunk(CAFSMPTETimeType SMPTETimeType) {
+        this.setSMPTETimeType(SMPTETimeType);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
+    public int getMarkerCount() {
+        return getNumberMarkers();
+    }
+    
+    public CAFMarker getMarker(int index) {
+        if (index >= getMarkerCount()) {
+            throw new ArrayIndexOutOfBoundsException(index);
+        }
+        return getMarkers0().next(index).get();
+    }
+    public CAFMarkerChunk setMarker(int index, CAFMarker value) {
+        if (index >= getMarkerCount()) {
+            throw new ArrayIndexOutOfBoundsException(index);
+        }
+        getMarkers0().next(index).set(value);
+        return this;
+    }
+    public CAFMarker[] getMarkers() {
+        int count = getMarkerCount();
+        CAFMarker[] array = new CAFMarker[count];
+        CAFMarker.CAFMarkerPtr ptr = getMarkers0();
+        for (int i = 0; i < count; i++) {
+            array[i] = ptr.next(i).get();
+        }
+        return array;
+    }
+    public CAFMarkerChunk setMarkers(CAFMarker[] markers) {
+        this.setNumberMarkers(markers.length);
+        getMarkers0().set(markers);
+        return this;
+    }
     /*<members>*/
-    @StructMember(0) public native int getMSMPTE_TimeType();
-    @StructMember(0) public native CAFMarkerChunk setMSMPTE_TimeType(int mSMPTE_TimeType);
-    @StructMember(1) public native int getMNumberMarkers();
-    @StructMember(1) public native CAFMarkerChunk setMNumberMarkers(int mNumberMarkers);
-    @StructMember(2) public native @Array({1}) CAFMarker getMMarkers();
-    @StructMember(2) public native CAFMarkerChunk setMMarkers(@Array({1}) CAFMarker mMarkers);
+    @StructMember(0) public native CAFSMPTETimeType getSMPTETimeType();
+    @StructMember(0) public native CAFMarkerChunk setSMPTETimeType(CAFSMPTETimeType SMPTETimeType);
+    @StructMember(1) protected native int getNumberMarkers();
+    @StructMember(1) protected native CAFMarkerChunk setNumberMarkers(int numberMarkers);
+    @StructMember(2) protected native CAFMarker.CAFMarkerPtr getMarkers0();
+    @StructMember(2) protected native CAFMarkerChunk setMarkers0(CAFMarker.CAFMarkerPtr markers0);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

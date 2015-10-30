@@ -23,13 +23,14 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
-import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
@@ -55,6 +56,6 @@ import org.robovm.apple.opengles.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("renderNode:renderer:arguments:")
-    public void renderNode(SCNNode node, SCNRenderer renderer, @org.robovm.rt.bro.annotation.Marshaler(SCNRenderingTransform.AsTransform3DMapMarshaler.class) Map<SCNRenderingTransform, CATransform3D> arguments) { throw new UnsupportedOperationException(); }
+    public void renderNode(SCNNode node, SCNRenderer renderer, @org.robovm.rt.bro.annotation.Marshaler(SCNRenderingTransform.AsTransform3DMapMarshaler.class) Map<SCNRenderingTransform, CATransform3D> arguments) {}
     /*</methods>*/
 }

@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -55,31 +57,31 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("connection:didFailWithError:")
-    public void didFail(NSURLConnection connection, NSError error) { throw new UnsupportedOperationException(); }
+    public void didFail(NSURLConnection connection, NSError error) {}
     @NotImplemented("connectionShouldUseCredentialStorage:")
-    public boolean shouldUseCredentialStorage(NSURLConnection connection) { throw new UnsupportedOperationException(); }
+    public boolean shouldUseCredentialStorage(NSURLConnection connection) { return false; }
     @NotImplemented("connection:willSendRequestForAuthenticationChallenge:")
-    public void willSendRequestForAuthenticationChallenge(NSURLConnection connection, NSURLAuthenticationChallenge challenge) { throw new UnsupportedOperationException(); }
+    public void willSendRequestForAuthenticationChallenge(NSURLConnection connection, NSURLAuthenticationChallenge challenge) {}
     /**
      * @since Available in iOS 3.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("connection:canAuthenticateAgainstProtectionSpace:")
-    public boolean canAuthenticateAgainstProtectionSpace(NSURLConnection connection, NSURLProtectionSpace protectionSpace) { throw new UnsupportedOperationException(); }
+    public boolean canAuthenticateAgainstProtectionSpace(NSURLConnection connection, NSURLProtectionSpace protectionSpace) { return false; }
     /**
      * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("connection:didReceiveAuthenticationChallenge:")
-    public void didReceiveAuthenticationChallenge(NSURLConnection connection, NSURLAuthenticationChallenge challenge) { throw new UnsupportedOperationException(); }
+    public void didReceiveAuthenticationChallenge(NSURLConnection connection, NSURLAuthenticationChallenge challenge) {}
     /**
      * @since Available in iOS 2.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("connection:didCancelAuthenticationChallenge:")
-    public void didCancelAuthenticationChallenge(NSURLConnection connection, NSURLAuthenticationChallenge challenge) { throw new UnsupportedOperationException(); }
+    public void didCancelAuthenticationChallenge(NSURLConnection connection, NSURLAuthenticationChallenge challenge) {}
     /*</methods>*/
 }

@@ -1,5 +1,5 @@
 package: org.robovm.apple.coreaudiokit
-include: [foundation.yaml, coreaudio.yaml, uikit.yaml]
+include: [foundation.yaml, audiounit.yaml, coreaudio.yaml, uikit.yaml]
 library: CoreAudioKit
 framework: CoreAudioKit
 clang_args: ['-x', 'objective-c']
@@ -27,7 +27,6 @@ functions:
         name: 'Function__#{g[0]}'
 
 values:
-   
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?CA.*):
         class: CoreAudioKit

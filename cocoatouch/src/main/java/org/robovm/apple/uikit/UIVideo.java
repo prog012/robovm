@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -48,7 +49,7 @@ import org.robovm.apple.corelocation.*;
     
     private static java.util.concurrent.atomic.AtomicLong id = new java.util.concurrent.atomic.AtomicLong();
     private static final Selector didFinishSaving = Selector.register("video:didFinishSavingWithError:contextInfo:");
-    private static Map<Long, ListenerWrapper> callbacks = new HashMap<>();
+    private static LongMap<ListenerWrapper> callbacks = new LongMap<>();
     private static class ListenerWrapper extends NSObject {
         private final VoidBlock2<String, NSError> callback;
         private ListenerWrapper(VoidBlock2<String, NSError> callback, long contextInfo) {

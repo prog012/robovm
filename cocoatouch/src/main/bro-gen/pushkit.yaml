@@ -11,20 +11,19 @@ typedefs: {}
 enums: {}
         
 classes:
-    PushKit:
-        annotations: ['@Marshaler(NSString.AsStringMarshaler.class)']
-
     PKPushCredentials: {} # DONE
     PKPushPayload: {} # DONE
     PKPushRegistry: # DONE
         properties:
             'desiredPushTypes':
-                type: '@org.robovm.rt.bro.annotation.Marshaler(NSSet.AsStringSetMarshaler.class) Set<String>'
+                type: Set<String>
+                marshaler: NSSet.AsStringSetMarshaler
         methods:
             '-pushTokenForType:':
                 name: getPushTokenForType
             '-initWithQueue:':
                 name: init      
+                annotations: ['@WeaklyLinked']
     
 protocols:
     PKPushRegistryDelegate: # DONE

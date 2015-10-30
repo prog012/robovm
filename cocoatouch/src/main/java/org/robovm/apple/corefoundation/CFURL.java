@@ -23,11 +23,16 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.dispatch.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.dispatch.*;
+import org.robovm.apple.coreservices.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -126,7 +131,7 @@ import org.robovm.apple.foundation.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFURL createFileReferenceURL(CFAllocator allocator, CFURL url) throws NSErrorException {
+    public static CFURL createFileReferenceURL(CFAllocator allocator, CFURL url) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        CFURL result = createFileReferenceURL(allocator, url, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
@@ -140,7 +145,7 @@ import org.robovm.apple.foundation.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFURL createFilePathURL(CFAllocator allocator, CFURL url) throws NSErrorException {
+    public static CFURL createFilePathURL(CFAllocator allocator, CFURL url) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        CFURL result = createFilePathURL(allocator, url, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
@@ -168,7 +173,7 @@ import org.robovm.apple.foundation.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public @org.robovm.rt.bro.annotation.Marshaler(CFType.NoRetainMarshaler.class) CFDictionary getResourceValues(CFArray keys) throws NSErrorException {
+    public CFDictionary getResourceValues(CFArray keys) throws NSErrorException {
        NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
        CFDictionary result = getResourceValues(keys, ptr);
        if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }

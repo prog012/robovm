@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -50,8 +51,8 @@ import org.robovm.apple.coregraphics.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("mediaPicker:didPickMediaItems:")
-    public void didPickMediaItems(MPMediaPickerController mediaPicker, MPMediaItemCollection mediaItemCollection) { throw new UnsupportedOperationException(); }
+    public void didPickMediaItems(MPMediaPickerController mediaPicker, MPMediaItemCollection mediaItemCollection) {}
     @NotImplemented("mediaPickerDidCancel:")
-    public void didCancel(MPMediaPickerController mediaPicker) { throw new UnsupportedOperationException(); }
+    public void didCancel(MPMediaPickerController mediaPicker) {}
     /*</methods>*/
 }

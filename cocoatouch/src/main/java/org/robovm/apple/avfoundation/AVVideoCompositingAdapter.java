@@ -23,19 +23,21 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -52,18 +54,20 @@ import org.robovm.apple.mediatoolbox.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
+    @WeaklyLinked
     @NotImplemented("sourcePixelBufferAttributes")
-    public CVPixelBufferAttributes getSourcePixelBufferAttributes() { throw new UnsupportedOperationException(); }
+    public CVPixelBufferAttributes getSourcePixelBufferAttributes() { return null; }
+    @WeaklyLinked
     @NotImplemented("requiredPixelBufferAttributesForRenderContext")
-    public CVPixelBufferAttributes getRequiredPixelBufferAttributesForRenderContext() { throw new UnsupportedOperationException(); }
+    public CVPixelBufferAttributes getRequiredPixelBufferAttributesForRenderContext() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("renderContextChanged:")
-    public void renderContextChanged(AVVideoCompositionRenderContext newRenderContext) { throw new UnsupportedOperationException(); }
+    public void renderContextChanged(AVVideoCompositionRenderContext newRenderContext) {}
     @NotImplemented("startVideoCompositionRequest:")
-    public void startVideoCompositionRequest(AVAsynchronousVideoCompositionRequest asyncVideoCompositionRequest) { throw new UnsupportedOperationException(); }
+    public void startVideoCompositionRequest(AVAsynchronousVideoCompositionRequest asyncVideoCompositionRequest) {}
     @NotImplemented("cancelAllPendingVideoCompositionRequests")
-    public void cancelAllPendingVideoCompositionRequests() { throw new UnsupportedOperationException(); }
+    public void cancelAllPendingVideoCompositionRequests() {}
     /*</methods>*/
 }

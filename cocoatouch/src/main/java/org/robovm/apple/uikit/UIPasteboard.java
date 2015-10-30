@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -46,11 +47,16 @@ import org.robovm.apple.corelocation.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public static NSObject observeChanged(UIPasteboard object, final VoidBlock2<UIPasteboard, UIPasteboardChangedNotificationInfo> block) {
+        public static NSObject observeChanged(UIPasteboard object, final VoidBlock2<UIPasteboard, UIPasteboardChangedNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(ChangedNotification(), object, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
-                    block.invoke((UIPasteboard)a.getObject(), new UIPasteboardChangedNotificationInfo(a.getUserInfo()));
+                    NSDictionary<NSString, NSObject> userInfo = a.getUserInfo();
+                    UIPasteboardChangedNotification data = null;
+                    if (userInfo != null) {
+                        data = new UIPasteboardChangedNotification(userInfo);
+                    }
+                    block.invoke((UIPasteboard)a.getObject(), data);
                 }
             });
         }
@@ -72,15 +78,15 @@ import org.robovm.apple.corelocation.*;
     protected UIPasteboard(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     public List<Map<String, NSObject>> getItems() {
-        NSArray<NSDictionary<NSString, NSObject>> items = getItems0();
+        NSArray<NSDictionary> items = getItems0();
         List<Map<String, NSObject>> itemList = new ArrayList<>();
-        for (NSDictionary<NSString, NSObject> item : items) {
+        for (NSDictionary item : items) {
             itemList.add(item.asStringMap());
         }
         return itemList;
     }
     public void setItems(List<Map<String, NSObject>> items) {
-        NSArray<NSDictionary<NSString, NSObject>> itemArray = new NSMutableArray<>();
+        NSArray<NSDictionary> itemArray = new NSMutableArray<>();
         for (Map<String, NSObject> item : items) {
             itemArray.add(NSDictionary.fromStringMap(item));
         }
@@ -98,9 +104,9 @@ import org.robovm.apple.corelocation.*;
     @Property(selector = "numberOfItems")
     public native @MachineSizedSInt long getNumberOfItems();
     @Property(selector = "items")
-    private native NSArray<NSDictionary<NSString, NSObject>> getItems0();
+    private native NSArray<NSDictionary> getItems0();
     @Property(selector = "setItems:")
-    private native void setItems0(NSArray<NSDictionary<NSString, NSObject>> v);
+    private native void setItems0(NSArray<NSDictionary> v);
     @Property(selector = "string")
     public native String getString();
     @Property(selector = "setString:")
@@ -148,7 +154,7 @@ import org.robovm.apple.corelocation.*;
         return typeList;
     }
     public void addItems(List<Map<String, NSObject>> items) {
-        NSArray<NSDictionary<NSString, NSObject>> itemArray = new NSMutableArray<>();
+        NSArray<NSDictionary> itemArray = new NSMutableArray<>();
         for (Map<String, NSObject> item :items) {
             itemArray.add(NSDictionary.fromStringMap(item));
         }
@@ -162,13 +168,13 @@ import org.robovm.apple.corelocation.*;
     @GlobalValue(symbol="UIPasteboardRemovedNotification", optional=true)
     public static native NSString RemovedNotification();
     @GlobalValue(symbol="UIPasteboardTypeListString", optional=true)
-    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getStringTypeList();
+    public static native List<String> getStringTypeList();
     @GlobalValue(symbol="UIPasteboardTypeListURL", optional=true)
-    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getURLTypeList();
+    public static native List<String> getURLTypeList();
     @GlobalValue(symbol="UIPasteboardTypeListImage", optional=true)
-    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getImageTypeList();
+    public static native List<String> getImageTypeList();
     @GlobalValue(symbol="UIPasteboardTypeListColor", optional=true)
-    public static native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getColorTypeList();
+    public static native List<String> getColorTypeList();
     
     @Method(selector = "pasteboardTypes")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getTypes();
@@ -193,7 +199,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "dataForPasteboardType:inItemSet:")
     public native NSArray<NSData> getData(String pasteboardType, NSIndexSet itemSet);
     @Method(selector = "addItems:")
-    private native void addItems(NSArray<NSDictionary<NSString, NSObject>> items);
+    private native void addItems(NSArray<NSDictionary> items);
     @Method(selector = "generalPasteboard")
     public static native UIPasteboard getGeneralPasteboard();
     @Method(selector = "pasteboardWithName:create:")

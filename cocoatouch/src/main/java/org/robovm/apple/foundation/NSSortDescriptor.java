@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -48,13 +50,13 @@ import org.robovm.apple.dispatch.*;
     /*<bind>*/static { ObjCRuntime.bind(NSSortDescriptor.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
     public NSSortDescriptor(NSSortIdentifier key, boolean ascending) {
-        this(key.value(), ascending);
+        this(key.value().toString(), ascending);
     }
     public NSSortDescriptor(NSSortIdentifier key, boolean ascending, Selector selector) {
-        this(key.value(), ascending, selector);
+        this(key.value().toString(), ascending, selector);
     }
     public NSSortDescriptor(NSSortIdentifier key, boolean ascending, @Block Block2<NSObject, NSObject, NSComparisonResult> cmptr) {
-        this(key.value(), ascending, cmptr);
+        this(key.value().toString(), ascending, cmptr);
     }
     /*<constructors>*/
     public NSSortDescriptor() {}

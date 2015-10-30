@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -30,7 +31,6 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreaudio.*;
-import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.audiotoolbox.*;
@@ -76,10 +76,20 @@ import org.robovm.apple.audiotoolbox.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /**
+     * @throws OSStatusException 
      * @since Available in iOS 8.0 and later.
      */
-    public OSStatus register(String description, List<String> conformingDataTypes) {
-        return registerDataType(dataType, description, conformingDataTypes);
+    public void register(String description, List<String> conformingDataTypes) throws OSStatusException {
+        OSStatus status = registerDataType0(dataType, description, conformingDataTypes);
+        OSStatusException.throwIfNecessary(status);
+    }
+    /**
+     * @throws OSStatusException 
+     * @since Available in iOS 8.0 and later.
+     */
+    public static void registerDataType(String dataType, String description, List<String> conformingDataTypes) throws OSStatusException {
+        OSStatus status = registerDataType0(dataType, description, conformingDataTypes);
+        OSStatusException.throwIfNecessary(status);
     }
     /**
      * @since Available in iOS 8.0 and later.
@@ -122,7 +132,7 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 8.0 and later.
      */
     @Bridge(symbol="CMMetadataDataTypeRegistryRegisterDataType", optional=true)
-    public static native OSStatus registerDataType(String dataType, String description, @org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> conformingDataTypes);
+    protected static native OSStatus registerDataType0(String dataType, String description, @org.robovm.rt.bro.annotation.Marshaler(CFArray.AsStringListMarshaler.class) List<String> conformingDataTypes);
     /**
      * @since Available in iOS 8.0 and later.
      */

@@ -23,29 +23,34 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /*</javadoc>*/
-@Marshaler(AVAssetImageGeneratorApertureMode.Marshaler.class)
-/*<annotations>*/@Library("AVFoundation")/*</annotations>*/
+/*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+@Marshaler(/*<name>*/AVAssetImageGeneratorApertureMode/*</name>*/.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAssetImageGeneratorApertureMode/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    extends /*<extends>*/GlobalValueEnumeration<NSString>/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
+    static { Bro.bind(/*<name>*/AVAssetImageGeneratorApertureMode/*</name>*/.class); }
+
+    /*<marshalers>*/
     public static class Marshaler {
         @MarshalsPointer
         public static AVAssetImageGeneratorApertureMode toObject(Class<AVAssetImageGeneratorApertureMode> cls, long handle, long flags) {
@@ -63,39 +68,57 @@ import org.robovm.apple.mediatoolbox.*;
             return NSObject.Marshaler.toNative(o.value(), flags);
         }
     }
-    
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(AVAssetImageGeneratorApertureMode.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    public static final AVAssetImageGeneratorApertureMode CleanAperture = new AVAssetImageGeneratorApertureMode("CleanApertureValue");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    public static final AVAssetImageGeneratorApertureMode ProductionAperture = new AVAssetImageGeneratorApertureMode("ProductionApertureValue");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    public static final AVAssetImageGeneratorApertureMode EncodedPixels = new AVAssetImageGeneratorApertureMode("EncodedPixelsValue");
-    
-    private static AVAssetImageGeneratorApertureMode[] values = new AVAssetImageGeneratorApertureMode[] {CleanAperture, ProductionAperture, EncodedPixels};
-    private final LazyGlobalValue<NSString> lazyGlobalValue;
-    
-    private AVAssetImageGeneratorApertureMode(String getterName) {
-        lazyGlobalValue = new LazyGlobalValue<>(getClass(), getterName);
+    public static class AsListMarshaler {
+        @SuppressWarnings("unchecked")
+        @MarshalsPointer
+        public static List<AVAssetImageGeneratorApertureMode> toObject(Class<? extends NSObject> cls, long handle, long flags) {
+            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
+            if (o == null) {
+                return null;
+            }
+            List<AVAssetImageGeneratorApertureMode> list = new ArrayList<>();
+            for (int i = 0; i < o.size(); i++) {
+                list.add(AVAssetImageGeneratorApertureMode.valueOf(o.get(i)));
+            }
+            return list;
+        }
+        @MarshalsPointer
+        public static long toNative(List<AVAssetImageGeneratorApertureMode> l, long flags) {
+            if (l == null) {
+                return 0L;
+            }
+            NSArray<NSString> array = new NSMutableArray<>();
+            for (AVAssetImageGeneratorApertureMode o : l) {
+                array.add(o.value());
+            }
+            return NSObject.Marshaler.toNative(array, flags);
+        }
     }
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
-    public NSString value() {
-        return lazyGlobalValue.value();
+    /*</marshalers>*/
+
+    /*<constants>*/
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    public static final AVAssetImageGeneratorApertureMode CleanAperture = new AVAssetImageGeneratorApertureMode("CleanAperture");
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    public static final AVAssetImageGeneratorApertureMode ProductionAperture = new AVAssetImageGeneratorApertureMode("ProductionAperture");
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    public static final AVAssetImageGeneratorApertureMode EncodedPixels = new AVAssetImageGeneratorApertureMode("EncodedPixels");
+    /*</constants>*/
+    
+    private static /*<name>*/AVAssetImageGeneratorApertureMode/*</name>*/[] values = new /*<name>*/AVAssetImageGeneratorApertureMode/*</name>*/[] {/*<value_list>*/CleanAperture, ProductionAperture, EncodedPixels/*</value_list>*/};
+    
+    /*<name>*/AVAssetImageGeneratorApertureMode/*</name>*/ (String getterName) {
+        super(Values.class, getterName);
     }
     
-    public static AVAssetImageGeneratorApertureMode valueOf(NSString value) {
-        for (AVAssetImageGeneratorApertureMode v : values) {
+    public static /*<name>*/AVAssetImageGeneratorApertureMode/*</name>*/ valueOf(/*<type>*/NSString/*</type>*/ value) {
+        for (/*<name>*/AVAssetImageGeneratorApertureMode/*</name>*/ v : values) {
             if (v.value().equals(value)) {
                 return v;
             }
@@ -103,21 +126,29 @@ import org.robovm.apple.mediatoolbox.*;
         throw new IllegalArgumentException("No constant with value " + value + " found in " 
             + /*<name>*/AVAssetImageGeneratorApertureMode/*</name>*/.class.getName());
     }
-    /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVAssetImageGeneratorApertureModeCleanAperture", optional=true)
-    protected static native NSString CleanApertureValue();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVAssetImageGeneratorApertureModeProductionAperture", optional=true)
-    protected static native NSString ProductionApertureValue();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVAssetImageGeneratorApertureModeEncodedPixels", optional=true)
-    protected static native NSString EncodedPixelsValue();
-    /*</methods>*/
+    
+    /*<methods>*//*</methods>*/
+    
+    /*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+    public static class Values {
+    	static { Bro.bind(Values.class); }
+
+        /*<values>*/
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetImageGeneratorApertureModeCleanAperture", optional=true)
+        public static native NSString CleanAperture();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetImageGeneratorApertureModeProductionAperture", optional=true)
+        public static native NSString ProductionAperture();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVAssetImageGeneratorApertureModeEncodedPixels", optional=true)
+        public static native NSString EncodedPixels();
+        /*</values>*/
+    }
 }

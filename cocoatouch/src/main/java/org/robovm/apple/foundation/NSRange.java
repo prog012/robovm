@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -61,6 +63,21 @@ import org.robovm.apple.dispatch.*;
     @StructMember(1) public native @MachineSizedUInt long getLength();
     @StructMember(1) public native NSRange setLength(@MachineSizedUInt long length);
     /*</members>*/
+    public long getMaxRange() {
+        return getLocation() + getLength();
+    }
+    
+    public boolean isLocationInRange(long location) {
+        return (!(location < getLocation()) && (location - getLocation()) < getLength());
+    }
+    
+    public boolean equalsTo(NSRange other) {
+        return getLocation() == other.getLocation() && getLength() == other.getLength();
+    }
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof NSRange && equalsTo((NSRange)obj);
+    }
     /*<methods>*/
     @Bridge(symbol="NSUnionRange", optional=true)
     public static native @ByVal NSRange union(@ByVal NSRange range1, @ByVal NSRange range2);

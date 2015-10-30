@@ -23,29 +23,34 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /*</javadoc>*/
-@Marshaler(AVMetadataFormat.Marshaler.class)
-/*<annotations>*/@Library("AVFoundation")/*</annotations>*/
+/*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+@Marshaler(/*<name>*/AVMetadataFormat/*</name>*/.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVMetadataFormat/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    extends /*<extends>*/GlobalValueEnumeration<NSString>/*</extends>*/
     /*<implements>*//*</implements>*/ {
-    
+
+    static { Bro.bind(/*<name>*/AVMetadataFormat/*</name>*/.class); }
+
+    /*<marshalers>*/
     public static class Marshaler {
         @MarshalsPointer
         public static AVMetadataFormat toObject(Class<AVMetadataFormat> cls, long handle, long flags) {
@@ -63,18 +68,17 @@ import org.robovm.apple.mediatoolbox.*;
             return NSObject.Marshaler.toNative(o.value(), flags);
         }
     }
-    
     public static class AsListMarshaler {
         @SuppressWarnings("unchecked")
         @MarshalsPointer
         public static List<AVMetadataFormat> toObject(Class<? extends NSObject> cls, long handle, long flags) {
-            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(cls, handle, flags);
+            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
             if (o == null) {
                 return null;
             }
             List<AVMetadataFormat> list = new ArrayList<>();
-            for (NSString str : o) {
-                list.add(AVMetadataFormat.valueOf(str));
+            for (int i = 0; i < o.size(); i++) {
+                list.add(AVMetadataFormat.valueOf(o.get(i)));
             }
             return list;
         }
@@ -83,59 +87,50 @@ import org.robovm.apple.mediatoolbox.*;
             if (l == null) {
                 return 0L;
             }
-            NSMutableArray<NSString> array = new NSMutableArray<>();
-            for (AVMetadataFormat i : l) {
-                array.add(i.value());
+            NSArray<NSString> array = new NSMutableArray<>();
+            for (AVMetadataFormat o : l) {
+                array.add(o.value());
             }
             return NSObject.Marshaler.toNative(array, flags);
         }
     }
+    /*</marshalers>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(AVMetadataFormat.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static final AVMetadataFormat QuickTimeUserData = new AVMetadataFormat("QuickTimeUserDataValue");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    public static final AVMetadataFormat QuickTimeMetadata = new AVMetadataFormat("QuickTimeMetadataValue");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    public static final AVMetadataFormat iTunesMetadata = new AVMetadataFormat("iTunesMetadataValue");
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    public static final AVMetadataFormat ID3Metadata = new AVMetadataFormat("ID3MetadataValue");
+    public static final AVMetadataFormat QuickTimeUserData = new AVMetadataFormat("QuickTimeUserData");
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public static final AVMetadataFormat ISOUserData = new AVMetadataFormat("ISOUserDataValue");
+    public static final AVMetadataFormat ISOUserData = new AVMetadataFormat("ISOUserData");
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    public static final AVMetadataFormat QuickTimeMetadata = new AVMetadataFormat("QuickTimeMetadata");
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    public static final AVMetadataFormat iTunesMetadata = new AVMetadataFormat("iTunesMetadata");
+    /**
+     * @since Available in iOS 4.0 and later.
+     */
+    public static final AVMetadataFormat ID3Metadata = new AVMetadataFormat("ID3Metadata");
     /**
      * @since Available in iOS 8.0 and later.
      */
-    public static final AVMetadataFormat HLSMetadata = new AVMetadataFormat("HLSMetadataValue");
+    public static final AVMetadataFormat HLSMetadata = new AVMetadataFormat("HLSMetadata");
+    /*</constants>*/
     
-    private static AVMetadataFormat[] values = new AVMetadataFormat[] {QuickTimeUserData, QuickTimeMetadata, 
-        iTunesMetadata, ID3Metadata, ISOUserData, HLSMetadata};
-    private final LazyGlobalValue<NSString> lazyGlobalValue;
+    private static /*<name>*/AVMetadataFormat/*</name>*/[] values = new /*<name>*/AVMetadataFormat/*</name>*/[] {/*<value_list>*/QuickTimeUserData, ISOUserData, QuickTimeMetadata, iTunesMetadata, ID3Metadata, HLSMetadata/*</value_list>*/};
     
-    private AVMetadataFormat(String getterName) {
-        lazyGlobalValue = new LazyGlobalValue<>(getClass(), getterName);
-    }
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
-    public NSString value() {
-        return lazyGlobalValue.value();
+    /*<name>*/AVMetadataFormat/*</name>*/ (String getterName) {
+        super(Values.class, getterName);
     }
     
-    public static AVMetadataFormat valueOf(NSString value) {
-        for (AVMetadataFormat v : values) {
+    public static /*<name>*/AVMetadataFormat/*</name>*/ valueOf(/*<type>*/NSString/*</type>*/ value) {
+        for (/*<name>*/AVMetadataFormat/*</name>*/ v : values) {
             if (v.value().equals(value)) {
                 return v;
             }
@@ -143,36 +138,44 @@ import org.robovm.apple.mediatoolbox.*;
         throw new IllegalArgumentException("No constant with value " + value + " found in " 
             + /*<name>*/AVMetadataFormat/*</name>*/.class.getName());
     }
-    /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVMetadataFormatQuickTimeUserData", optional=true)
-    protected static native NSString QuickTimeUserDataValue();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="AVMetadataFormatISOUserData", optional=true)
-    protected static native NSString ISOUserDataValue();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVMetadataFormatQuickTimeMetadata", optional=true)
-    protected static native NSString QuickTimeMetadataValue();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVMetadataFormatiTunesMetadata", optional=true)
-    protected static native NSString iTunesMetadataValue();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVMetadataFormatID3Metadata", optional=true)
-    protected static native NSString ID3MetadataValue();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @GlobalValue(symbol="AVMetadataFormatHLSMetadata", optional=true)
-    protected static native NSString HLSMetadataValue();
-    /*</methods>*/
+    
+    /*<methods>*//*</methods>*/
+    
+    /*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+    public static class Values {
+    	static { Bro.bind(Values.class); }
+
+        /*<values>*/
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataFormatQuickTimeUserData", optional=true)
+        public static native NSString QuickTimeUserData();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataFormatISOUserData", optional=true)
+        public static native NSString ISOUserData();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataFormatQuickTimeMetadata", optional=true)
+        public static native NSString QuickTimeMetadata();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataFormatiTunesMetadata", optional=true)
+        public static native NSString iTunesMetadata();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataFormatID3Metadata", optional=true)
+        public static native NSString ID3Metadata();
+        /**
+         * @since Available in iOS 8.0 and later.
+         */
+        @GlobalValue(symbol="AVMetadataFormatHLSMetadata", optional=true)
+        public static native NSString HLSMetadata();
+        /*</values>*/
+    }
 }

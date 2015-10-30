@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -30,7 +31,6 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.opengles.*;
-import org.robovm.apple.coremedia.*;
 import org.robovm.apple.metal.*;
 /*</imports>*/
 
@@ -52,15 +52,15 @@ import org.robovm.apple.metal.*;
     
     private static java.util.concurrent.atomic.AtomicLong refconId = new java.util.concurrent.atomic.AtomicLong();
     private long localRefconId;
-    private static Map<Long, ReleaseBytesCallback> releaseBytesCallbacks = new HashMap<Long, ReleaseBytesCallback>();
-    private static Map<Long, ReleasePlanarBytesCallback> releasePlanarBytesCallbacks = new HashMap<Long, ReleasePlanarBytesCallback>();
+    private static LongMap<ReleaseBytesCallback> releaseBytesCallbacks = new LongMap<>();
+    private static LongMap<ReleasePlanarBytesCallback> releasePlanarBytesCallbacks = new LongMap<>();
     private static final java.lang.reflect.Method cbReleaseBytes;
     private static final java.lang.reflect.Method cbReleasePlanarBytes;
     
     static {
         try {
-            cbReleaseBytes = CMSampleBuffer.class.getDeclaredMethod("cbReleaseBytes", long.class, VoidPtr.class);
-            cbReleasePlanarBytes = CMSampleBuffer.class.getDeclaredMethod("cbReleasePlanarBytes", long.class, VoidPtr.class, long.class, long.class, VoidPtr.class);
+            cbReleaseBytes = CVPixelBuffer.class.getDeclaredMethod("cbReleaseBytes", long.class, VoidPtr.class);
+            cbReleasePlanarBytes = CVPixelBuffer.class.getDeclaredMethod("cbReleasePlanarBytes", long.class, VoidPtr.class, long.class, long.class, VoidPtr.class);
         } catch (Throwable e) {
             throw new Error(e);
         }

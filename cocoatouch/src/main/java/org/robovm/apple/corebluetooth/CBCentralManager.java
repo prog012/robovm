@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -47,10 +48,12 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*/
     public CBCentralManager() {}
     protected CBCentralManager(SkipInit skipInit) { super(skipInit); }
+    @WeaklyLinked
     public CBCentralManager(CBCentralManagerDelegate delegate, DispatchQueue queue) { super((SkipInit) null); initObject(init(delegate, queue)); }
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public CBCentralManager(CBCentralManagerDelegate delegate, DispatchQueue queue, CBCentralManagerOptions options) { super((SkipInit) null); initObject(init(delegate, queue, options)); }
     /*</constructors>*/
     /*<properties>*/
@@ -63,11 +66,13 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @WeaklyLinked
     @Method(selector = "initWithDelegate:queue:")
     protected native @Pointer long init(CBCentralManagerDelegate delegate, DispatchQueue queue);
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     @Method(selector = "initWithDelegate:queue:options:")
     protected native @Pointer long init(CBCentralManagerDelegate delegate, DispatchQueue queue, CBCentralManagerOptions options);
     /**
@@ -75,6 +80,7 @@ import org.robovm.apple.dispatch.*;
      * @deprecated Deprecated in iOS 7.0.
      */
     @Deprecated
+    @WeaklyLinked
     @Method(selector = "retrievePeripherals:")
     public native void retrievePeripherals(@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<CFUUID> peripheralUUIDs);
     /**

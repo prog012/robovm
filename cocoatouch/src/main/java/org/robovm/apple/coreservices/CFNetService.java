@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -43,9 +44,9 @@ import org.robovm.apple.corefoundation.*;
         void invoke(CFNetService service, CFStreamError error);
     }
     
-    private static java.util.concurrent.atomic.AtomicLong refconId = new java.util.concurrent.atomic.AtomicLong();
+    private static final java.util.concurrent.atomic.AtomicLong refconId = new java.util.concurrent.atomic.AtomicLong();
     private long localRefconId;
-    private static Map<Long, ClientCallback> callbacks = new HashMap<Long, ClientCallback>();
+    private static final LongMap<ClientCallback> callbacks = new LongMap<>();
     private static final java.lang.reflect.Method cbInvoke;
     
     static {
@@ -133,13 +134,13 @@ import org.robovm.apple.corefoundation.*;
      * @since Available in iOS 2.0 and later.
      */
     public void scheduleInRunLoop(CFRunLoop runLoop, CFRunLoopMode runLoopMode) {
-        scheduleInRunLoop(runLoop, runLoopMode.value());
+        scheduleInRunLoop(runLoop, runLoopMode.value().toString());
     }
     /**
      * @since Available in iOS 2.0 and later.
      */
     public void removeFromRunLoop(CFRunLoop runLoop, CFRunLoopMode runLoopMode) {
-        scheduleInRunLoop(runLoop, runLoopMode.value());
+        scheduleInRunLoop(runLoop, runLoopMode.value().toString());
     }
     /*<methods>*/
     /**

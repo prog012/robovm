@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -50,8 +51,8 @@ import org.robovm.apple.security.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("advertiser:didReceiveInvitationFromPeer:withContext:invitationHandler:")
-    public void didReceiveInvitation(MCNearbyServiceAdvertiser advertiser, MCPeerID peerID, NSData context, @Block VoidBlock2<Boolean, MCSession> invitationHandler) { throw new UnsupportedOperationException(); }
+    public void didReceiveInvitation(MCNearbyServiceAdvertiser advertiser, MCPeerID peerID, NSData context, @Block VoidBlock2<Boolean, MCSession> invitationHandler) {}
     @NotImplemented("advertiser:didNotStartAdvertisingPeer:")
-    public void didNotStart(MCNearbyServiceAdvertiser advertiser, NSError error) { throw new UnsupportedOperationException(); }
+    public void didNotStart(MCNearbyServiceAdvertiser advertiser, NSError error) {}
     /*</methods>*/
 }

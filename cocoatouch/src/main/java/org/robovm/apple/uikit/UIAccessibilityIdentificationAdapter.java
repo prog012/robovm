@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -53,12 +54,12 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 5.0 and later.
      */
     @NotImplemented("accessibilityIdentifier")
-    public String getAccessibilityIdentifier() { throw new UnsupportedOperationException(); }
+    public String getAccessibilityIdentifier() { return null; }
     /**
      * @since Available in iOS 5.0 and later.
      */
     @NotImplemented("setAccessibilityIdentifier:")
-    public void setAccessibilityIdentifier(String v) { throw new UnsupportedOperationException(); }
+    public void setAccessibilityIdentifier(String v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

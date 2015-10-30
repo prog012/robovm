@@ -23,13 +23,14 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.corelocation.*;
 import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
@@ -76,9 +77,9 @@ import org.robovm.apple.avfoundation.*;
     @Property(selector = "setSynchronous:")
     public native void setSynchronous(boolean v);
     @Property(selector = "progressHandler")
-    public native @Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<NSString, NSObject>> getProgressHandler();
+    public native @Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<?, ?>> getProgressHandler();
     @Property(selector = "setProgressHandler:")
-    public native void setProgressHandler(@Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<NSString, NSObject>> v);
+    public native void setProgressHandler(@Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<?, ?>> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

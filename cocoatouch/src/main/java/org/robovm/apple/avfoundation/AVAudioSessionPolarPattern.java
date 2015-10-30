@@ -23,29 +23,34 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /*</javadoc>*/
-@Marshaler(AVAudioSessionPolarPattern.Marshaler.class)
-/*<annotations>*/@Library("AVFoundation")/*</annotations>*/
+/*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+@Marshaler(/*<name>*/AVAudioSessionPolarPattern/*</name>*/.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVAudioSessionPolarPattern/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    extends /*<extends>*/GlobalValueEnumeration<NSString>/*</extends>*/
     /*<implements>*//*</implements>*/ {
-    
+
+    static { Bro.bind(/*<name>*/AVAudioSessionPolarPattern/*</name>*/.class); }
+
+    /*<marshalers>*/
     public static class Marshaler {
         @MarshalsPointer
         public static AVAudioSessionPolarPattern toObject(Class<AVAudioSessionPolarPattern> cls, long handle, long flags) {
@@ -63,18 +68,17 @@ import org.robovm.apple.mediatoolbox.*;
             return NSObject.Marshaler.toNative(o.value(), flags);
         }
     }
-    
     public static class AsListMarshaler {
         @SuppressWarnings("unchecked")
         @MarshalsPointer
         public static List<AVAudioSessionPolarPattern> toObject(Class<? extends NSObject> cls, long handle, long flags) {
-            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(cls, handle, flags);
+            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
             if (o == null) {
                 return null;
             }
             List<AVAudioSessionPolarPattern> list = new ArrayList<>();
-            for (NSString str : o) {
-                list.add(AVAudioSessionPolarPattern.valueOf(str));
+            for (int i = 0; i < o.size(); i++) {
+                list.add(AVAudioSessionPolarPattern.valueOf(o.get(i)));
             }
             return list;
         }
@@ -83,46 +87,38 @@ import org.robovm.apple.mediatoolbox.*;
             if (l == null) {
                 return 0L;
             }
-            NSMutableArray<NSString> array = new NSMutableArray<>();
-            for (AVAudioSessionPolarPattern i : l) {
-                array.add(i.value());
+            NSArray<NSString> array = new NSMutableArray<>();
+            for (AVAudioSessionPolarPattern o : l) {
+                array.add(o.value());
             }
             return NSObject.Marshaler.toNative(array, flags);
         }
     }
+    /*</marshalers>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(AVAudioSessionPolarPattern.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public static final AVAudioSessionPolarPattern Omnidirectional = new AVAudioSessionPolarPattern("OmnidirectionalValue");
+    public static final AVAudioSessionPolarPattern Omnidirectional = new AVAudioSessionPolarPattern("Omnidirectional");
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public static final AVAudioSessionPolarPattern Cardioid = new AVAudioSessionPolarPattern("CardioidValue");
+    public static final AVAudioSessionPolarPattern Cardioid = new AVAudioSessionPolarPattern("Cardioid");
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public static final AVAudioSessionPolarPattern Subcardioid = new AVAudioSessionPolarPattern("SubcardioidValue");
+    public static final AVAudioSessionPolarPattern Subcardioid = new AVAudioSessionPolarPattern("Subcardioid");
+    /*</constants>*/
     
-    private static AVAudioSessionPolarPattern[] values = new AVAudioSessionPolarPattern[] {Omnidirectional, Cardioid, Subcardioid};
-    private final LazyGlobalValue<NSString> lazyGlobalValue;
+    private static /*<name>*/AVAudioSessionPolarPattern/*</name>*/[] values = new /*<name>*/AVAudioSessionPolarPattern/*</name>*/[] {/*<value_list>*/Omnidirectional, Cardioid, Subcardioid/*</value_list>*/};
     
-    private AVAudioSessionPolarPattern(String getterName) {
-        lazyGlobalValue = new LazyGlobalValue<>(getClass(), getterName);
-    }
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
-    public NSString value() {
-        return lazyGlobalValue.value();
+    /*<name>*/AVAudioSessionPolarPattern/*</name>*/ (String getterName) {
+        super(Values.class, getterName);
     }
     
-    public static AVAudioSessionPolarPattern valueOf(NSString value) {
-        for (AVAudioSessionPolarPattern v : values) {
+    public static /*<name>*/AVAudioSessionPolarPattern/*</name>*/ valueOf(/*<type>*/NSString/*</type>*/ value) {
+        for (/*<name>*/AVAudioSessionPolarPattern/*</name>*/ v : values) {
             if (v.value().equals(value)) {
                 return v;
             }
@@ -130,21 +126,29 @@ import org.robovm.apple.mediatoolbox.*;
         throw new IllegalArgumentException("No constant with value " + value + " found in " 
             + /*<name>*/AVAudioSessionPolarPattern/*</name>*/.class.getName());
     }
-    /*<methods>*/
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="AVAudioSessionPolarPatternOmnidirectional", optional=true)
-    protected static native NSString OmnidirectionalValue();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="AVAudioSessionPolarPatternCardioid", optional=true)
-    protected static native NSString CardioidValue();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="AVAudioSessionPolarPatternSubcardioid", optional=true)
-    protected static native NSString SubcardioidValue();
-    /*</methods>*/
+    
+    /*<methods>*//*</methods>*/
+    
+    /*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+    public static class Values {
+    	static { Bro.bind(Values.class); }
+
+        /*<values>*/
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionPolarPatternOmnidirectional", optional=true)
+        public static native NSString Omnidirectional();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionPolarPatternCardioid", optional=true)
+        public static native NSString Cardioid();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="AVAudioSessionPolarPatternSubcardioid", optional=true)
+        public static native NSString Subcardioid();
+        /*</values>*/
+    }
 }

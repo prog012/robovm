@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -44,20 +45,20 @@ import org.robovm.apple.corefoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AudioClassDescription() {}
-    public AudioClassDescription(int mType, int mSubType, int mManufacturer) {
-        this.setMType(mType);
-        this.setMSubType(mSubType);
-        this.setMManufacturer(mManufacturer);
+    public AudioClassDescription(int type, int subType, int manufacturer) {
+        this.setType(type);
+        this.setSubType(subType);
+        this.setManufacturer(manufacturer);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native int getMType();
-    @StructMember(0) public native AudioClassDescription setMType(int mType);
-    @StructMember(1) public native int getMSubType();
-    @StructMember(1) public native AudioClassDescription setMSubType(int mSubType);
-    @StructMember(2) public native int getMManufacturer();
-    @StructMember(2) public native AudioClassDescription setMManufacturer(int mManufacturer);
+    @StructMember(0) public native int getType();
+    @StructMember(0) public native AudioClassDescription setType(int type);
+    @StructMember(1) public native int getSubType();
+    @StructMember(1) public native AudioClassDescription setSubType(int subType);
+    @StructMember(2) public native int getManufacturer();
+    @StructMember(2) public native AudioClassDescription setManufacturer(int manufacturer);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

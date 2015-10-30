@@ -23,11 +23,11 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
@@ -53,6 +53,16 @@ import org.robovm.apple.dispatch.*;
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
+    public boolean equalsTo(MKMapSize other) {
+        return getWidth() == other.getWidth() && getHeight() == other.getHeight();
+    }
+    public boolean equals(Object obj) {
+        return obj instanceof MKMapSize && equalsTo((MKMapSize)obj);
+    }
+    
+    public String toString() {
+        return String.format("{%.1f, %.1f}", getWidth(), getHeight());
+    }
     /*<members>*/
     @StructMember(0) public native double getWidth();
     @StructMember(0) public native MKMapSize setWidth(double width);
@@ -64,6 +74,6 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 4.0 and later.
      */
     @GlobalValue(symbol="MKMapSizeWorld", optional=true)
-    public static native @ByVal MKMapSize getWorldSize();
+    public static native @ByVal MKMapSize World();
     /*</methods>*/
 }

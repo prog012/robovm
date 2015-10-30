@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -50,7 +51,7 @@ import org.robovm.apple.corelocation.*;
             return NSNotificationCenter.getDefaultCenter().addObserver(UIAccessibilityGlobals.AnnouncementDidFinishNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke(NSNotification a) {
-                    NSDictionary<NSString, NSObject> data = a.getUserInfo();
+                    NSDictionary data = a.getUserInfo();
                     NSString string = (NSString)data.get(UIAccessibilityGlobals.AnnouncementKeyStringValue());
                     NSNumber successful = (NSNumber)data.get(UIAccessibilityGlobals.AnnouncementKeyWasSuccessful());
                     block.invoke(string.toString(), successful.booleanValue());
@@ -258,7 +259,7 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 5.0 and later.
      */
     @Property(selector = "accessibilityElementsHidden")
-    boolean isAccessibilityElementsHidden();
+    boolean areAccessibilityElementsHidden();
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -268,12 +269,12 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 5.0 and later.
      */
     @Property(selector = "accessibilityViewIsModal")
-    boolean isAccessibilityViewIsModal();
+    boolean isAccessibilityViewModal();
     /**
      * @since Available in iOS 5.0 and later.
      */
     @Property(selector = "setAccessibilityViewIsModal:")
-    void setAccessibilityViewIsModal(boolean v);
+    void setAccessibilityViewModal(boolean v);
     /**
      * @since Available in iOS 6.0 and later.
      */

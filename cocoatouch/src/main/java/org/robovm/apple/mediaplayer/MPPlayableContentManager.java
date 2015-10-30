@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -57,6 +58,8 @@ import org.robovm.apple.coregraphics.*;
     public native MPPlayableContentDelegate getDelegate();
     @Property(selector = "setDelegate:", strongRef = true)
     public native void setDelegate(MPPlayableContentDelegate v);
+    @Property(selector = "context")
+    public native MPPlayableContentManagerContext getContext();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

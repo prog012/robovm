@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -52,7 +53,7 @@ import org.robovm.apple.corelocation.*;
     /*<ptr>*/public static class UIMenuItemPtr extends Ptr<UIMenuItem, UIMenuItemPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(UIMenuItem.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    static final Map<Long, UIMenuItem> items = new HashMap<>();
+    static final LongMap<UIMenuItem> items = new LongMap<>();
     
     private OnActionListener actionListener;
     

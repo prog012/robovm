@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -93,6 +94,16 @@ import org.robovm.apple.addressbook.*;
     public native NSArray<PKShippingMethod> getShippingMethods();
     @Property(selector = "setShippingMethods:")
     public native void setShippingMethods(NSArray<PKShippingMethod> v);
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    @Property(selector = "shippingType")
+    public native PKShippingType getShippingType();
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    @Property(selector = "setShippingType:")
+    public native void setShippingType(PKShippingType v);
     @Property(selector = "applicationData")
     public native NSData getApplicationData();
     @Property(selector = "setApplicationData:")

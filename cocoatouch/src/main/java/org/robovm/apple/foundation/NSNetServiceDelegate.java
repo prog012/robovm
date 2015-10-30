@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -57,13 +59,13 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "netServiceDidPublish:")
     void didPublish(NSNetService sender);
     @Method(selector = "netService:didNotPublish:")
-    void didNotPublish(NSNetService sender, NSNetServiceErrorInfo errorDict);
+    void didNotPublish(NSNetService sender, NSNetServiceErrorUserInfo errorDict);
     @Method(selector = "netServiceWillResolve:")
     void willResolve(NSNetService sender);
     @Method(selector = "netServiceDidResolveAddress:")
     void didResolve(NSNetService sender);
     @Method(selector = "netService:didNotResolve:")
-    void didNotResolve(NSNetService sender, NSNetServiceErrorInfo errorDict);
+    void didNotResolve(NSNetService sender, NSNetServiceErrorUserInfo errorDict);
     @Method(selector = "netServiceDidStop:")
     void didStop(NSNetService sender);
     @Method(selector = "netService:didUpdateTXTRecordData:")

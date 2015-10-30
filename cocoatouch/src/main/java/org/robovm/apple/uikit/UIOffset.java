@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -61,11 +62,17 @@ import org.robovm.apple.corelocation.*;
     @StructMember(1) public native UIOffset setVertical(@MachineSizedFloat double vertical);
     /*</members>*/
     
+    public boolean equalsTo(UIOffset other) {
+        return getHorizontal() == other.getHorizontal() && getVertical() == other.getVertical();
+    }
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof UIOffset && equalsTo((UIOffset)obj);
+    }
     @Override
     public String toString() {
         return toString(this);
     }
-    
     /*<methods>*/
     @GlobalValue(symbol="UIOffsetZero", optional=true)
     public static native @ByVal UIOffset Zero();

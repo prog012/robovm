@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -52,16 +54,36 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public NSNotification(NSString name, NSObject object, NSDictionary<NSString, NSObject> userInfo) { super((SkipInit) null); initObject(init(name, object, userInfo)); }
+    public NSNotification(NSString name, NSObject object, NSDictionary userInfo) { super((SkipInit) null); initObject(init(name, object, userInfo)); }
     public NSNotification(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
+    public NSNotification(String name, NSObject object, NSDictionary<?, ?> userInfo) {
+        super((SkipInit) null);
+        initObject(init(new NSString(name), object, userInfo));
+    }
+    public NSNotification(NSString name, NSObject object, UIRemoteNotification userInfo) {
+        super((SkipInit) null);
+        initObject(init(name, object, userInfo.getDictionary()));
+    }
+    public NSNotification(String name, NSObject object, UIRemoteNotification userInfo) {
+        super((SkipInit) null);
+        initObject(init(new NSString(name), object, userInfo.getDictionary()));
+    }
+    public NSNotification(NSString name, NSObject object, UILocalNotification userInfo) {
+        super((SkipInit) null);
+        initObject(init(name, object, userInfo.getUserInfo()));
+    }
+    public NSNotification(String name, NSObject object, UILocalNotification userInfo) {
+        super((SkipInit) null);
+        initObject(init(new NSString(name), object, userInfo.getUserInfo()));
+    }
     /*<properties>*/
     @Property(selector = "name")
-    public native NSString getName();
+    public native String getName();
     @Property(selector = "object")
     public native NSObject getObject();
     @Property(selector = "userInfo")
-    public native NSDictionary<NSString, NSObject> getUserInfo();
+    public native NSDictionary getUserInfo();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
@@ -69,10 +91,10 @@ import org.robovm.apple.dispatch.*;
      * @since Available in iOS 4.0 and later.
      */
     @Method(selector = "initWithName:object:userInfo:")
-    protected native @Pointer long init(NSString name, NSObject object, NSDictionary<NSString, NSObject> userInfo);
+    protected native @Pointer long init(NSString name, NSObject object, NSDictionary userInfo);
     @Method(selector = "initWithCoder:")
     protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder aCoder);
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

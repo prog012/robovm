@@ -23,19 +23,21 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,10 +58,12 @@ import org.robovm.apple.mediatoolbox.*;
     protected AVAudioUnit(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @WeaklyLinked
     @Property(selector = "audioComponentDescription")
     public native @ByVal AudioComponentDescription getAudioComponentDescription();
+    @WeaklyLinked
     @Property(selector = "audioUnit")
-    public native AudioComponentInstance getAudioUnit();
+    public native AudioUnit getAudioUnit();
     @Property(selector = "name")
     public native String getName();
     @Property(selector = "manufacturerName")
@@ -68,23 +72,14 @@ import org.robovm.apple.mediatoolbox.*;
     public native @MachineSizedUInt long getVersion();
     /*</properties>*/
     /*<members>*//*</members>*/
-    
-    /**
-     * 
-     * @param url
-     * @return
-     * @throws NSErrorException
-     */
-    public boolean loadAudioUnitPreset(NSURL url) throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        boolean result = loadAudioUnitPreset(url, err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
     /*<methods>*/
+    public boolean loadAudioUnitPreset(NSURL url) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = loadAudioUnitPreset(url, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "loadAudioUnitPresetAtURL:error:")
-    protected native boolean loadAudioUnitPreset(NSURL url, NSError.NSErrorPtr error);
+    private native boolean loadAudioUnitPreset(NSURL url, NSError.NSErrorPtr error);
     /*</methods>*/
 }

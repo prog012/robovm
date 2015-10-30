@@ -23,19 +23,21 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,6 +63,7 @@ import org.robovm.apple.mediatoolbox.*;
     public void setVideoSettings(AVVideoSettings videoSettings) {
         setVideoSettings0(videoSettings.getDictionary());
     }
+    @WeaklyLinked
     public AVPixelBufferAttributes getPixelBufferSettings() {
         return new AVPixelBufferAttributes(getVideoSettings0().as(CFDictionary.class));
     }
@@ -71,15 +74,17 @@ import org.robovm.apple.mediatoolbox.*;
     /*<properties>*/
     @Property(selector = "sampleBufferDelegate")
     public native AVCaptureVideoDataOutputSampleBufferDelegate getSampleBufferDelegate();
+    @WeaklyLinked
     @Property(selector = "sampleBufferCallbackQueue")
     public native DispatchQueue getSampleBufferCallbackQueue();
     @Property(selector = "videoSettings")
-    protected native NSDictionary<NSString, NSObject> getVideoSettings0();
+    protected native NSDictionary getVideoSettings0();
     @Property(selector = "setVideoSettings:")
-    protected native void setVideoSettings0(NSDictionary<NSString, NSObject> v);
+    protected native void setVideoSettings0(NSDictionary v);
     /**
      * @since Available in iOS 5.0 and later.
      */
+    @WeaklyLinked
     @Property(selector = "availableVideoCVPixelFormatTypes")
     public native @org.robovm.rt.bro.annotation.Marshaler(CVPixelFormatType.AsListMarshaler.class) List<CVPixelFormatType> getAvailableVideoCVPixelFormatTypes();
     /**
@@ -102,16 +107,18 @@ import org.robovm.apple.mediatoolbox.*;
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public AVPixelBufferAttributes getRecommendedPixelBufferSettings(String outputFileType) {
         return new AVPixelBufferAttributes(getRecommendedVideoSettings0(outputFileType).as(CFDictionary.class));
     }
     /*<methods>*/
+    @WeaklyLinked
     @Method(selector = "setSampleBufferDelegate:queue:")
     public native void setSampleBufferDelegate(AVCaptureVideoDataOutputSampleBufferDelegate sampleBufferDelegate, DispatchQueue sampleBufferCallbackQueue);
     /**
      * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "recommendedVideoSettingsForAssetWriterWithOutputFileType:")
-    protected native NSDictionary<NSString, NSObject> getRecommendedVideoSettings0(String outputFileType);
+    protected native NSDictionary getRecommendedVideoSettings0(String outputFileType);
     /*</methods>*/
 }

@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -151,7 +152,7 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 8.2 and later.
      */
     @Method(selector = "application:handleWatchKitExtensionRequest:reply:")
-    void handleWatchKitExtensionRequest(UIApplication application, NSDictionary<?, ?> userInfo, @Block VoidBlock1<NSDictionary<?, ?>> reply);
+    void handleWatchKitExtensionRequest(UIApplication application, NSDictionary userInfo, @Block VoidBlock1<NSDictionary<?, ?>> reply);
     /**
      * @since Available in iOS 4.0 and later.
      */

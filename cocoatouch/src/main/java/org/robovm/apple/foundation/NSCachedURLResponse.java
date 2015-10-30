@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -51,7 +53,7 @@ import org.robovm.apple.dispatch.*;
     public NSCachedURLResponse() {}
     protected NSCachedURLResponse(SkipInit skipInit) { super(skipInit); }
     public NSCachedURLResponse(NSURLResponse response, NSData data) { super((SkipInit) null); initObject(init(response, data)); }
-    public NSCachedURLResponse(NSURLResponse response, NSData data, NSDictionary<?, ?> userInfo, NSURLCacheStoragePolicy storagePolicy) { super((SkipInit) null); initObject(init(response, data, userInfo, storagePolicy)); }
+    public NSCachedURLResponse(NSURLResponse response, NSData data, NSDictionary userInfo, NSURLCacheStoragePolicy storagePolicy) { super((SkipInit) null); initObject(init(response, data, userInfo, storagePolicy)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "response")
@@ -59,7 +61,7 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "data")
     public native NSData getData();
     @Property(selector = "userInfo")
-    public native NSDictionary<?, ?> getUserInfo();
+    public native NSDictionary getUserInfo();
     @Property(selector = "storagePolicy")
     public native NSURLCacheStoragePolicy getStoragePolicy();
     /*</properties>*/
@@ -68,6 +70,6 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "initWithResponse:data:")
     protected native @Pointer long init(NSURLResponse response, NSData data);
     @Method(selector = "initWithResponse:data:userInfo:storagePolicy:")
-    protected native @Pointer long init(NSURLResponse response, NSData data, NSDictionary<?, ?> userInfo, NSURLCacheStoragePolicy storagePolicy);
+    protected native @Pointer long init(NSURLResponse response, NSData data, NSDictionary userInfo, NSURLCacheStoragePolicy storagePolicy);
     /*</methods>*/
 }

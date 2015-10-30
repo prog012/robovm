@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -30,7 +31,6 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreaudio.*;
-import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.audiotoolbox.*;
@@ -51,21 +51,41 @@ import org.robovm.apple.audiotoolbox.*;
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
-    public static CMClock createAudioClock() {
+    /**
+     * @throws OSStatusException 
+     * @since Available in iOS 6.0 and later.
+     */
+    public static CMClock createAudioClock() throws OSStatusException {
+        return createAudioClock(null);
+    }
+    /**
+     * @throws OSStatusException 
+     * @since Available in iOS 6.0 and later.
+     */
+    public static CMClock createAudioClock(CFAllocator allocator) throws OSStatusException {
         CMClockPtr ptr = new CMClockPtr();
-        createAudioClock(null, ptr);
+        OSStatus status = createAudioClock0(allocator, ptr);
+        OSStatusException.throwIfNecessary(status);
         return ptr.get();
     }
-    
-    public @ByVal CMTime getAnchorTime() {
+    /**
+     * @throws OSStatusException 
+     * @since Available in iOS 6.0 and later.
+     */
+    public CMTime getAnchorTime() throws OSStatusException {
         CMTime.CMTimePtr ptr = new CMTime.CMTimePtr();
-        getAnchorTime(ptr, null);
+        OSStatus status = getAnchorTime0(ptr, null);
+        OSStatusException.throwIfNecessary(status);
         return ptr.get();
     }
-    
-    public @ByVal CMTime getAnchorReferenceTime() {
+    /**
+     * @throws OSStatusException 
+     * @since Available in iOS 6.0 and later.
+     */
+    public CMTime getAnchorReferenceTime() throws OSStatusException {
         CMTime.CMTimePtr ptr = new CMTime.CMTimePtr();
-        getAnchorTime(null, ptr);
+        OSStatus status = getAnchorTime0(null, ptr);
+        OSStatusException.throwIfNecessary(status);
         return ptr.get();
     }
     /*<methods>*/
@@ -98,7 +118,7 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 6.0 and later.
      */
     @Bridge(symbol="CMClockGetAnchorTime", optional=true)
-    protected native OSStatus getAnchorTime(CMTime.CMTimePtr outClockTime, CMTime.CMTimePtr outReferenceClockTime);
+    protected native OSStatus getAnchorTime0(CMTime.CMTimePtr outClockTime, CMTime.CMTimePtr outReferenceClockTime);
     /**
      * @since Available in iOS 6.0 and later.
      */
@@ -113,6 +133,6 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 6.0 and later.
      */
     @Bridge(symbol="CMAudioClockCreate", optional=true)
-    private static native OSStatus createAudioClock(CFAllocator allocator, CMClock.CMClockPtr clockOut);
+    protected static native OSStatus createAudioClock0(CFAllocator allocator, CMClock.CMClockPtr clockOut);
     /*</methods>*/
 }

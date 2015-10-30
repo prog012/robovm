@@ -23,14 +23,17 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.dispatch.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.dispatch.*;
+import org.robovm.apple.coreservices.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 /*</imports>*/
-import org.robovm.apple.coreservices.CFFTPStreamProperty;
-import org.robovm.apple.coreservices.CFSocketStreamProperty;
 
 /*<javadoc>*/
 /*</javadoc>*/
@@ -44,7 +47,7 @@ import org.robovm.apple.coreservices.CFSocketStreamProperty;
     }
     
     private static java.util.concurrent.atomic.AtomicLong refconId = new java.util.concurrent.atomic.AtomicLong();
-    private static final Map<Long, ClientCallback> clientCallbacks = new HashMap<>();
+    private static final LongMap<ClientCallback> clientCallbacks = new LongMap<>();
     private static final java.lang.reflect.Method cbClient;
     
     static {
@@ -125,27 +128,31 @@ import org.robovm.apple.coreservices.CFSocketStreamProperty;
     public CFType getProperty(CFStreamProperty property) {
         return getProperty(property.value());
     }
+    @WeaklyLinked
     public CFType getProperty(CFSocketStreamProperty property) {
         return getProperty(property.value());
     }
+    @WeaklyLinked
     public CFType getProperty(CFFTPStreamProperty property) {
         return getProperty(property.value());
     }
     public boolean setProperty(CFStreamProperty property, CFType propertyValue) {
         return setProperty(property.value(), propertyValue);
     }
+    @WeaklyLinked
     public boolean setProperty(CFSocketStreamProperty property, CFType propertyValue) {
         return setProperty(property.value(), propertyValue);
     }
+    @WeaklyLinked
     public boolean setProperty(CFFTPStreamProperty property, CFType propertyValue) {
         return setProperty(property.value(), propertyValue);
     }
     
     public void scheduleInRunLoop(CFRunLoop runLoop, CFRunLoopMode runLoopMode) {
-        scheduleInRunLoop(runLoop, runLoopMode.value());
+        scheduleInRunLoop(runLoop, runLoopMode.value().toString());
     }
     public void unscheduleFromRunLoop(CFRunLoop runLoop, CFRunLoopMode runLoopMode) {
-        unscheduleFromRunLoop(runLoop, runLoopMode.value());
+        unscheduleFromRunLoop(runLoop, runLoopMode.value().toString());
     }
     /*<methods>*/
     @Bridge(symbol="CFWriteStreamGetTypeID", optional=true)
@@ -182,11 +189,13 @@ import org.robovm.apple.coreservices.CFSocketStreamProperty;
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     @Bridge(symbol="CFWriteStreamSetDispatchQueue", optional=true)
     public native void setDispatchQueue(DispatchQueue q);
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     @Bridge(symbol="CFWriteStreamCopyDispatchQueue", optional=true)
     public native DispatchQueue getDispatchQueue();
     @Bridge(symbol="CFWriteStreamGetError", optional=true)

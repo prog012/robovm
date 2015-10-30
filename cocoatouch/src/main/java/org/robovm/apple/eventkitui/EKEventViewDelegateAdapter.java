@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -53,6 +54,6 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 4.2 and later.
      */
     @NotImplemented("eventViewController:didCompleteWithAction:")
-    public void didComplete(EKEventViewController controller, EKEventViewAction action) { throw new UnsupportedOperationException(); }
+    public void didComplete(EKEventViewController controller, EKEventViewAction action) {}
     /*</methods>*/
 }

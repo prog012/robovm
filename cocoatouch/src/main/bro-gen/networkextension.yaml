@@ -11,6 +11,7 @@ enums:
     NEVPNErrorCode: { first: NEVPNErrorConfigurationInvalid, prefix: NEVPNError }
     NEVPNStatus: {}
     NEVPNIKEAuthenticationMethod: {}
+    NEVPNIKEv2CertificateType: {}
     NEVPNIKEv2EncryptionAlgorithm: {}
     NEVPNIKEv2IntegrityAlgorithm: {}
     NEVPNIKEv2DeadPeerDetectionRate: {}
@@ -22,6 +23,7 @@ enums:
 classes:
     NEVPNError:
         extends: NSError
+        annotations: ['@StronglyLinked']
 
     NEOnDemandRule: # DONE
         properties:
@@ -51,7 +53,7 @@ classes:
         methods:
             '-startVPNTunnelAndReturnError:':
                 name: startVPNTunnel
-                visibility: protected # throws NSErrorException
+                throws: NSErrorException
     NEVPNManager: # DONE
         properties:
             'onDemandRules':
@@ -94,6 +96,7 @@ values:
         class: NEVPNManager
         name: '#{g[0]}'
         type: NSString
+
     # NEVPNConnection
     NEVPN(StatusDidChangeNotification):
         class: NEVPNConnection

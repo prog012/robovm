@@ -1,5 +1,5 @@
 package: org.robovm.apple.social
-include: [foundation.yaml, uikit.yaml, accounts.yaml, coregraphics.yaml]
+include: [foundation.yaml, uikit.yaml, coregraphics.yaml, accounts.yaml]
 library: Social
 framework: Social
 clang_args: ['-x', 'objective-c']
@@ -13,9 +13,6 @@ enums:
     SLRequestMethod: {}
 
 classes: 
-    Social:
-        annotations: ['@Marshaler(NSString.AsStringMarshaler.class)']
-
     SLComposeServiceViewController: # DONE
         methods:
             '-configurationItems':
@@ -30,7 +27,7 @@ classes:
     SLComposeViewController: # DONE
         properties:
             'completionHandler':
-                type: '@Block VoidBlock3<String, SLRequestMethod, NSURL>'
+                type: '@Block VoidBlock1<SLComposeViewControllerResult>'
             'serviceType':
                 type: SLServiceType
         methods:
@@ -53,7 +50,10 @@ classes:
     SLRequest: # DONE
         properties:
             'parameters':
-                type: '@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, NSObject>'
+                type: 'Map<String, NSObject>'
+                marshaler: NSDictionary.AsStringMapMarshaler
+            'account':
+                annotations: ['@WeaklyLinked']
         methods:
             '-addMultipartData:withName:type:filename:':
                 trim_after_first_colon: true
@@ -70,7 +70,8 @@ classes:
                     serviceType:
                         type: SLServiceType
                     parameters:
-                        type: '@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, NSObject>'
+                        type: 'Map<String, NSObject>'
+                        marshaler: NSDictionary.AsStringMapMarshaler
 
 protocols: {}
 
@@ -82,10 +83,9 @@ functions:
 
 values:
     SLServiceType(.*):
-        class: SLServiceType
-        name: '#{g[0]}Value'
+        enum: SLServiceType
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
 
     # Make sure we don't miss any values if new ones are introduced in a later version
     (SL.*):

@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -50,12 +51,17 @@ import org.robovm.apple.addressbook.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("paymentAuthorizationViewController:didAuthorizePayment:completion:")
-    public void didAuthorizePayment(PKPaymentAuthorizationViewController controller, PKPayment payment, @Block VoidBlock1<PKPaymentAuthorizationStatus> completion) { throw new UnsupportedOperationException(); }
+    public void didAuthorizePayment(PKPaymentAuthorizationViewController controller, PKPayment payment, @Block VoidBlock1<PKPaymentAuthorizationStatus> completion) {}
     @NotImplemented("paymentAuthorizationViewControllerDidFinish:")
-    public void didFinish(PKPaymentAuthorizationViewController controller) { throw new UnsupportedOperationException(); }
+    public void didFinish(PKPaymentAuthorizationViewController controller) {}
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    @NotImplemented("paymentAuthorizationViewControllerWillAuthorizePayment:")
+    public void willAuthorizePayment(PKPaymentAuthorizationViewController controller) {}
     @NotImplemented("paymentAuthorizationViewController:didSelectShippingMethod:completion:")
-    public void didSelectShippingMethod(PKPaymentAuthorizationViewController controller, PKShippingMethod shippingMethod, @Block VoidBlock2<PKPaymentAuthorizationStatus, NSArray<PKPaymentSummaryItem>> completion) { throw new UnsupportedOperationException(); }
+    public void didSelectShippingMethod(PKPaymentAuthorizationViewController controller, PKShippingMethod shippingMethod, @Block VoidBlock2<PKPaymentAuthorizationStatus, NSArray<PKPaymentSummaryItem>> completion) {}
     @NotImplemented("paymentAuthorizationViewController:didSelectShippingAddress:completion:")
-    public void didSelectShippingAddress(PKPaymentAuthorizationViewController controller, ABRecord address, @Block VoidBlock3<PKPaymentAuthorizationStatus, NSArray<PKShippingMethod>, NSArray<PKPaymentSummaryItem>> completion) { throw new UnsupportedOperationException(); }
+    public void didSelectShippingAddress(PKPaymentAuthorizationViewController controller, ABRecord address, @Block VoidBlock3<PKPaymentAuthorizationStatus, NSArray<PKShippingMethod>, NSArray<PKPaymentSummaryItem>> completion) {}
     /*</methods>*/
 }

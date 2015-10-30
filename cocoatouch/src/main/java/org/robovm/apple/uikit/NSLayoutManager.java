@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -51,6 +52,7 @@ import org.robovm.apple.corelocation.*;
     /*<constructors>*/
     public NSLayoutManager() {}
     protected NSLayoutManager(SkipInit skipInit) { super(skipInit); }
+    public NSLayoutManager(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "textStorage")
@@ -239,7 +241,7 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "drawGlyphsForGlyphRange:atPoint:")
     public native void drawGlyphs(@ByVal NSRange glyphsToShow, @ByVal CGPoint origin);
     @Method(selector = "showCGGlyphs:positions:count:font:matrix:attributes:inContext:")
-    protected native void showCGGlyphs(@Pointer long glyphs, CGPoint positions, @MachineSizedUInt long glyphCount, UIFont font, @ByVal CGAffineTransform textMatrix, NSDictionary<?, ?> attributes, CGContext graphicsContext);
+    protected native void showCGGlyphs(@Pointer long glyphs, CGPoint positions, @MachineSizedUInt long glyphCount, UIFont font, @ByVal CGAffineTransform textMatrix, NSDictionary attributes, CGContext graphicsContext);
     @Method(selector = "fillBackgroundRectArray:count:forCharacterRange:color:")
     protected native void fillBackground(CGRect rectArray, @MachineSizedUInt long rectCount, @ByVal NSRange charRange, UIColor color);
     @Method(selector = "drawUnderlineForGlyphRange:underlineType:baselineOffset:lineFragmentRect:lineFragmentGlyphRange:containerOrigin:")
@@ -251,6 +253,8 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "strikethroughGlyphRange:strikethroughType:lineFragmentRect:lineFragmentGlyphRange:containerOrigin:")
     public native void strikethrough(@ByVal NSRange glyphRange, NSUnderlineStyle strikethroughVal, @ByVal CGRect lineRect, @ByVal NSRange lineGlyphRange, @ByVal CGPoint containerOrigin);
     @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder aCoder);
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

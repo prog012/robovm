@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -55,24 +56,30 @@ import org.robovm.apple.dispatch.*;
     public native void setLabel(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
-    public void setVertexBuffers(MTLBuffer[] buffers, long[] offsets, @ByVal NSRange range) {
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    public void setVertexBytes(byte[] bytes, long index) {
+        setVertexBytes(VM.getArrayValuesAddress(bytes), bytes.length, index);
+    }
+    public void setVertexBuffers(MTLBuffer[] buffers, long[] offsets, NSRange range) {
         MTLBuffer.MTLBufferPtr bptr = new MTLBuffer.MTLBufferPtr();
         bptr.set(buffers);
         MachineSizedUIntPtr lptr = new MachineSizedUIntPtr();
         lptr.set(offsets);
         setVertexBuffers(bptr, lptr, range);
     }
-    public void setVertexTextures(MTLTexture[] textures, @ByVal NSRange range) {
+    public void setVertexTextures(MTLTexture[] textures, NSRange range) {
         MTLTexture.MTLTexturePtr ptr = new MTLTexture.MTLTexturePtr();
         ptr.set(textures);
         setVertexTextures(ptr, range);
     }
-    public void setVertexSamplerStates(MTLSamplerState[] samplers, @ByVal NSRange range) {
+    public void setVertexSamplerStates(MTLSamplerState[] samplers, NSRange range) {
         MTLSamplerState.MTLSamplerStatePtr ptr = new MTLSamplerState.MTLSamplerStatePtr();
         ptr.set(samplers);
         setVertexSamplerStates(ptr, range);
     }
-    public void setVertexSamplerStates(MTLSamplerState[] samplers, float[] lodMinClamps, float[] lodMaxClamps, @ByVal NSRange range) {
+    public void setVertexSamplerStates(MTLSamplerState[] samplers, float[] lodMinClamps, float[] lodMaxClamps, NSRange range) {
         MTLSamplerState.MTLSamplerStatePtr sptr = new MTLSamplerState.MTLSamplerStatePtr();
         sptr.set(samplers);
         FloatPtr minptr = new FloatPtr();
@@ -81,24 +88,30 @@ import org.robovm.apple.dispatch.*;
         maxptr.set(lodMaxClamps);
         setVertexSamplerStates(sptr, minptr, maxptr, range);
     }
-    public void setFragmentBuffers(MTLBuffer[] buffers, long[] offsets, @ByVal NSRange range) {
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    public void setFragmentBytes(byte[] bytes, long index) {
+        setFragmentBytes(VM.getArrayValuesAddress(bytes), bytes.length, index);
+    }
+    public void setFragmentBuffers(MTLBuffer[] buffers, long[] offsets, NSRange range) {
         MTLBuffer.MTLBufferPtr bptr = new MTLBuffer.MTLBufferPtr();
         bptr.set(buffers);
         MachineSizedUIntPtr lptr = new MachineSizedUIntPtr();
         lptr.set(offsets);
         setFragmentBuffers(bptr, lptr, range);
     }
-    public void setFragmentTextures(MTLTexture[] textures, @ByVal NSRange range) {
+    public void setFragmentTextures(MTLTexture[] textures, NSRange range) {
         MTLTexture.MTLTexturePtr ptr = new MTLTexture.MTLTexturePtr();
         ptr.set(textures);
         setFragmentTextures(ptr, range);
     }
-    public void setFragmentSamplerStates(MTLSamplerState[] samplers, @ByVal NSRange range) {
+    public void setFragmentSamplerStates(MTLSamplerState[] samplers, NSRange range) {
         MTLSamplerState.MTLSamplerStatePtr ptr = new MTLSamplerState.MTLSamplerStatePtr();
         ptr.set(samplers);
         setFragmentSamplerStates(ptr, range);
     }
-    public void setFragmentSamplerStates(MTLSamplerState[] samplers, float[] lodMinClamps, float[] lodMaxClamps, @ByVal NSRange range) {
+    public void setFragmentSamplerStates(MTLSamplerState[] samplers, float[] lodMinClamps, float[] lodMaxClamps, NSRange range) {
         MTLSamplerState.MTLSamplerStatePtr sptr = new MTLSamplerState.MTLSamplerStatePtr();
         sptr.set(samplers);
         FloatPtr minptr = new FloatPtr();
@@ -111,8 +124,18 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "setRenderPipelineState:")
     public native void setRenderPipelineState(MTLRenderPipelineState pipelineState);
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    @Method(selector = "setVertexBytes:length:atIndex:")
+    protected native void setVertexBytes(@Pointer long bytes, @MachineSizedUInt long length, @MachineSizedUInt long index);
     @Method(selector = "setVertexBuffer:offset:atIndex:")
     public native void setVertexBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    @Method(selector = "setVertexBufferOffset:atIndex:")
+    public native void setVertexBufferOffset(@MachineSizedUInt long offset, @MachineSizedUInt long index);
     @Method(selector = "setVertexBuffers:offsets:withRange:")
     protected native void setVertexBuffers(MTLBuffer.MTLBufferPtr buffers, MachineSizedUIntPtr offsets, @ByVal NSRange range);
     @Method(selector = "setVertexTexture:atIndex:")
@@ -139,8 +162,18 @@ import org.robovm.apple.dispatch.*;
     public native void setScissorRect(@ByVal MTLScissorRect rect);
     @Method(selector = "setTriangleFillMode:")
     public native void setTriangleFillMode(MTLTriangleFillMode fillMode);
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    @Method(selector = "setFragmentBytes:length:atIndex:")
+    protected native void setFragmentBytes(@Pointer long bytes, @MachineSizedUInt long length, @MachineSizedUInt long index);
     @Method(selector = "setFragmentBuffer:offset:atIndex:")
     public native void setFragmentBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    @Method(selector = "setFragmentBufferOffset:atIndex:")
+    public native void setFragmentBufferOffset(@MachineSizedUInt long offset, @MachineSizedUInt long index);
     @Method(selector = "setFragmentBuffers:offsets:withRange:")
     protected native void setFragmentBuffers(MTLBuffer.MTLBufferPtr buffers, MachineSizedUIntPtr offset, @ByVal NSRange range);
     @Method(selector = "setFragmentTexture:atIndex:")

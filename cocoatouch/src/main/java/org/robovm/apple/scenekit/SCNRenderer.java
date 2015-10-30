@@ -23,13 +23,14 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
-import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
@@ -37,7 +38,9 @@ import org.robovm.apple.opengles.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 8.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNRenderer/*</name>*/ 
@@ -56,10 +59,19 @@ import org.robovm.apple.opengles.*;
     public native SCNScene getScene();
     @Property(selector = "setScene:")
     public native void setScene(SCNScene v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "nextFrameTime")
     public native double getNextFrameTime();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "sceneTime")
     public native double getSceneTime();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "setSceneTime:")
     public native void setSceneTime(double v);
     @Property(selector = "delegate")
@@ -86,14 +98,29 @@ import org.robovm.apple.opengles.*;
     public native boolean isJitteringEnabled();
     @Property(selector = "setJitteringEnabled:")
     public native void setJitteringEnabled(boolean v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "showsStatistics")
     public native boolean showsStatistics();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "setShowsStatistics:")
     public native void setShowsStatistics(boolean v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @WeaklyLinked
     @Property(selector = "overlaySKScene")
     public native SKScene getOverlaySKScene();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @WeaklyLinked
     @Property(selector = "setOverlaySKScene:")
     public native void setOverlaySKScene(SKScene v);
+    @WeaklyLinked
     @Property(selector = "context")
     public native EAGLContext getContext();
     @Property(selector = "technique")
@@ -105,20 +132,38 @@ import org.robovm.apple.opengles.*;
     /*<methods>*/
     @Method(selector = "render")
     public native void render();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "renderAtTime:")
     public native void renderAtTime(double time);
     @Method(selector = "rendererWithContext:options:")
-    public static native SCNRenderer create(EAGLContext context, NSDictionary<?, ?> options);
+    public static native SCNRenderer create(EAGLContext context, NSDictionary options);
     @Method(selector = "hitTest:options:")
     public native NSArray<SCNHitTestResult> hitTest(@ByVal CGPoint thePoint, SCNHitTestOptions options);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "isNodeInsideFrustum:withPointOfView:")
     public native boolean isNodeInsideFrustum(SCNNode node, SCNNode pointOfView);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "projectPoint:")
     public native @ByVal SCNVector3 projectPoint(@ByVal SCNVector3 point);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "unprojectPoint:")
     public native @ByVal SCNVector3 unprojectPoint(@ByVal SCNVector3 point);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "prepareObject:shouldAbortBlock:")
     public native boolean prepareObject(NSObject object, @Block Block0<Boolean> block);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "prepareObjects:withCompletionHandler:")
     public native void prepareObjects(NSArray<?> objects, @Block VoidBooleanBlock completionHandler);
     /*</methods>*/

@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -52,6 +53,6 @@ import org.robovm.apple.uikit.*;
      * @since Available in iOS 6.0 and later.
      */
     @NotImplemented("gameCenterViewControllerDidFinish:")
-    public void didFinish(GKGameCenterViewController gameCenterViewController) { throw new UnsupportedOperationException(); }
+    public void didFinish(GKGameCenterViewController gameCenterViewController) {}
     /*</methods>*/
 }

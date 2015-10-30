@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -115,7 +116,9 @@ public enum /*<name>*/HMErrorCode/*</name>*/ implements NSErrorCode {
     CloudDataSyncInProgress(77L),
     NetworkUnavailable(78L),
     AddAccessoryFailed(79L),
-    MissingEntitlement(80L);
+    MissingEntitlement(80L),
+    CannotUnblockNonBridgeAccessory(81L),
+    DeviceLocked(82L);
     /*</values>*/
 
     /*<bind>*/

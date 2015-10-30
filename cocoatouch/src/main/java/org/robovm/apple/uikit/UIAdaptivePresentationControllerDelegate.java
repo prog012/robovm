@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -53,8 +54,18 @@ import org.robovm.apple.corelocation.*;
     /*<methods>*/
     @Method(selector = "adaptivePresentationStyleForPresentationController:")
     UIModalPresentationStyle getAdaptivePresentationStyle(UIPresentationController controller);
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    @Method(selector = "adaptivePresentationStyleForPresentationController:traitCollection:")
+    UIModalPresentationStyle getAdaptivePresentationStyle(UIPresentationController controller, UITraitCollection traitCollection);
     @Method(selector = "presentationController:viewControllerForAdaptivePresentationStyle:")
     UIViewController getViewController(UIPresentationController controller, UIModalPresentationStyle style);
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    @Method(selector = "presentationController:willPresentWithAdaptiveStyle:transitionCoordinator:")
+    void willPresent(UIPresentationController presentationController, UIModalPresentationStyle style, UIViewControllerTransitionCoordinator transitionCoordinator);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

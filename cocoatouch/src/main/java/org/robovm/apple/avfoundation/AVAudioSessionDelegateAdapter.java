@@ -23,19 +23,21 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,15 +59,15 @@ import org.robovm.apple.mediatoolbox.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("beginInterruption")
-    public void beginInterruption() { throw new UnsupportedOperationException(); }
+    public void beginInterruption() {}
     /**
      * @since Available in iOS 4.0 and later.
      */
     @NotImplemented("endInterruptionWithFlags:")
-    public void endInterruption(AVAudioSessionInterruptionFlags flags) { throw new UnsupportedOperationException(); }
+    public void endInterruption(AVAudioSessionInterruptionFlags flags) {}
     @NotImplemented("endInterruption")
-    public void endInterruption() { throw new UnsupportedOperationException(); }
+    public void endInterruption() {}
     @NotImplemented("inputIsAvailableChanged:")
-    public void inputAvailabilityChanged(boolean isInputAvailable) { throw new UnsupportedOperationException(); }
+    public void inputAvailabilityChanged(boolean isInputAvailable) {}
     /*</methods>*/
 }

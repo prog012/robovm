@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -32,7 +33,7 @@ import org.robovm.apple.corelocation.*;
 
 /*<javadoc>*/
 /*</javadoc>*/
-/*<annotations>*/@Library("CloudKit")/*</annotations>*/
+/*<annotations>*/@Library("CloudKit") @StronglyLinked/*</annotations>*/
 @Marshaler(/*<name>*/CKErrorUserInfoKey/*</name>*/.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CKErrorUserInfoKey/*</name>*/ 
     extends /*<extends>*/NSErrorUserInfoKey/*</extends>*/
@@ -62,7 +63,7 @@ import org.robovm.apple.corelocation.*;
         @SuppressWarnings("unchecked")
         @MarshalsPointer
         public static List<CKErrorUserInfoKey> toObject(Class<? extends NSObject> cls, long handle, long flags) {
-            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(cls, handle, flags);
+            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
             if (o == null) {
                 return null;
             }
@@ -78,8 +79,8 @@ import org.robovm.apple.corelocation.*;
                 return 0L;
             }
             NSArray<NSString> array = new NSMutableArray<>();
-            for (CKErrorUserInfoKey i : l) {
-                array.add(i.value());
+            for (CKErrorUserInfoKey o : l) {
+                array.add(o.value());
             }
             return NSObject.Marshaler.toNative(array, flags);
         }
@@ -127,7 +128,7 @@ import org.robovm.apple.corelocation.*;
     
     /*<methods>*//*</methods>*/
     
-    /*<annotations>*/@Library("CloudKit")/*</annotations>*/
+    /*<annotations>*/@Library("CloudKit") @StronglyLinked/*</annotations>*/
     public static class Values {
     	static { Bro.bind(Values.class); }
 

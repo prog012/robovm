@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -30,7 +31,6 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreaudio.*;
-import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.audiotoolbox.*;
@@ -171,17 +171,17 @@ import org.robovm.apple.audiotoolbox.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public NSDictionary<?, ?> asDictionary(CFAllocator allocator) { return asDictionary(this, allocator); }
+    public NSDictionary asDictionary(CFAllocator allocator) { return asDictionary(this, allocator); }
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMTimeRangeCopyAsDictionary", optional=true)
-    private static native NSDictionary<?, ?> asDictionary(@ByVal CMTimeRange range, CFAllocator allocator);
+    private static native NSDictionary asDictionary(@ByVal CMTimeRange range, CFAllocator allocator);
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMTimeRangeMakeFromDictionary", optional=true)
-    public static native @ByVal CMTimeRange create(NSDictionary<?, ?> dict);
+    public static native @ByVal CMTimeRange create(NSDictionary dict);
     /**
      * @since Available in iOS 4.0 and later.
      */

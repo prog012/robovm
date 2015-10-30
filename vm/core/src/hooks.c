@@ -245,12 +245,12 @@ void _rvmHookBeforeAppEntryPoint(Env* env, char* mainClass) {
     }
 }
 
-void _rvmHookThreadCreated(Env* env, JavaThread* threadObj) {
-    DEBUGF("Thread %lld created", threadObj->id);
+void _rvmHookThreadCreated(Env* env, Object* threadObj) {
+    DEBUGF("Thread %lld created", rvmRTGetThreadId(env, threadObj));
 }
 
-void _rvmHookThreadAttached(Env* env, JavaThread* threadObj, Thread* thread) {
-    DEBUGF("Thread %p attached, threadObj: %p, thread: %p", threadObj->id, threadObj, thread);
+void _rvmHookThreadAttached(Env* env, Object* threadObj, Thread* thread) {
+    DEBUGF("Thread %p attached, threadObj: %p, thread: %p", rvmRTGetThreadId(env, threadObj), threadObj, thread);
     rvmLockMutex(&writeMutex);
     ChannelError error = { 0 };
     writeChannelByte(clientSocket, EVT_THREAD_ATTACHED, &error);
@@ -261,8 +261,8 @@ void _rvmHookThreadAttached(Env* env, JavaThread* threadObj, Thread* thread) {
     rvmUnlockMutex(&writeMutex);
 }
 
-void _rvmHookThreadStarting(Env* env, JavaThread* threadObj, Thread* thread) {
-    DEBUGF("Thread %lld starting, threadObj: %p, thread: %p", threadObj->id, threadObj, thread);
+void _rvmHookThreadStarting(Env* env, Object* threadObj, Thread* thread) {
+    DEBUGF("Thread %lld starting, threadObj: %p, thread: %p", rvmRTGetThreadId(env, threadObj), threadObj, thread);
     rvmLockMutex(&writeMutex);
     ChannelError error = { 0 };
     writeChannelByte(clientSocket, EVT_THREAD_STARTED, &error);
@@ -273,8 +273,8 @@ void _rvmHookThreadStarting(Env* env, JavaThread* threadObj, Thread* thread) {
     rvmUnlockMutex(&writeMutex);
 }
 
-void _rvmHookThreadDetaching(Env* env, JavaThread* threadObj, Thread* thread, Object* throwable) {
-    DEBUGF("Thread %p detaching, threadObj: %p, thread: %p, throwable: %p", threadObj->id, threadObj, thread, throwable);
+void _rvmHookThreadDetaching(Env* env, Object* threadObj, Thread* thread, Object* throwable) {
+    DEBUGF("Thread %p detaching, threadObj: %p, thread: %p, throwable: %p", rvmRTGetThreadId(env, threadObj), threadObj, thread, throwable);
     rvmLockMutex(&writeMutex);
     ChannelError error = { 0 };
     writeChannelByte(clientSocket, EVT_THREAD_DETTACHED, &error);
@@ -1305,13 +1305,13 @@ static void writeStopOrExceptionEvent(Env* env, char event, Object* throwable, j
 }
 
 void _rvmHookClassLoaded(Env* env, Class* clazz, void* classInfo) {
-    JavaThread* javaThread = NULL;
+    Object* javaThread = NULL;
     Thread* thread = NULL;
 
     // check if there's a filter for that class
     rvmLockMutex(&classFilterMutex);
     for(ClassFilter* f = classFilters; f; f = f->next) {
-        if(!strcmp(f->className, clazz->name)) {
+        if(!strcmp(f->className, clazz->name)) {            
             if(env->currentThread) {
                 javaThread = env->currentThread->threadObj;
                 thread = env->currentThread;
@@ -1333,6 +1333,15 @@ void _rvmHookClassLoaded(Env* env, Class* clazz, void* classInfo) {
             javaThread = NULL;
             thread = NULL;
             callStackPayloadSize = 0;
+        }
+
+        if (IS_DEBUG_ENABLED) {
+            DEBUGF("Suspending thread %p with id %u due to class load event %s", env->currentThread,
+                env->currentThread->threadId, clazz->name);
+        }
+    } else {
+        if (IS_DEBUG_ENABLED) {
+            DEBUGF("Not suspending thread due to class load event %s", clazz->name);
         }
     }
 

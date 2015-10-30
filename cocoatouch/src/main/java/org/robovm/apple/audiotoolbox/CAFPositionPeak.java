@@ -23,15 +23,15 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.opengles.*;
+import org.robovm.apple.audiounit.*;
 import org.robovm.apple.coreaudio.*;
-import org.robovm.apple.coremedia.*;
+import org.robovm.apple.coremidi.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -48,17 +48,17 @@ import org.robovm.apple.coremedia.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CAFPositionPeak() {}
-    public CAFPositionPeak(float mValue, long mFrameNumber) {
-        this.setMValue(mValue);
-        this.setMFrameNumber(mFrameNumber);
+    public CAFPositionPeak(float value, long frameNumber) {
+        this.setValue(value);
+        this.setFrameNumber(frameNumber);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native float getMValue();
-    @StructMember(0) public native CAFPositionPeak setMValue(float mValue);
-    @StructMember(1) public native long getMFrameNumber();
-    @StructMember(1) public native CAFPositionPeak setMFrameNumber(long mFrameNumber);
+    @StructMember(0) public native float getValue();
+    @StructMember(0) public native CAFPositionPeak setValue(float value);
+    @StructMember(1) public native long getFrameNumber();
+    @StructMember(1) public native CAFPositionPeak setFrameNumber(long frameNumber);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

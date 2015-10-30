@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -55,14 +57,14 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("useCredential:forAuthenticationChallenge:")
-    public void useCredential(NSURLCredential credential, NSURLAuthenticationChallenge challenge) { throw new UnsupportedOperationException(); }
+    public void useCredential(NSURLCredential credential, NSURLAuthenticationChallenge challenge) {}
     @NotImplemented("continueWithoutCredentialForAuthenticationChallenge:")
-    public void continueWithoutCredential(NSURLAuthenticationChallenge challenge) { throw new UnsupportedOperationException(); }
+    public void continueWithoutCredential(NSURLAuthenticationChallenge challenge) {}
     @NotImplemented("cancelAuthenticationChallenge:")
-    public void cancel(NSURLAuthenticationChallenge challenge) { throw new UnsupportedOperationException(); }
+    public void cancel(NSURLAuthenticationChallenge challenge) {}
     @NotImplemented("performDefaultHandlingForAuthenticationChallenge:")
-    public void performDefaultHandling(NSURLAuthenticationChallenge challenge) { throw new UnsupportedOperationException(); }
+    public void performDefaultHandling(NSURLAuthenticationChallenge challenge) {}
     @NotImplemented("rejectProtectionSpaceAndContinueWithChallenge:")
-    public void rejectProtectionSpaceAndContinue(NSURLAuthenticationChallenge challenge) { throw new UnsupportedOperationException(); }
+    public void rejectProtectionSpaceAndContinue(NSURLAuthenticationChallenge challenge) {}
     /*</methods>*/
 }

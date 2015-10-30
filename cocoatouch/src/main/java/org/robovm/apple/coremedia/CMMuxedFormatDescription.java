@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -30,7 +31,6 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreaudio.*;
-import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.audiotoolbox.*;
@@ -50,11 +50,13 @@ import org.robovm.apple.audiotoolbox.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /**
+     * @throws OSStatusException 
      * @since Available in iOS 4.0 and later.
      */
-    public static CMMuxedFormatDescription create(CMMuxedStreamType muxType, CMVideoFormatDescriptionExtension extensions) {
+    public static CMMuxedFormatDescription create(CMMuxedStreamType muxType, CMVideoFormatDescriptionExtension extensions) throws OSStatusException {
         CMMuxedFormatDescription.CMMuxedFormatDescriptionPtr ptr = new CMMuxedFormatDescription.CMMuxedFormatDescriptionPtr();
-        create(null, muxType, extensions, ptr);
+        OSStatus status = create0(null, muxType, extensions, ptr);
+        OSStatusException.throwIfNecessary(status);
         return ptr.get();
     }
     
@@ -66,6 +68,6 @@ import org.robovm.apple.audiotoolbox.*;
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CMMuxedFormatDescriptionCreate", optional=true)
-    private static native OSStatus create(CFAllocator allocator, CMMuxedStreamType muxType, CMVideoFormatDescriptionExtension extensions, CMMuxedFormatDescription.CMMuxedFormatDescriptionPtr outDesc);
+    private static native OSStatus create0(CFAllocator allocator, CMMuxedStreamType muxType, CMVideoFormatDescriptionExtension extensions, CMMuxedFormatDescription.CMMuxedFormatDescriptionPtr outDesc);
     /*</methods>*/
 }

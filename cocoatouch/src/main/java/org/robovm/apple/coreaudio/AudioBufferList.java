@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -44,17 +45,48 @@ import org.robovm.apple.corefoundation.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AudioBufferList() {}
-    public AudioBufferList(int mNumberBuffers, AudioBuffer mBuffers) {
-        this.setMNumberBuffers(mNumberBuffers);
-        this.setMBuffers(mBuffers);
-    }
+    
     /*</constructors>*/
     /*<properties>*//*</properties>*/
+    public int getBufferCount() {
+        return getNumberBuffers();
+    }
+    
+    public AudioBuffer getBuffer(int index) {
+        if (index >= getBufferCount()) {
+            throw new ArrayIndexOutOfBoundsException(index);
+        }
+        return getBuffers0().next(index).get();
+    }
+    public AudioBufferList setBuffer(int index, AudioBuffer buffer) {
+        return setBuffer(index, buffer.getHandle());
+    }
+    public AudioBufferList setBuffer(int index, long handle) {
+        if (index >= getBufferCount()) {
+            throw new ArrayIndexOutOfBoundsException(index);
+        }
+        getBuffers0().next(index).set(handle);
+        return this;
+    }
+    public AudioBuffer[] getBuffers() {
+        int count = getBufferCount();
+        AudioBuffer[] array = new AudioBuffer[count];
+        AudioBuffer.AudioBufferPtr ptr = getBuffers0();
+        for (int i = 0; i < count; i++) {
+            array[i] = ptr.next(i).get();
+        }
+        return array;
+    }
+    public AudioBufferList setBuffers(AudioBuffer[] buffers) {
+        this.setNumberBuffers(buffers.length);
+        getBuffers0().set(buffers);
+        return this;
+    }
     /*<members>*/
-    @StructMember(0) public native int getMNumberBuffers();
-    @StructMember(0) public native AudioBufferList setMNumberBuffers(int mNumberBuffers);
-    @StructMember(1) public native @Array({1}) AudioBuffer getMBuffers();
-    @StructMember(1) public native AudioBufferList setMBuffers(@Array({1}) AudioBuffer mBuffers);
+    @StructMember(0) protected native int getNumberBuffers();
+    @StructMember(0) protected native AudioBufferList setNumberBuffers(int numberBuffers);
+    @StructMember(1) protected native AudioBuffer.AudioBufferPtr getBuffers0();
+    @StructMember(1) protected native AudioBufferList setBuffers0(AudioBuffer.AudioBufferPtr buffers0);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

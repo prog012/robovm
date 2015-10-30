@@ -23,11 +23,11 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
@@ -63,17 +63,59 @@ import org.robovm.apple.dispatch.*;
     @StructMember(1) public native @ByVal MKMapSize getSize();
     @StructMember(1) public native MKMapRect setSize(@ByVal MKMapSize size);
     /*</members>*/
+    public double getMinX() {
+        return getOrigin().getX();
+    }
+    public double getMinY() {
+        return getOrigin().getY();
+    }
+    public double getMidX() {
+        return getOrigin().getX() + getSize().getWidth() / 2.0;
+    }
+    public double getMidY() {
+        return getOrigin().getY() + getSize().getHeight() / 2.0;
+    }
+    public double getMaxX() {
+        return getOrigin().getX() + getSize().getWidth();
+    }
+    public double getMaxY() {
+        return getOrigin().getY() + getSize().getHeight();
+    }
+    public double getWidth() {
+        return getSize().getWidth();
+    }
+    public double getHeight() {
+        return getSize().getHeight();
+    }
+    
+    public boolean equalsTo(MKMapRect other) {
+        return getOrigin().equalsTo(other.getOrigin()) && getSize().equalsTo(other.getSize());
+    }
+    public boolean equals(Object obj) {
+        return obj instanceof MKMapRect && equalsTo((MKMapRect)obj);
+    }
+    
+    public boolean isNull() {
+        return getOrigin().equalsTo(MKMapRect.Null().getOrigin());
+    }
+    public boolean isEmpty() {
+        return isNull() || (getSize().getWidth() == 0.0 && getSize().getHeight() == 0.0);
+    }
+
+    public String toString() {
+        return String.format("{%s, %s}", getOrigin().toString(), getSize().toString());
+    }
     /*<methods>*/
     /**
      * @since Available in iOS 4.0 and later.
      */
     @GlobalValue(symbol="MKMapRectWorld", optional=true)
-    public static native @ByVal MKMapRect getWorldRect();
+    public static native @ByVal MKMapRect World();
     /**
      * @since Available in iOS 4.0 and later.
      */
     @GlobalValue(symbol="MKMapRectNull", optional=true)
-    public static native @ByVal MKMapRect getNullRect();
+    public static native @ByVal MKMapRect Null();
     
     /**
      * @since Available in iOS 4.0 and later.

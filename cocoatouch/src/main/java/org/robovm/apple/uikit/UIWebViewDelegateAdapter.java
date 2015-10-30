@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -54,12 +55,12 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("webView:shouldStartLoadWithRequest:navigationType:")
-    public boolean shouldStartLoad(UIWebView webView, NSURLRequest request, UIWebViewNavigationType navigationType) { throw new UnsupportedOperationException(); }
+    public boolean shouldStartLoad(UIWebView webView, NSURLRequest request, UIWebViewNavigationType navigationType) { return true; }
     @NotImplemented("webViewDidStartLoad:")
-    public void didStartLoad(UIWebView webView) { throw new UnsupportedOperationException(); }
+    public void didStartLoad(UIWebView webView) {}
     @NotImplemented("webViewDidFinishLoad:")
-    public void didFinishLoad(UIWebView webView) { throw new UnsupportedOperationException(); }
+    public void didFinishLoad(UIWebView webView) {}
     @NotImplemented("webView:didFailLoadWithError:")
-    public void didFailLoad(UIWebView webView, NSError error) { throw new UnsupportedOperationException(); }
+    public void didFailLoad(UIWebView webView, NSError error) {}
     /*</methods>*/
 }

@@ -23,19 +23,21 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,45 +56,41 @@ import org.robovm.apple.mediatoolbox.*;
     /*<constructors>*/
     public AVAudioPlayer() {}
     protected AVAudioPlayer(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
     public AVAudioPlayer(NSURL url) throws NSErrorException {
-        super((SkipInit)null);
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        initObject(init(url, err));
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(url, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
     }
     public AVAudioPlayer(NSData data) throws NSErrorException {
-        super((SkipInit)null);
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        initObject(init(data, err));
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(data, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
     public AVAudioPlayer(NSURL url, String utiString) throws NSErrorException {
-        super((SkipInit)null);
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        initObject(init(url, utiString, err));
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(url, utiString, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
     public AVAudioPlayer(NSData data, String utiString) throws NSErrorException {
-        super((SkipInit)null);
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        initObject(init(data, utiString, err));
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(data, utiString, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
     }
+    /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isPlaying")
     public native boolean isPlaying();
@@ -178,19 +176,19 @@ import org.robovm.apple.mediatoolbox.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithContentsOfURL:error:")
-    protected native @Pointer long init(NSURL url, NSError.NSErrorPtr outError);
+    private native @Pointer long init(NSURL url, NSError.NSErrorPtr outError);
     @Method(selector = "initWithData:error:")
-    protected native @Pointer long init(NSData data, NSError.NSErrorPtr outError);
+    private native @Pointer long init(NSData data, NSError.NSErrorPtr outError);
     /**
      * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "initWithContentsOfURL:fileTypeHint:error:")
-    protected native @Pointer long init(NSURL url, String utiString, NSError.NSErrorPtr outError);
+    private native @Pointer long init(NSURL url, String utiString, NSError.NSErrorPtr outError);
     /**
      * @since Available in iOS 7.0 and later.
      */
     @Method(selector = "initWithData:fileTypeHint:error:")
-    protected native @Pointer long init(NSData data, String utiString, NSError.NSErrorPtr outError);
+    private native @Pointer long init(NSData data, String utiString, NSError.NSErrorPtr outError);
     @Method(selector = "prepareToPlay")
     public native boolean prepareToPlay();
     @Method(selector = "play")

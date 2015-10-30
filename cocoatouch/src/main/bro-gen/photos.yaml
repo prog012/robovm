@@ -1,5 +1,5 @@
 package: org.robovm.apple.photos
-include: [foundation.yaml, coregraphics.yaml, corelocation.yaml, uikit.yaml, avfoundation.yaml]
+include: [foundation.yaml, coregraphics.yaml, uikit.yaml, corelocation.yaml, avfoundation.yaml]
 library: Photos
 framework: Photos
 clang_args: ['-x', 'objective-c']
@@ -43,9 +43,13 @@ classes:
             '-init.*':
                 name: init
     PHAssetChangeRequest: # DONE
+        properties:
+            'location':
+                annotations: ['@WeaklyLinked']
         methods:
             '+creationRequestForAssetFromImage:':
                 name: createImageAssetCreationRequest
+                annotations: ['@WeaklyLinked']
             '+creationRequestForAssetFromImageAtFileURL:':
                 name: createImageAssetCreationRequest
             '+creationRequestForAssetFromVideoAtFileURL:':
@@ -106,8 +110,11 @@ classes:
                 name: create
     PHContentEditingInput: # DONE
         properties:
+            '(displaySizeImage|avAsset|location)':
+                annotations: ['@WeaklyLinked']
             'fullSizeImageOrientation':
                 type: org.robovm.apple.imageio.CGImagePropertyOrientation
+                annotations: ['@WeaklyLinked']
     PHContentEditingInputRequestOptions: {} # DONE
     PHContentEditingOutput: # DONE
         methods:
@@ -175,16 +182,21 @@ classes:
         methods:
             '-requestImageForAsset:targetSize:contentMode:options:resultHandler:':
                 trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
             '-requestImageDataForAsset:options:resultHandler:':
                 trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
             '-cancelImageRequest:':
                 trim_after_first_colon: true
             '-requestPlayerItemForVideo:options:resultHandler:':
                 trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
             '-requestExportSessionForVideo:options:exportPreset:resultHandler:':
                 trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
             '-requestAVAssetForVideo:options:resultHandler:':
                 trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
             '+defaultManager':
                 property: true
     PHCachingImageManager: # DONE
@@ -202,10 +214,12 @@ classes:
     PHImageRequestOptions: # DONE
         properties:
             'progressHandler':
-                type: '@Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<NSString, NSObject>>'
+                type: '@Block VoidBlock4<Double, NSError, BooleanPtr, NSDictionary<?, ?>>'
     PHObject: {} # DONE
     PHAsset: # DONE
         properties:
+            'location':
+                annotations: ['@WeaklyLinked']
             'representsBurst':
                 omit_prefix: true
         methods:
@@ -250,6 +264,8 @@ classes:
         properties:
             'localizedLocationNames':
                 type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String>'
+            'approximateLocation':
+                annotations: ['@WeaklyLinked']
         methods:
             '+fetchAssetCollectionsWithLocalIdentifiers:options:':
                 trim_after_first_colon: true
@@ -314,7 +330,7 @@ classes:
                 trim_after_first_colon: true
             '-performChangesAndWait:error:':
                 trim_after_first_colon: true
-                visibility: protected # throws NSErrorException
+                throws: NSErrorException
             '-registerChangeObserver:':
                 trim_after_first_colon: true
             '-unregisterChangeObserver:':
@@ -344,21 +360,44 @@ functions:
 
 values:
     # PHAsset
-    PHContentEditingInput(.*Key):
-        class: PHContentEditingInputRequestResult
+    PHContentEditingInput(.*)Key:
+        dictionary: PHContentEditingInputRequestResult
         name: '#{g[0]}'
         type: NSString
-        visibility: protected
+        mutable: false
+        methods:
+            ResultIsInCloud:
+                name: resultInCloud
+                type: boolean
+            Cancelled:
+                name: isCancelled
+                type: boolean
+            Error:
+                type: NSError
 
     # PHImageManager
     PHImageManager(MaximumSize):
         class: PHImageManager
         name: 'get#{g[0]}'
-    PHImage(.*Key):
-        class: PHImageRequestResult
+    PHImage(.*)Key:
+        dictionary: PHImageRequestResult
         name: '#{g[0]}'
         type: NSString
-        visibility: protected
+        mutable: false
+        methods:
+            ResultIsInCloud:
+                name: resultInCloud
+                type: boolean
+            ResultIsDegraded:
+                name: resultDegraded
+                type: boolean
+            ResultRequestID:
+                type: long
+            Cancelled:
+                name: isCancelled
+                type: boolean
+            Error:
+                type: NSError
    
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?PH.*):

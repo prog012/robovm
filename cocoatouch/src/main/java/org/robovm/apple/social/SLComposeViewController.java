@@ -23,13 +23,14 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
-import org.robovm.apple.accounts.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.accounts.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,9 +54,9 @@ import org.robovm.apple.coregraphics.*;
     @Property(selector = "serviceType")
     public native SLServiceType getServiceType();
     @Property(selector = "completionHandler")
-    public native @Block VoidBlock3<String, SLRequestMethod, NSURL> getCompletionHandler();
+    public native @Block VoidBlock1<SLComposeViewControllerResult> getCompletionHandler();
     @Property(selector = "setCompletionHandler:")
-    public native void setCompletionHandler(@Block VoidBlock3<String, SLRequestMethod, NSURL> v);
+    public native void setCompletionHandler(@Block VoidBlock1<SLComposeViewControllerResult> v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

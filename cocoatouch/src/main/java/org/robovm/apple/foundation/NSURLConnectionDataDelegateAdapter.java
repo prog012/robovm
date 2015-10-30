@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -55,18 +57,18 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("connection:willSendRequest:redirectResponse:")
-    public NSURLRequest willSendRequest(NSURLConnection connection, NSURLRequest request, NSURLResponse response) { throw new UnsupportedOperationException(); }
+    public NSURLRequest willSendRequest(NSURLConnection connection, NSURLRequest request, NSURLResponse response) { return null; }
     @NotImplemented("connection:didReceiveResponse:")
-    public void didReceiveResponse(NSURLConnection connection, NSURLResponse response) { throw new UnsupportedOperationException(); }
+    public void didReceiveResponse(NSURLConnection connection, NSURLResponse response) {}
     @NotImplemented("connection:didReceiveData:")
-    public void didReceiveData(NSURLConnection connection, NSData data) { throw new UnsupportedOperationException(); }
+    public void didReceiveData(NSURLConnection connection, NSData data) {}
     @NotImplemented("connection:needNewBodyStream:")
-    public NSInputStream needNewBodyStream(NSURLConnection connection, NSURLRequest request) { throw new UnsupportedOperationException(); }
+    public NSInputStream needNewBodyStream(NSURLConnection connection, NSURLRequest request) { return null; }
     @NotImplemented("connection:didSendBodyData:totalBytesWritten:totalBytesExpectedToWrite:")
-    public void didSendBodyData(NSURLConnection connection, @MachineSizedSInt long bytesWritten, @MachineSizedSInt long totalBytesWritten, @MachineSizedSInt long totalBytesExpectedToWrite) { throw new UnsupportedOperationException(); }
+    public void didSendBodyData(NSURLConnection connection, @MachineSizedSInt long bytesWritten, @MachineSizedSInt long totalBytesWritten, @MachineSizedSInt long totalBytesExpectedToWrite) {}
     @NotImplemented("connection:willCacheResponse:")
-    public NSCachedURLResponse willCacheResponse(NSURLConnection connection, NSCachedURLResponse cachedResponse) { throw new UnsupportedOperationException(); }
+    public NSCachedURLResponse willCacheResponse(NSURLConnection connection, NSCachedURLResponse cachedResponse) { return null; }
     @NotImplemented("connectionDidFinishLoading:")
-    public void didFinishLoading(NSURLConnection connection) { throw new UnsupportedOperationException(); }
+    public void didFinishLoading(NSURLConnection connection) {}
     /*</methods>*/
 }

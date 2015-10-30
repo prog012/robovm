@@ -23,11 +23,11 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
@@ -59,6 +59,16 @@ import org.robovm.apple.dispatch.*;
     @StructMember(1) public native double getY();
     @StructMember(1) public native MKMapPoint setY(double y);
     /*</members>*/
+    public boolean equalsTo(MKMapPoint other) {
+        return getX() == other.getX() && getY() == other.getY();
+    }
+    public boolean equals(Object obj) {
+        return obj instanceof MKMapPoint && equalsTo((MKMapPoint)obj);
+    }
+    
+    public String toString() {
+        return String.format("{%.1f, %.1f}", getX(), getY());
+    }
     /*<methods>*/
     /**
      * @since Available in iOS 4.0 and later.

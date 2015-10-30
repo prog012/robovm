@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -54,13 +55,13 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("popoverControllerShouldDismissPopover:")
-    public boolean shouldDismiss(UIPopoverController popoverController) { throw new UnsupportedOperationException(); }
+    public boolean shouldDismiss(UIPopoverController popoverController) { return false; }
     @NotImplemented("popoverControllerDidDismissPopover:")
-    public void didDismiss(UIPopoverController popoverController) { throw new UnsupportedOperationException(); }
+    public void didDismiss(UIPopoverController popoverController) {}
     /**
      * @since Available in iOS 7.0 and later.
      */
     @NotImplemented("popoverController:willRepositionPopoverToRect:inView:")
-    public void willReposition(UIPopoverController popoverController, CGRect rect, UIView.UIViewPtr view) { throw new UnsupportedOperationException(); }
+    public void willReposition(UIPopoverController popoverController, CGRect rect, UIView.UIViewPtr view) {}
     /*</methods>*/
 }

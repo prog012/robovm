@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -68,20 +69,6 @@ import org.robovm.apple.foundation.*;
     public native NEVPNStatus getStatus();
     /*</properties>*/
     /*<members>*//*</members>*/
-    /**
-     * 
-     * @return
-     * @throws NSErrorException
-     * @since Available in iOS 8.0 and later.
-     */
-    public boolean startVPNTunnel() throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        boolean result = startVPNTunnel(err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
     /*<methods>*/
     /**
      * @since Available in iOS 8.0 and later.
@@ -92,8 +79,17 @@ import org.robovm.apple.foundation.*;
     /**
      * @since Available in iOS 8.0 and later.
      */
+    public boolean startVPNTunnel() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = startVPNTunnel(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "startVPNTunnelAndReturnError:")
-    protected native boolean startVPNTunnel(NSError.NSErrorPtr error);
+    private native boolean startVPNTunnel(NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 8.0 and later.
      */

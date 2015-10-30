@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -43,13 +44,13 @@ import org.robovm.apple.corelocation.*;
 /*<annotations>*/@Library("UIKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/UIImage/*</name>*/ 
     extends /*<extends>*/NSObject/*</extends>*/ 
-    /*<implements>*/implements UIAccessibilityIdentification/*</implements>*/ {
+    /*<implements>*/implements UIAccessibility, UIAccessibilityIdentification/*</implements>*/ {
 
     /*<ptr>*/public static class UIImagePtr extends Ptr<UIImage, UIImagePtr> {}/*</ptr>*/
     
     private static java.util.concurrent.atomic.AtomicLong id = new java.util.concurrent.atomic.AtomicLong();
     private static final Selector didFinishSaving = Selector.register("image:didFinishSavingWithError:contextInfo:");
-    private static final Map<Long, CallbackWrapper> callbacks = new HashMap<>();
+    private static final LongMap<CallbackWrapper> callbacks = new LongMap<>();
     private static class CallbackWrapper extends NSObject {
         private final VoidBlock2<UIImage, NSError> callback;
         private CallbackWrapper(VoidBlock2<UIImage, NSError> callback, long contextInfo) {
@@ -88,10 +89,12 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 5.0 and later.
      */
+    @WeaklyLinked
     public UIImage(CIImage ciImage) { super((SkipInit) null); initObject(init(ciImage)); }
     /**
      * @since Available in iOS 6.0 and later.
      */
+    @WeaklyLinked
     public UIImage(CIImage ciImage, @MachineSizedFloat double scale, UIImageOrientation orientation) { super((SkipInit) null); initObject(init(ciImage, scale, orientation)); }
     /*</constructors>*/
 
@@ -108,6 +111,7 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 5.0 and later.
      */
+    @WeaklyLinked
     @Property(selector = "CIImage")
     public native CIImage getCIImage();
     @Property(selector = "imageOrientation")
@@ -161,6 +165,94 @@ import org.robovm.apple.corelocation.*;
     public native @MachineSizedSInt long getLeftCapWidth();
     @Property(selector = "topCapHeight")
     public native @MachineSizedSInt long getTopCapHeight();
+    @Property(selector = "isAccessibilityElement")
+    public native boolean isAccessibilityElement();
+    @Property(selector = "setIsAccessibilityElement:")
+    public native void setAccessibilityElement(boolean v);
+    @Property(selector = "accessibilityLabel")
+    public native String getAccessibilityLabel();
+    @Property(selector = "setAccessibilityLabel:")
+    public native void setAccessibilityLabel(String v);
+    @Property(selector = "accessibilityHint")
+    public native String getAccessibilityHint();
+    @Property(selector = "setAccessibilityHint:")
+    public native void setAccessibilityHint(String v);
+    @Property(selector = "accessibilityValue")
+    public native String getAccessibilityValue();
+    @Property(selector = "setAccessibilityValue:")
+    public native void setAccessibilityValue(String v);
+    @Property(selector = "accessibilityTraits")
+    public native UIAccessibilityTraits getAccessibilityTraits();
+    @Property(selector = "setAccessibilityTraits:")
+    public native void setAccessibilityTraits(UIAccessibilityTraits v);
+    @Property(selector = "accessibilityFrame")
+    public native @ByVal CGRect getAccessibilityFrame();
+    @Property(selector = "setAccessibilityFrame:")
+    public native void setAccessibilityFrame(@ByVal CGRect v);
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Property(selector = "accessibilityPath")
+    public native UIBezierPath getAccessibilityPath();
+    /**
+     * @since Available in iOS 7.0 and later.
+     */
+    @Property(selector = "setAccessibilityPath:")
+    public native void setAccessibilityPath(UIBezierPath v);
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Property(selector = "accessibilityActivationPoint")
+    public native @ByVal CGPoint getAccessibilityActivationPoint();
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Property(selector = "setAccessibilityActivationPoint:")
+    public native void setAccessibilityActivationPoint(@ByVal CGPoint v);
+    @Property(selector = "accessibilityLanguage")
+    public native String getAccessibilityLanguage();
+    @Property(selector = "setAccessibilityLanguage:")
+    public native void setAccessibilityLanguage(String v);
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Property(selector = "accessibilityElementsHidden")
+    public native boolean areAccessibilityElementsHidden();
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Property(selector = "setAccessibilityElementsHidden:")
+    public native void setAccessibilityElementsHidden(boolean v);
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Property(selector = "accessibilityViewIsModal")
+    public native boolean isAccessibilityViewModal();
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @Property(selector = "setAccessibilityViewIsModal:")
+    public native void setAccessibilityViewModal(boolean v);
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    @Property(selector = "shouldGroupAccessibilityChildren")
+    public native boolean shouldGroupAccessibilityChildren();
+    /**
+     * @since Available in iOS 6.0 and later.
+     */
+    @Property(selector = "setShouldGroupAccessibilityChildren:")
+    public native void setShouldGroupAccessibilityChildren(boolean v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @Property(selector = "accessibilityNavigationStyle")
+    public native UIAccessibilityNavigationStyle getAccessibilityNavigationStyle();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
+    @Property(selector = "setAccessibilityNavigationStyle:")
+    public native void setAccessibilityNavigationStyle(UIAccessibilityNavigationStyle v);
     /**
      * @since Available in iOS 5.0 and later.
      */
@@ -213,11 +305,13 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 5.0 and later.
      */
+    @WeaklyLinked
     @Method(selector = "initWithCIImage:")
     protected native @Pointer long init(CIImage ciImage);
     /**
      * @since Available in iOS 6.0 and later.
      */
+    @WeaklyLinked
     @Method(selector = "initWithCIImage:scale:orientation:")
     protected native @Pointer long init(CIImage ciImage, @MachineSizedFloat double scale, UIImageOrientation orientation);
     @Method(selector = "drawAtPoint:")
@@ -252,6 +346,9 @@ import org.robovm.apple.corelocation.*;
     public native UIImage create(UIImageRenderingMode renderingMode);
     @Method(selector = "imageNamed:")
     public static native UIImage create(String name);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Method(selector = "imageNamed:inBundle:compatibleWithTraitCollection:")
     public static native UIImage create(String name, NSBundle bundle, UITraitCollection traitCollection);
     @Method(selector = "imageWithContentsOfFile:")
@@ -273,11 +370,13 @@ import org.robovm.apple.corelocation.*;
     /**
      * @since Available in iOS 5.0 and later.
      */
+    @WeaklyLinked
     @Method(selector = "imageWithCIImage:")
     public static native UIImage create(CIImage ciImage);
     /**
      * @since Available in iOS 6.0 and later.
      */
+    @WeaklyLinked
     @Method(selector = "imageWithCIImage:scale:orientation:")
     public static native UIImage create(CIImage ciImage, @MachineSizedFloat double scale, UIImageOrientation orientation);
     /**

@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -51,6 +52,7 @@ import org.robovm.apple.corelocation.*;
     /*<constructors>*/
     public UIMotionEffect() {}
     protected UIMotionEffect(SkipInit skipInit) { super(skipInit); }
+    public UIMotionEffect(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     
@@ -60,6 +62,8 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "keyPathsAndRelativeValuesForViewerOffset:")
     public native UIMotionEffectViewerOffsetValues getKeyPathsAndRelativeValues(@ByVal UIOffset viewerOffset);
     @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder aCoder);
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

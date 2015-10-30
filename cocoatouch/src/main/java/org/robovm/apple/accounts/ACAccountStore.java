@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -66,7 +67,7 @@ import org.robovm.apple.foundation.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     public void requestAccessToAccounts(ACAccountType accountType, ACAccountOptions options, @Block VoidBlock2<Boolean, NSError> completion) {
-        requestAccessToAccounts(accountType, options == null ? null : options.data, completion);
+        requestAccessToAccounts(accountType, options == null ? null : options.getDictionary(), completion);
     }
     /*<methods>*/
     /**
@@ -91,7 +92,7 @@ import org.robovm.apple.foundation.*;
     @Method(selector = "requestAccessToAccountsWithType:withCompletionHandler:")
     public native void requestAccessToAccounts(ACAccountType accountType, @Block VoidBlock2<Boolean, NSError> handler);
     @Method(selector = "requestAccessToAccountsWithType:options:completion:")
-    protected native void requestAccessToAccounts(ACAccountType accountType, NSDictionary<NSString, ?> options, @Block VoidBlock2<Boolean, NSError> completion);
+    protected native void requestAccessToAccounts(ACAccountType accountType, NSDictionary options, @Block VoidBlock2<Boolean, NSError> completion);
     @Method(selector = "renewCredentialsForAccount:completion:")
     public native void renewCredentials(ACAccount account, @Block VoidBlock2<ACAccountCredentialRenewResult, NSError> completionHandler);
     @Method(selector = "removeAccount:withCompletionHandler:")

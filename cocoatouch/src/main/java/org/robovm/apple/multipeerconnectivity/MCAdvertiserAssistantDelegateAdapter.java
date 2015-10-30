@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -50,8 +51,8 @@ import org.robovm.apple.security.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("advertiserAssistantWillPresentInvitation:")
-    public void willPresentInvitation(MCAdvertiserAssistant advertiserAssistant) { throw new UnsupportedOperationException(); }
+    public void willPresentInvitation(MCAdvertiserAssistant advertiserAssistant) {}
     @NotImplemented("advertiserAssistantDidDismissInvitation:")
-    public void didDismissInvitation(MCAdvertiserAssistant advertiserAssistant) { throw new UnsupportedOperationException(); }
+    public void didDismissInvitation(MCAdvertiserAssistant advertiserAssistant) {}
     /*</methods>*/
 }

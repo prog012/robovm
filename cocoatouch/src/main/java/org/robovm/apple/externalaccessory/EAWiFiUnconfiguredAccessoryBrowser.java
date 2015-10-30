@@ -23,12 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
-import org.robovm.apple.uikit.*;
 import org.robovm.apple.dispatch.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -50,6 +51,7 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 8.0 and later.
      */
+    @WeaklyLinked
     public EAWiFiUnconfiguredAccessoryBrowser(EAWiFiUnconfiguredAccessoryBrowserDelegate delegate, DispatchQueue queue) { super((SkipInit) null); initObject(init(delegate, queue)); }
     /*</constructors>*/
     /*<properties>*/
@@ -65,6 +67,7 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 8.0 and later.
      */
+    @WeaklyLinked
     @Method(selector = "initWithDelegate:queue:")
     protected native @Pointer long init(EAWiFiUnconfiguredAccessoryBrowserDelegate delegate, DispatchQueue queue);
     /**
@@ -80,6 +83,7 @@ import org.robovm.apple.dispatch.*;
     /**
      * @since Available in iOS 8.0 and later.
      */
+    @WeaklyLinked
     @Method(selector = "configureAccessory:withConfigurationUIOnViewController:")
     public native void configureAccessory(EAWiFiUnconfiguredAccessory accessory, UIViewController viewController);
     /*</methods>*/

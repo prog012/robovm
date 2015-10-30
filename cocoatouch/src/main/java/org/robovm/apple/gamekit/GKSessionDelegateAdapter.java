@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -49,12 +50,12 @@ import org.robovm.apple.uikit.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("session:peer:didChangeState:")
-    public void didChangeState(GKSession session, String peerID, GKPeerConnectionState state) { throw new UnsupportedOperationException(); }
+    public void didChangeState(GKSession session, String peerID, GKPeerConnectionState state) {}
     @NotImplemented("session:didReceiveConnectionRequestFromPeer:")
-    public void didReceiveConnectionRequest(GKSession session, String peerID) { throw new UnsupportedOperationException(); }
+    public void didReceiveConnectionRequest(GKSession session, String peerID) {}
     @NotImplemented("session:connectionWithPeerFailed:withError:")
-    public void connectionWithPeerFailed(GKSession session, String peerID, NSError error) { throw new UnsupportedOperationException(); }
+    public void connectionWithPeerFailed(GKSession session, String peerID, NSError error) {}
     @NotImplemented("session:didFailWithError:")
-    public void didFail(GKSession session, NSError error) { throw new UnsupportedOperationException(); }
+    public void didFail(GKSession session, NSError error) {}
     /*</methods>*/
 }

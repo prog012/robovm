@@ -51,10 +51,13 @@ enums:
 classes:
     MTLCommandBufferError:
         extends: NSError
+        annotations: ['@StronglyLinked']
     MTLLibraryError:
         extends: NSError
+        annotations: ['@StronglyLinked']
     MTLRenderPipelineError:
         extends: NSError
+        annotations: ['@StronglyLinked']
 
     # Structs
     MTLClearColor: {} # DONE
@@ -74,7 +77,8 @@ classes:
     MTLCompileOptions: # DONE
         properties:
             'preprocessorMacros':
-                type: '@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String>'
+                type: 'Map<String, String>'
+                marshaler: NSDictionary.AsStringStringMapMarshaler
     MTLComputePipelineReflection: # DONE
         properties:
             'arguments':
@@ -228,6 +232,14 @@ protocols:
         class: true
         visibility: 'public final'
         methods:
+            '-setBytes:length:atIndex:':
+                trim_after_first_colon: true
+                visibility: protected
+                parameters:
+                    bytes:
+                        type: '@Pointer long'
+            '-setBufferOffset:atIndex:':
+                trim_after_first_colon: true
             '-setBuffer:offset:atIndex:':
                 trim_after_first_colon: true
             '-setBuffers:offsets:withRange:':
@@ -298,34 +310,35 @@ protocols:
                 name: newSamplerState
             '-newLibraryWithFile:error:':
                 trim_after_first_colon: true
-                visibility: protected # throws NSErrorException
+                throws: NSErrorException
             '-newLibraryWithData:error:':
                 trim_after_first_colon: true
-                visibility: protected # throws NSErrorException
+                throws: NSErrorException
+                annotations: ['@WeaklyLinked']
                 parameters:
                     data:
                         type: DispatchData
             '-newLibraryWithSource:options:error:':
                 trim_after_first_colon: true
-                visibility: protected # throws NSErrorException
+                throws: NSErrorException
             '-newLibraryWithSource:options:completionHandler:':
                 trim_after_first_colon: true
             '-newRenderPipelineStateWithDescriptor:error:':
                 name: newRenderPipelineState
-                visibility: protected # throws NSErrorException
+                throws: NSErrorException
             '-newRenderPipelineStateWithDescriptor:options:reflection:error:':
                 name: newRenderPipelineState
-                visibility: protected # throws NSErrorException
+                throws: NSErrorException
             '-newRenderPipelineStateWithDescriptor:completionHandler:':
                 name: newRenderPipelineState
             '-newRenderPipelineStateWithDescriptor:options:completionHandler:':
                 name: newRenderPipelineState
             '-newComputePipelineStateWithFunction:error:':
                 name: newComputePipelineState
-                visibility: protected # throws NSErrorException
+                throws: NSErrorException
             '-newComputePipelineStateWithFunction:options:reflection:error:':
                 name: newComputePipelineState
-                visibility: protected # throws NSErrorException
+                throws: NSErrorException
             '-newComputePipelineStateWithFunction:completionHandler:':
                 name: newComputePipelineState
             '-newComputePipelineStateWithFunction:options:completionHandler:':
@@ -362,6 +375,14 @@ protocols:
         class: true
         visibility: 'public final'
         methods:
+            '-setVertexBytes:length:atIndex:':
+                trim_after_first_colon: true
+                visibility: protected
+                parameters:
+                    bytes:
+                        type: '@Pointer long'
+            '-setVertexBufferOffset:atIndex:':
+                trim_after_first_colon: true
             '-setVertexBuffer:offset:atIndex:':
                 trim_after_first_colon: true
             '-setVertexBuffers:offsets:withRange:':
@@ -396,7 +417,15 @@ protocols:
                         type: MTLSamplerState.MTLSamplerStatePtr
             '-setDepthBias:slopeScale:clamp:':
                 trim_after_first_colon: true
+            '-setFragmentBytes:length:atIndex:':
+                trim_after_first_colon: true
+                visibility: protected
+                parameters:
+                    bytes:
+                        type: '@Pointer long'
             '-setFragmentBuffer:offset:atIndex:':
+                trim_after_first_colon: true
+            '-setFragmentBufferOffset:atIndex:':
                 trim_after_first_colon: true
             '-setFragmentBuffers:offsets:withRange:':
                 trim_after_first_colon: true

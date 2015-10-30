@@ -23,11 +23,16 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.dispatch.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.dispatch.*;
+import org.robovm.apple.coreservices.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -41,7 +46,7 @@ import org.robovm.apple.foundation.*;
         void invoke(CFNotificationCenter center, CFType observer, String name, CFType object, NSDictionary<NSString, ?> userInfo);
     }
     
-    private static final Map<Long, NotificationCallback> callbacks = new HashMap<>();
+    private static final LongMap<NotificationCallback> callbacks = new LongMap<>();
     private static final java.lang.reflect.Method cbNotification;
     
     static {
@@ -106,8 +111,8 @@ import org.robovm.apple.foundation.*;
     @Bridge(symbol="CFNotificationCenterRemoveEveryObserver", optional=true)
     public native void removeEveryObserver(CFType observer);
     @Bridge(symbol="CFNotificationCenterPostNotification", optional=true)
-    public native void postNotification(String name, CFType object, NSDictionary<NSString, ?> userInfo, boolean deliverImmediately);
+    public native void postNotification(String name, CFType object, NSDictionary userInfo, boolean deliverImmediately);
     @Bridge(symbol="CFNotificationCenterPostNotificationWithOptions", optional=true)
-    public native void postNotification(String name, CFType object, NSDictionary<NSString, ?> userInfo, CFNotificationPostingOptions options);
+    public native void postNotification(String name, CFType object, NSDictionary userInfo, CFNotificationPostingOptions options);
     /*</methods>*/
 }

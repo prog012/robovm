@@ -23,15 +23,15 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.opengles.*;
+import org.robovm.apple.audiounit.*;
 import org.robovm.apple.coreaudio.*;
-import org.robovm.apple.coremedia.*;
+import org.robovm.apple.coremidi.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -48,17 +48,17 @@ import org.robovm.apple.coremedia.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CAFAudioFormatListItem() {}
-    public CAFAudioFormatListItem(CAFAudioDescription mFormat, int mChannelLayoutTag) {
-        this.setMFormat(mFormat);
-        this.setMChannelLayoutTag(mChannelLayoutTag);
+    public CAFAudioFormatListItem(CAFAudioDescription format, int channelLayoutTag) {
+        this.setFormat(format);
+        this.setChannelLayoutTag(channelLayoutTag);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native @ByVal CAFAudioDescription getMFormat();
-    @StructMember(0) public native CAFAudioFormatListItem setMFormat(@ByVal CAFAudioDescription mFormat);
-    @StructMember(1) public native int getMChannelLayoutTag();
-    @StructMember(1) public native CAFAudioFormatListItem setMChannelLayoutTag(int mChannelLayoutTag);
+    @StructMember(0) public native @ByVal CAFAudioDescription getFormat();
+    @StructMember(0) public native CAFAudioFormatListItem setFormat(@ByVal CAFAudioDescription format);
+    @StructMember(1) public native int getChannelLayoutTag();
+    @StructMember(1) public native CAFAudioFormatListItem setChannelLayoutTag(int channelLayoutTag);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

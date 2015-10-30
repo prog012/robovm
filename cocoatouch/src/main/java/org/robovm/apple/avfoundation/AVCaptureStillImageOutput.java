@@ -23,19 +23,21 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -61,6 +63,7 @@ import org.robovm.apple.mediatoolbox.*;
     public void setVideoOutputSettings(AVVideoSettings outputSettings) {
         setOutputSettings0(outputSettings.getDictionary());
     }
+    @WeaklyLinked
     public AVPixelBufferAttributes getPixelBufferOutputSettings() {
         return new AVPixelBufferAttributes(getOutputSettings0().as(CFDictionary.class));
     }
@@ -70,9 +73,9 @@ import org.robovm.apple.mediatoolbox.*;
     }
     /*<properties>*/
     @Property(selector = "outputSettings")
-    protected native NSDictionary<NSString, NSObject> getOutputSettings0();
+    protected native NSDictionary getOutputSettings0();
     @Property(selector = "setOutputSettings:")
-    protected native void setOutputSettings0(NSDictionary<NSString, NSObject> v);
+    protected native void setOutputSettings0(NSDictionary v);
     @Property(selector = "availableImageDataCVPixelFormatTypes")
     public native @org.robovm.rt.bro.annotation.Marshaler(CVPixelFormatType.AsListMarshaler.class) List<CVPixelFormatType> getAvailableImageDataCVPixelFormatTypes();
     @Property(selector = "availableImageDataCodecTypes")

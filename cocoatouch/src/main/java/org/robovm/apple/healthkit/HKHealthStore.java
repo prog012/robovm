@@ -19,11 +19,11 @@ package org.robovm.apple.healthkit;
 import java.io.*;
 import java.nio.*;
 import java.util.*;
-
 import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -65,45 +65,6 @@ import org.robovm.apple.foundation.*;
     
     /*</properties>*/
     /*<members>*//*</members>*/
-    /**
-     * 
-     * @return
-     * @throws NSErrorException
-     */
-    public NSDate getDateOfBirth() throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        NSDate result = getDateOfBirth(err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
-    /**
-     * 
-     * @return
-     * @throws NSErrorException
-     */
-    public HKBiologicalSexObject getBiologicalSex() throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        HKBiologicalSexObject result = getBiologicalSex(err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
-    /**
-     * 
-     * @return
-     * @throws NSErrorException
-     */
-    public HKBloodTypeObject getBloodType() throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        HKBloodTypeObject result = getBloodType(err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
     /*<methods>*/
     /**
      * @since Available in iOS 8.2 and later.
@@ -125,12 +86,30 @@ import org.robovm.apple.foundation.*;
     public native void executeQuery(HKQuery query);
     @Method(selector = "stopQuery:")
     public native void stopQuery(HKQuery query);
+    public NSDate getDateOfBirth() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSDate result = getDateOfBirth(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "dateOfBirthWithError:")
-    protected native NSDate getDateOfBirth(NSError.NSErrorPtr error);
+    private native NSDate getDateOfBirth(NSError.NSErrorPtr error);
+    public HKBiologicalSexObject getBiologicalSex() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       HKBiologicalSexObject result = getBiologicalSex(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "biologicalSexWithError:")
-    protected native HKBiologicalSexObject getBiologicalSex(NSError.NSErrorPtr error);
+    private native HKBiologicalSexObject getBiologicalSex(NSError.NSErrorPtr error);
+    public HKBloodTypeObject getBloodType() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       HKBloodTypeObject result = getBloodType(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "bloodTypeWithError:")
-    protected native HKBloodTypeObject getBloodType(NSError.NSErrorPtr error);
+    private native HKBloodTypeObject getBloodType(NSError.NSErrorPtr error);
     @Method(selector = "isHealthDataAvailable")
     public static native boolean isHealthDataAvailable();
     @Method(selector = "addSamples:toWorkout:completion:")

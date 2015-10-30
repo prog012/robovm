@@ -23,15 +23,15 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.opengles.*;
+import org.robovm.apple.audiounit.*;
 import org.robovm.apple.coreaudio.*;
-import org.robovm.apple.coremedia.*;
+import org.robovm.apple.coremidi.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -48,20 +48,18 @@ import org.robovm.apple.coremedia.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public CAFOverviewChunk() {}
-    public CAFOverviewChunk(int mEditCount, int mNumFramesPerOVWSample, CAFOverviewSample mData) {
-        this.setMEditCount(mEditCount);
-        this.setMNumFramesPerOVWSample(mNumFramesPerOVWSample);
-        this.setMData(mData);
+    public CAFOverviewChunk(int editCount, int numFramesPerOVWSample) {
+        this.setEditCount(editCount);
+        this.setNumFramesPerOVWSample(numFramesPerOVWSample);
     }
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native int getMEditCount();
-    @StructMember(0) public native CAFOverviewChunk setMEditCount(int mEditCount);
-    @StructMember(1) public native int getMNumFramesPerOVWSample();
-    @StructMember(1) public native CAFOverviewChunk setMNumFramesPerOVWSample(int mNumFramesPerOVWSample);
-    @StructMember(2) public native @Array({1}) CAFOverviewSample getMData();
-    @StructMember(2) public native CAFOverviewChunk setMData(@Array({1}) CAFOverviewSample mData);
+    @StructMember(0) public native int getEditCount();
+    @StructMember(0) public native CAFOverviewChunk setEditCount(int editCount);
+    @StructMember(1) public native int getNumFramesPerOVWSample();
+    @StructMember(1) public native CAFOverviewChunk setNumFramesPerOVWSample(int numFramesPerOVWSample);
     /*</members>*/
+    @StructMember(2) public native CAFOverviewSample.CAFOverviewSamplePtr getData();
     /*<methods>*//*</methods>*/
 }

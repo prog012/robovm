@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -53,12 +54,12 @@ import org.robovm.apple.corelocation.*;
      * @since Available in iOS 7.0 and later.
      */
     @NotImplemented("layoutOrientation")
-    public NSTextLayoutOrientation getLayoutOrientation() { throw new UnsupportedOperationException(); }
+    public NSTextLayoutOrientation getLayoutOrientation() { return null; }
     /**
      * @since Available in iOS 7.0 and later.
      */
     @NotImplemented("setLayoutOrientation:")
-    public void setLayoutOrientation(NSTextLayoutOrientation v) { throw new UnsupportedOperationException(); }
+    public void setLayoutOrientation(NSTextLayoutOrientation v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

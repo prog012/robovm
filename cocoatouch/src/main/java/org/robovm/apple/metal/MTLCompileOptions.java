@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -51,7 +52,7 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "preprocessorMacros")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String> getPreprocessorMacros();
     @Property(selector = "setPreprocessorMacros:")
-    public native void setPreprocessorMacros(@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class) Map<String, String> v);
+    public native void setPreprocessorMacros(@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringStringMapMarshaler.class)Map<String, String> v);
     @Property(selector = "fastMathEnabled")
     public native boolean isFastMathEnabled();
     @Property(selector = "setFastMathEnabled:")

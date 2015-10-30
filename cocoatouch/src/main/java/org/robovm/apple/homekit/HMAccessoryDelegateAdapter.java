@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -48,16 +49,16 @@ import org.robovm.apple.foundation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("accessoryDidUpdateName:")
-    public void didUpdateName(HMAccessory accessory) { throw new UnsupportedOperationException(); }
+    public void didUpdateName(HMAccessory accessory) {}
     @NotImplemented("accessory:didUpdateNameForService:")
-    public void didUpdateServiceName(HMAccessory accessory, HMService service) { throw new UnsupportedOperationException(); }
+    public void didUpdateServiceName(HMAccessory accessory, HMService service) {}
     @NotImplemented("accessory:didUpdateAssociatedServiceTypeForService:")
-    public void didUpdateAssociatedServiceType(HMAccessory accessory, HMService service) { throw new UnsupportedOperationException(); }
+    public void didUpdateAssociatedServiceType(HMAccessory accessory, HMService service) {}
     @NotImplemented("accessoryDidUpdateServices:")
-    public void didUpdateServices(HMAccessory accessory) { throw new UnsupportedOperationException(); }
+    public void didUpdateServices(HMAccessory accessory) {}
     @NotImplemented("accessoryDidUpdateReachability:")
-    public void didUpdateReachability(HMAccessory accessory) { throw new UnsupportedOperationException(); }
+    public void didUpdateReachability(HMAccessory accessory) {}
     @NotImplemented("accessory:service:didUpdateValueForCharacteristic:")
-    public void didUpdateCharacteristicValue(HMAccessory accessory, HMService service, HMCharacteristic characteristic) { throw new UnsupportedOperationException(); }
+    public void didUpdateCharacteristicValue(HMAccessory accessory, HMService service, HMCharacteristic characteristic) {}
     /*</methods>*/
 }

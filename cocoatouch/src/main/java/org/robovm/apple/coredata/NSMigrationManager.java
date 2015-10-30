@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -73,9 +74,9 @@ import org.robovm.apple.foundation.*;
     @Property(selector = "migrationProgress")
     public native float getMigrationProgress();
     @Property(selector = "userInfo")
-    public native NSDictionary<?, ?> getUserInfo();
+    public native NSDictionary getUserInfo();
     @Property(selector = "setUserInfo:")
-    public native void setUserInfo(NSDictionary<?, ?> v);
+    public native void setUserInfo(NSDictionary v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /**
@@ -91,33 +92,19 @@ import org.robovm.apple.foundation.*;
      * @throws NSErrorException
      */
     public boolean migrateStore(NSURL sourceURL, NSPersistentStoreType sStoreType, NSPersistentStoreOptions sOptions, NSMappingModel mappings, NSURL dURL, NSPersistentStoreType dStoreType, NSPersistentStoreOptions dOptions) throws NSErrorException {
-        return migrateStore(sourceURL, sStoreType.value(), sOptions, mappings, dURL, dStoreType.value(), dOptions);
-    }
-    /**
-     * 
-     * @param sourceURL
-     * @param sStoreType
-     * @param sOptions
-     * @param mappings
-     * @param dURL
-     * @param dStoreType
-     * @param dOptions
-     * @return
-     * @throws NSErrorException
-     */
-    public boolean migrateStore(NSURL sourceURL, String sStoreType, NSPersistentStoreOptions sOptions, NSMappingModel mappings, NSURL dURL, String dStoreType, NSPersistentStoreOptions dOptions) throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        boolean result = migrateStore(sourceURL, sStoreType, sOptions, mappings, dURL, dStoreType, dOptions, err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
+        return migrateStore(sourceURL, sStoreType.value().toString(), sOptions, mappings, dURL, dStoreType.value().toString(), dOptions);
     }
     /*<methods>*/
     @Method(selector = "initWithSourceModel:destinationModel:")
     protected native @Pointer long init(NSManagedObjectModel sourceModel, NSManagedObjectModel destinationModel);
+    public boolean migrateStore(NSURL sourceURL, String sStoreType, NSPersistentStoreOptions sOptions, NSMappingModel mappings, NSURL dURL, String dStoreType, NSPersistentStoreOptions dOptions) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = migrateStore(sourceURL, sStoreType, sOptions, mappings, dURL, dStoreType, dOptions, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "migrateStoreFromURL:type:options:withMappingModel:toDestinationURL:destinationType:destinationOptions:error:")
-    protected native boolean migrateStore(NSURL sourceURL, String sStoreType, NSPersistentStoreOptions sOptions, NSMappingModel mappings, NSURL dURL, String dStoreType, NSPersistentStoreOptions dOptions, NSError.NSErrorPtr error);
+    private native boolean migrateStore(NSURL sourceURL, String sStoreType, NSPersistentStoreOptions sOptions, NSMappingModel mappings, NSURL dURL, String dStoreType, NSPersistentStoreOptions dOptions, NSError.NSErrorPtr error);
     @Method(selector = "reset")
     public native void reset();
     @Method(selector = "sourceEntityForEntityMapping:")

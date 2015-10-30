@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -54,11 +55,11 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("awakeFromNib")
-    public void awakeFromNib() { throw new UnsupportedOperationException(); }
+    public void awakeFromNib() {}
     /**
      * @since Available in iOS 8.0 and later.
      */
     @NotImplemented("prepareForInterfaceBuilder")
-    public void prepareForInterfaceBuilder() { throw new UnsupportedOperationException(); }
+    public void prepareForInterfaceBuilder() {}
     /*</methods>*/
 }

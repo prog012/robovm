@@ -1,5 +1,5 @@
 package: org.robovm.apple.coreanimation
-include: [coregraphics.yaml, foundation.yaml, coreimage.yaml, coretext.yaml, opengles.yaml, metal.yaml]
+include: [foundation.yaml, coregraphics.yaml, coreimage.yaml, coretext.yaml, opengles.yaml, metal.yaml]
 library: QuartzCore
 framework: QuartzCore
 clang_args: ['-x', 'objective-c']
@@ -21,9 +21,6 @@ categories:
     CALayerDelegate@NSObject: {protocol: true}
 
 classes:
-    CoreAnimation:
-        annotations: ['@Marshaler(NSString.AsStringMarshaler.class)']
-
     # Structs
     CATransform3D: {}
 
@@ -54,13 +51,12 @@ classes:
             '+displayLinkWithTarget:selector:':
                 name: create
     CAEAGLLayer: # DONE
+        annotations: ['@WeaklyLinked']
         protocols: [EAGLDrawable]
     CAEmitterCell: # DONE
         properties:
             'emitterCells':
                 type: NSArray<CAEmitterCell>
-            'style':
-                type: NSDictionary<NSString, NSObject>  
             'minificationFilter':
                 type: CAFilter
             'magnificationFilter':
@@ -86,7 +82,7 @@ classes:
     CAGradientLayer: # DONE
         properties:
             'colors':
-                type: '@org.robovm.rt.bro.annotation.Marshaler(NSArray.AsListMarshaler.class) List<CGColor>'
+                type: '@org.robovm.rt.bro.annotation.Marshaler(CGColor.AsListMarshaler.class) List<CGColor>'
             'locations':
                 type: NSArray<NSNumber>
             'type':
@@ -119,14 +115,15 @@ classes:
                 type: NSArray<CALayer>
             'compositingFilter':
                 type: CIFilter
+                annotations: ['@WeaklyLinked']
             'filters':
                 type: NSArray<CIFilter>
+                annotations: ['@WeaklyLinked']
             'backgroundFilters':
                 type: NSArray<CIFilter>
+                annotations: ['@WeaklyLinked']
             'actions':
                 type: '@org.robovm.rt.bro.annotation.Marshaler(NSDictionary.AsStringMapMarshaler.class) Map<String, CAAction>'
-            'style':
-                type: NSDictionary<NSString, NSObject>
             'minificationFilter':
                 type: CAFilter
             'magnificationFilter':
@@ -227,7 +224,10 @@ classes:
             '+functionWithControlPoints::::':
                 name: create
                 return_type: CAMediaTimingFunction
-    CAMetalLayer: {} # DONE
+    CAMetalLayer: # DONE
+        properties:
+            '(device|pixelFormat)':
+                annotations: ['@WeaklyLinked']
     CAPropertyAnimation: # DONE
         methods:
             '+animationWithKeyPath:':
@@ -299,6 +299,7 @@ classes:
         properties:
             'filter':
                 type: CIFilter
+                annotations: ['@WeaklyLinked']
             'type':
                 type: CATransitionType
             'subtype':
@@ -346,7 +347,10 @@ protocols:
                 name: layoutSublayers
             '-actionForLayer:forKey:':
                 name: getAction
-    CAMetalDrawable: {} # DONE
+    CAMetalDrawable: # DONE
+        properties:
+            'texture':
+                annotations: ['@WeaklyLinked']
 
 functions:
     # CATransform3D
@@ -371,114 +375,100 @@ functions:
         name: 'Function__#{g[0]}'
 
 values:     
+    # CAEmitterBehavior
+    kCAEmitterBehavior.*: # exclude for now
+        exclude: true 
 
     # CAEmitterLayer
     kCAEmitterLayer(Point|Line|Rectangle|Cuboid|Circle|Sphere):
-        class: CAEmitterShape
-        name: '#{g[0]}Value'
+        enum: CAEmitterShape
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
     kCAEmitterLayer(Points|Outline|Surface|Volume):
-        class: CAEmitterMode
-        name: '#{g[0]}Value'
+        enum: CAEmitterMode
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
     kCAEmitterLayer(Unordered|OldestFirst|OldestLast|BackToFront|Additive):
-        class: CAEmitterRenderMode
-        name: '#{g[0]}Value'
+        enum: CAEmitterRenderMode
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
 
     # CAGradientLayer
     kCAGradientLayer(.*):
-        class: CAGradientType
-        name: '#{g[0]}Value'
+        enum: CAGradientType
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
 
     # CAKeyframeAnimation
     kCAAnimationRotate(.*):
-        class: CAAnimationRotationMode
-        name: '#{g[0]}Value'
+        enum: CAAnimationRotationMode
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
     kCAAnimation(.*):
-        class: CAAnimationCalculationMode
-        name: '#{g[0]}Value'
+        enum: CAAnimationCalculationMode
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
 
     # CALayer
     kCAGravity(.*):
-        class: CAGravity
-        name: '#{g[0]}Value'
+        enum: CAGravity
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
     kCAFilter(.*):
-        class: CAFilter
-        name: '#{g[0]}Value'
+        enum: CAFilter
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
     kCA(OnOrderIn|OnOrderOut|Transition):
         class: CAActionIdentifier
         name: '#{g[0]}'
 
     # CAMediaTiming
     kCAFillMode(.*):
-        class: CAFillMode
-        name: '#{g[0]}Value'
+        enum: CAFillMode
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
 
     # CAMediaTimingFunction
     kCAMediaTimingFunction(.*):
-        class: CAMediaTimingFunctionName
-        name: '#{g[0]}Value'
+        enum: CAMediaTimingFunctionName
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
 
     # CAScrollLayer
     kCAScroll(.*):
-        class: CAScrollMode
-        name: '#{g[0]}Value'
+        enum: CAScrollMode
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
 
     # CAShapeLayer
     kCAFillRule(.*):
-        class: CAShapeFillRule
-        name: '#{g[0]}Value'
+        enum: CAShapeFillRule
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
     kCALineJoin(.*):
-        class: CALineJoin
-        name: '#{g[0]}Value'
+        enum: CALineJoin
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
     kCALineCap(.*):
-        class: CALineCap
-        name: '#{g[0]}Value'
+        enum: CALineCap
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
 
     # CATextLayer
     kCAAlignment(.*):
-        class: CATextAlignmentMode
-        name: '#{g[0]}Value'
+        enum: CATextAlignmentMode
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected 
     kCATruncation(.*):
-        class: CATextTruncationMode
-        name: '#{g[0]}Value'
+        enum: CATextTruncationMode
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected 
 
     # CATransaction
     kCATransaction(.*):
-        class: CATransactionProperty
-        name: '#{g[0]}Value'
+        enum: CATransactionProperty
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
 
     # CATransform3D
     CATransform3D(Identity):
@@ -487,22 +477,19 @@ values:
 
     # CATransition
     kCATransition(From.*):
-        class: CATransitionSubType
-        name: '#{g[0]}Value'
+        enum: CATransitionSubType
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
     kCATransition(.*):
-        class: CATransitionType
-        name: '#{g[0]}Value'
+        enum: CATransitionType
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
 
     # CAValueFunction
     kCAValueFunction(.*):
-        class: CAValueFunctionName
-        name: '#{g[0]}Value'
+        enum: CAValueFunctionName
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
 
     k?CA(.*):
         class: CoreAnimation

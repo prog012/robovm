@@ -23,12 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.dispatch.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
+import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -47,19 +48,23 @@ import org.robovm.apple.corefoundation.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /**
+     * @throws OSStatusException 
      * @since Available in iOS 2.0 and later.
      */
-    public SecCertificate getCertificate() {
+    public SecCertificate getCertificate() throws OSStatusException {
         SecCertificate.SecCertificatePtr ptr = new SecCertificate.SecCertificatePtr();
-        getCertificate(ptr);
+        OSStatus status = getCertificate0(ptr);
+        OSStatusException.throwIfNecessary(status);
         return ptr.get();
     }
     /**
+     * @throws OSStatusException 
      * @since Available in iOS 2.0 and later.
      */
-    public SecKey getPrivateKey() {
+    public SecKey getPrivateKey() throws OSStatusException {
         SecKey.SecKeyPtr ptr = new SecKey.SecKeyPtr();
-        getPrivateKey(ptr);
+        OSStatus status = getPrivateKey0(ptr);
+        OSStatusException.throwIfNecessary(status);
         return ptr.get();
     }
     /*<methods>*/
@@ -72,11 +77,11 @@ import org.robovm.apple.corefoundation.*;
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="SecIdentityCopyCertificate", optional=true)
-    protected native OSStatus getCertificate(SecCertificate.SecCertificatePtr certificateRef);
+    protected native OSStatus getCertificate0(SecCertificate.SecCertificatePtr certificateRef);
     /**
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="SecIdentityCopyPrivateKey", optional=true)
-    protected native OSStatus getPrivateKey(SecKey.SecKeyPtr privateKeyRef);
+    protected native OSStatus getPrivateKey0(SecKey.SecKeyPtr privateKeyRef);
     /*</methods>*/
 }

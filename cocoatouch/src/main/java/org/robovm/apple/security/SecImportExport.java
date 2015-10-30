@@ -23,12 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.dispatch.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
+import org.robovm.apple.dispatch.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -46,11 +47,13 @@ import org.robovm.apple.corefoundation.*;
     /*<properties>*//*</properties>*/
     /*<members>*//*</members>*/
     /**
+     * @throws OSStatusException 
      * @since Available in iOS 2.0 and later.
      */
-    public static List<SecImportItem> importPKCS12(NSData pkcs12_data, SecImportExportOptions options) {
+    public static List<SecImportItem> importPKCS12(NSData pkcs12_data, SecImportExportOptions options) throws OSStatusException {
         CFArray.CFArrayPtr ptr = new CFArray.CFArrayPtr();
-        importPKCS12(pkcs12_data, options, ptr);
+        OSStatus status = importPKCS120(pkcs12_data, options, ptr);
+        OSStatusException.throwIfNecessary(status);
         CFArray arr = ptr.get();
         
         if (arr == null) {
@@ -67,6 +70,6 @@ import org.robovm.apple.corefoundation.*;
      * @since Available in iOS 2.0 and later.
      */
     @Bridge(symbol="SecPKCS12Import", optional=true)
-    protected static native OSStatus importPKCS12(NSData pkcs12_data, SecImportExportOptions options, CFArray.CFArrayPtr items);
+    protected static native OSStatus importPKCS120(NSData pkcs12_data, SecImportExportOptions options, CFArray.CFArrayPtr items);
     /*</methods>*/
 }

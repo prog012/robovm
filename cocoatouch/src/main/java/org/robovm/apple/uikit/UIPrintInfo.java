@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -51,6 +52,7 @@ import org.robovm.apple.corelocation.*;
     /*<constructors>*/
     public UIPrintInfo() {}
     protected UIPrintInfo(SkipInit skipInit) { super(skipInit); }
+    public UIPrintInfo(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "printerID")
@@ -77,12 +79,14 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "dictionaryRepresentation")
-    public native NSDictionary<?, ?> toDictionary();
+    public native NSDictionary toDictionary();
     @Method(selector = "printInfo")
     public static native UIPrintInfo getPrintInfo();
     @Method(selector = "printInfoWithDictionary:")
-    public static native UIPrintInfo create(NSDictionary<?, ?> dictionary);
+    public static native UIPrintInfo create(NSDictionary dictionary);
     @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder aCoder);
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -52,6 +53,7 @@ import org.robovm.apple.corelocation.*;
     public UIView() {}
     protected UIView(SkipInit skipInit) { super(skipInit); }
     public UIView(@ByVal CGRect frame) { super((SkipInit) null); initObject(init(frame)); }
+    public UIView(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "isUserInteractionEnabled")
@@ -62,6 +64,7 @@ import org.robovm.apple.corelocation.*;
     public native @MachineSizedSInt long getTag();
     @Property(selector = "setTag:")
     public native void setTag(@MachineSizedSInt long v);
+    @WeaklyLinked
     @Property(selector = "layer")
     public native CALayer getLayer();
     @Property(selector = "frame")
@@ -257,6 +260,7 @@ import org.robovm.apple.corelocation.*;
     
     @Method(selector = "initWithFrame:")
     protected native @Pointer long init(@ByVal CGRect frame);
+    @WeaklyLinked
     @Method(selector = "layerClass")
     public static native Class<? extends CALayer> getLayerClass();
     @Method(selector = "hitTest:withEvent:")
@@ -601,7 +605,9 @@ import org.robovm.apple.corelocation.*;
     @Method(selector = "drawRect:forViewPrintFormatter:")
     public native void draw(@ByVal CGRect rect, UIViewPrintFormatter formatter);
     @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder aCoder);
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     @Method(selector = "traitCollectionDidChange:")
     public native void traitCollectionDidChange(UITraitCollection previousTraitCollection);
     /**

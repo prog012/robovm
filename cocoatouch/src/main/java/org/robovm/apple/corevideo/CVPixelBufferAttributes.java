@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -30,7 +31,6 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.opengles.*;
-import org.robovm.apple.coremedia.*;
 import org.robovm.apple.metal.*;
 /*</imports>*/
 
@@ -63,7 +63,7 @@ import org.robovm.apple.metal.*;
     public static class AsListMarshaler {
         @MarshalsPointer
         public static List<CVPixelBufferAttributes> toObject(Class<? extends CFType> cls, long handle, long flags) {
-            CFArray o = (CFArray) CFType.Marshaler.toObject(cls, handle, flags);
+            CFArray o = (CFArray) CFType.Marshaler.toObject(CFArray.class, handle, flags);
             if (o == null) {
                 return null;
             }
@@ -317,9 +317,9 @@ import org.robovm.apple.metal.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public NSDictionary<NSString, NSObject> getIOSurfaceProperties() {
+    public NSDictionary getIOSurfaceProperties() {
         if (has(CVPixelBufferAttribute.IOSurfaceProperties)) {
-            NSDictionary<NSString, NSObject> val = get(CVPixelBufferAttribute.IOSurfaceProperties, NSDictionary.class);
+            NSDictionary val = get(CVPixelBufferAttribute.IOSurfaceProperties, NSDictionary.class);
             return val;
         }
         return null;
@@ -327,7 +327,7 @@ import org.robovm.apple.metal.*;
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public CVPixelBufferAttributes setIOSurfaceProperties(NSDictionary<NSString, NSObject> iOSurfaceProperties) {
+    public CVPixelBufferAttributes setIOSurfaceProperties(NSDictionary iOSurfaceProperties) {
         set(CVPixelBufferAttribute.IOSurfaceProperties, iOSurfaceProperties);
         return this;
     }

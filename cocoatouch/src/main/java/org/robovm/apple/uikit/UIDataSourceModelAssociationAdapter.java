@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -54,8 +55,8 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("modelIdentifierForElementAtIndexPath:inView:")
-    public String getElementModelIdentifier(NSIndexPath idx, UIView view) { throw new UnsupportedOperationException(); }
+    public String getElementModelIdentifier(NSIndexPath idx, UIView view) { return null; }
     @NotImplemented("indexPathForElementWithModelIdentifier:inView:")
-    public NSIndexPath getElementIndexPath(String identifier, UIView view) { throw new UnsupportedOperationException(); }
+    public NSIndexPath getElementIndexPath(String identifier, UIView view) { return null; }
     /*</methods>*/
 }

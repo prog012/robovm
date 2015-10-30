@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -30,7 +31,6 @@ import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.opengles.*;
-import org.robovm.apple.coremedia.*;
 import org.robovm.apple.metal.*;
 /*</imports>*/
 
@@ -82,12 +82,12 @@ import org.robovm.apple.metal.*;
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CVBufferGetAttachments", optional=true)
-    protected native NSDictionary<NSString, ?> getAttachments(CVAttachmentMode attachmentMode);
+    protected native NSDictionary getAttachments(CVAttachmentMode attachmentMode);
     /**
      * @since Available in iOS 4.0 and later.
      */
     @Bridge(symbol="CVBufferSetAttachments", optional=true)
-    protected native void setAttachments(NSDictionary<NSString, ?> theAttachments, CVAttachmentMode attachmentMode);
+    protected native void setAttachments(NSDictionary theAttachments, CVAttachmentMode attachmentMode);
     /**
      * @since Available in iOS 4.0 and later.
      */

@@ -23,29 +23,30 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.corelocation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.corelocation.*;
 import org.robovm.apple.avfoundation.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /*</javadoc>*/
-@Marshaler(PHContentEditingInputRequestResult.Marshaler.class)
 /*<annotations>*/@Library("Photos")/*</annotations>*/
+@Marshaler(/*<name>*/PHContentEditingInputRequestResult/*</name>*/.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/PHContentEditingInputRequestResult/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    extends /*<extends>*/NSDictionaryWrapper/*</extends>*/
     /*<implements>*//*</implements>*/ {
 
+    /*<marshalers>*/
     public static class Marshaler {
-        @SuppressWarnings("unchecked")
         @MarshalsPointer
         public static PHContentEditingInputRequestResult toObject(Class<PHContentEditingInputRequestResult> cls, long handle, long flags) {
-            NSDictionary<NSString, NSObject> o = (NSDictionary<NSString, NSObject>) NSObject.Marshaler.toObject(NSDictionary.class, handle, flags);
+            NSDictionary o = (NSDictionary) NSObject.Marshaler.toObject(NSDictionary.class, handle, flags);
             if (o == null) {
                 return null;
             }
@@ -59,30 +60,57 @@ import org.robovm.apple.avfoundation.*;
             return NSObject.Marshaler.toNative(o.data, flags);
         }
     }
-    
-    /*<ptr>*/
-    /*</ptr>*/
-    private NSDictionary<NSString, NSObject> data;
-    
-    protected PHContentEditingInputRequestResult(NSDictionary<NSString, NSObject> data) {
-        this.data = data;
+    public static class AsListMarshaler {
+        @MarshalsPointer
+        public static List<PHContentEditingInputRequestResult> toObject(Class<? extends NSObject> cls, long handle, long flags) {
+            NSArray<NSDictionary> o = (NSArray<NSDictionary>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
+            if (o == null) {
+                return null;
+            }
+            List<PHContentEditingInputRequestResult> list = new ArrayList<>();
+            for (int i = 0; i < o.size(); i++) {
+                list.add(new PHContentEditingInputRequestResult(o.get(i)));
+            }
+            return list;
+        }
+        @MarshalsPointer
+        public static long toNative(List<PHContentEditingInputRequestResult> l, long flags) {
+            if (l == null) {
+                return 0L;
+            }
+            NSArray<NSDictionary> array = new NSMutableArray<>();
+            for (PHContentEditingInputRequestResult i : l) {
+                array.add(i.getDictionary());
+            }
+            return NSObject.Marshaler.toNative(array, flags);
+        }
     }
-    /*<bind>*/static { Bro.bind(PHContentEditingInputRequestResult.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
-    public NSDictionary<NSString, NSObject> getDictionary() {
-        return data;
+    /*</marshalers>*/
+
+    /*<constructors>*/
+    PHContentEditingInputRequestResult(NSDictionary data) {
+        super(data);
+    }
+    /*</constructors>*/
+
+    /*<methods>*/
+    public boolean has(NSString key) {
+        return data.containsKey(key);
+    }
+    public NSObject get(NSString key) {
+        if (has(key)) {
+            return data.get(key);
+        }
+        return null;
     }
     
-    
+
     /**
      * @since Available in iOS 8.0 and later.
      */
     public boolean isResultInCloud() {
-        if (data.containsKey(ResultIsInCloudKey())) {
-            NSNumber val = (NSNumber) data.get(ResultIsInCloudKey());
+        if (has(Keys.ResultIsInCloud())) {
+            NSNumber val = (NSNumber) get(Keys.ResultIsInCloud());
             return val.booleanValue();
         }
         return false;
@@ -91,8 +119,8 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 8.0 and later.
      */
     public boolean isCancelled() {
-        if (data.containsKey(CancelledKey())) {
-            NSNumber val = (NSNumber) data.get(CancelledKey());
+        if (has(Keys.Cancelled())) {
+            NSNumber val = (NSNumber) get(Keys.Cancelled());
             return val.booleanValue();
         }
         return false;
@@ -101,32 +129,33 @@ import org.robovm.apple.avfoundation.*;
      * @since Available in iOS 8.0 and later.
      */
     public NSError getError() {
-        if (data.containsKey(ErrorKey())) {
-            NSError val = (NSError) data.get(ErrorKey());
+        if (has(Keys.Error())) {
+            NSError val = (NSError) get(Keys.Error());
             return val;
         }
         return null;
     }
-    /*<methods>*/
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @GlobalValue(symbol="PHContentEditingInputResultIsInCloudKey", optional=true)
-    protected static native NSString ResultIsInCloudKey();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @GlobalValue(symbol="PHContentEditingInputCancelledKey", optional=true)
-    protected static native NSString CancelledKey();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @GlobalValue(symbol="PHContentEditingInputErrorKey", optional=true)
-    protected static native NSString ErrorKey();
     /*</methods>*/
-    @Override
-    public String toString() {
-        if (data != null) return data.toString();
-        return super.toString();
+    
+    /*<keys>*/
+    @Library("Photos")
+    public static class Keys {
+        static { Bro.bind(Keys.class); }
+        /**
+         * @since Available in iOS 8.0 and later.
+         */
+        @GlobalValue(symbol="PHContentEditingInputResultIsInCloudKey", optional=true)
+        public static native NSString ResultIsInCloud();
+        /**
+         * @since Available in iOS 8.0 and later.
+         */
+        @GlobalValue(symbol="PHContentEditingInputCancelledKey", optional=true)
+        public static native NSString Cancelled();
+        /**
+         * @since Available in iOS 8.0 and later.
+         */
+        @GlobalValue(symbol="PHContentEditingInputErrorKey", optional=true)
+        public static native NSString Error();
     }
+    /*</keys>*/
 }

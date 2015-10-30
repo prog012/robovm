@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -100,6 +101,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public CMTextMarkupAttributes getLinkTextMarkupAttributes() {
         NSDictionary<NSString, NSObject> dict = getLinkTextAttributesDictionary();
         if (dict == null) return null;
@@ -108,6 +110,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public CTAttributedStringAttributes getLinkCoreTextAttributes() {
         NSDictionary<NSString, NSObject> dict = getLinkTextAttributesDictionary();
         if (dict == null) return null;
@@ -116,6 +119,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public void setLinkTextAttributes(NSAttributedStringAttributes v) {
         if (v == null) {
             setLinkTextAttributesDictionary(null);
@@ -126,6 +130,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public void setLinkTextMarkupAttributes(CMTextMarkupAttributes v) {
         if (v == null) {
             setLinkTextAttributesDictionary(null);
@@ -136,6 +141,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public void setLinkCoreTextAttributes(CTAttributedStringAttributes v) {
         if (v == null) {
             setLinkTextAttributesDictionary(null);
@@ -155,6 +161,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     /**
      * @since Available in iOS 6.0 and later.
      */
+    @WeaklyLinked
     public CMTextMarkupAttributes getTypingTextMarkupAttributes() {
         NSDictionary<NSString, NSObject> dict = getTypingAttributesDictionary();
         if (dict == null) return null;
@@ -163,6 +170,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     /**
      * @since Available in iOS 6.0 and later.
      */
+    @WeaklyLinked
     public CTAttributedStringAttributes getTypingCoreTextAttributes() {
         NSDictionary<NSString, NSObject> dict = getTypingAttributesDictionary();
         if (dict == null) return null;
@@ -181,6 +189,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     /**
      * @since Available in iOS 6.0 and later.
      */
+    @WeaklyLinked
     public void setTypingTextMarkupAttributes(CMTextMarkupAttributes v) {
         if (v == null) {
             setTypingAttributesDictionary(null);
@@ -191,6 +200,7 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
     /**
      * @since Available in iOS 6.0 and later.
      */
+    @WeaklyLinked
     public void setTypingCoreTextAttributes(CTAttributedStringAttributes v) {
         if (v == null) {
             setTypingAttributesDictionary(null);
@@ -271,12 +281,12 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      * @since Available in iOS 6.0 and later.
      */
     @Property(selector = "typingAttributes")
-    public native NSDictionary<NSString, NSObject> getTypingAttributesDictionary();
+    public native NSDictionary getTypingAttributesDictionary();
     /**
      * @since Available in iOS 6.0 and later.
      */
     @Property(selector = "setTypingAttributes:")
-    public native void setTypingAttributesDictionary(NSDictionary<NSString, NSObject> v);
+    public native void setTypingAttributesDictionary(NSDictionary v);
     @Property(selector = "inputView")
     public native UIView getInputView();
     @Property(selector = "setInputView:")
@@ -324,12 +334,12 @@ import org.robovm.apple.coremedia.CMTextMarkupAttributes;
      * @since Available in iOS 7.0 and later.
      */
     @Property(selector = "linkTextAttributes")
-    public native NSDictionary<NSString, NSObject> getLinkTextAttributesDictionary();
+    public native NSDictionary getLinkTextAttributesDictionary();
     /**
      * @since Available in iOS 7.0 and later.
      */
     @Property(selector = "setLinkTextAttributes:")
-    public native void setLinkTextAttributesDictionary(NSDictionary<NSString, NSObject> v);
+    public native void setLinkTextAttributesDictionary(NSDictionary v);
     @Property(selector = "selectedTextRange")
     public native UITextRange getSelectedTextRange();
     @Property(selector = "setSelectedTextRange:")

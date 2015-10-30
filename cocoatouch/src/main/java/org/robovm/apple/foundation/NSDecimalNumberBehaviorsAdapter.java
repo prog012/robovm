@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -55,10 +57,10 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("roundingMode")
-    public NSRoundingMode getRoundingMode() { throw new UnsupportedOperationException(); }
+    public NSRoundingMode getRoundingMode() { return null; }
     @NotImplemented("scale")
-    public short getScale() { throw new UnsupportedOperationException(); }
+    public short getScale() { return 0; }
     @NotImplemented("exceptionDuringOperation:error:leftOperand:rightOperand:")
-    public NSDecimalNumber exceptionDuringOperation(Selector operation, NSCalculationError error, NSDecimalNumber leftOperand, NSDecimalNumber rightOperand) { throw new UnsupportedOperationException(); }
+    public NSDecimalNumber exceptionDuringOperation(Selector operation, NSCalculationError error, NSDecimalNumber leftOperand, NSDecimalNumber rightOperand) { return null; }
     /*</methods>*/
 }

@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -43,7 +44,11 @@ public final class /*<name>*/PKAddressField/*</name>*/ extends Bits</*<name>*/PK
     public static final PKAddressField PostalAddress = new PKAddressField(1L);
     public static final PKAddressField Phone = new PKAddressField(2L);
     public static final PKAddressField Email = new PKAddressField(4L);
-    public static final PKAddressField All = new PKAddressField(7L);
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    public static final PKAddressField Name = new PKAddressField(8L);
+    public static final PKAddressField All = new PKAddressField(15L);
     /*</values>*/
 
     /*<bind>*/

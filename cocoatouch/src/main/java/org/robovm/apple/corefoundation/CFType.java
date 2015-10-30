@@ -25,11 +25,16 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.dispatch.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.dispatch.*;
+import org.robovm.apple.coreservices.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -56,8 +61,14 @@ import org.robovm.apple.foundation.*;
             }
             long typeId = getTypeID(handle);
             Class<? extends CFType> cfTypeClass = allCFTypeClasses.get(typeId);
-            if (cfTypeClass != null) {
-                cls = cfTypeClass;
+            if (cfTypeClass != null && cfTypeClass != cls) {
+                if (cls.isAssignableFrom(cfTypeClass)) {
+                    /*
+                     * Only use cfTypeClass if it's a subclass of the expected
+                     * type (cls).
+                     */
+                    cls = cfTypeClass;
+                }
             }
             CFType o = (CFType) NativeObject.Marshaler.toObject(cls, handle, flags);
             if (retain) {
@@ -117,7 +128,7 @@ import org.robovm.apple.foundation.*;
         }
     }
 
-    private static final Map<Long, Class<? extends CFType>> allCFTypeClasses = new HashMap<>();
+    private static final LongMap<Class<? extends CFType>> allCFTypeClasses = new LongMap<>();
     private static final int ABSTRACT = 0x00000400;
     
     static {
@@ -129,11 +140,12 @@ import org.robovm.apple.foundation.*;
         for (Class<? extends CFType> cls : classes) {
             if (cls != cfTypeClass && (cls.getModifiers() & ABSTRACT) == 0) {
                 try {
-                    java.lang.reflect.Method m = cls.getMethod("getClassTypeID", emptyArgs);
+                    java.lang.reflect.Method m = cls.getDeclaredMethod("getClassTypeID", emptyArgs);
+                    m.setAccessible(true);
                     Long typeId = (Long) m.invoke(null);
                     allCFTypeClasses.put(typeId, cls);
                 } catch (Throwable e) {
-                	// Ignore, because several of Apple's CFType subclasses don't contain a getClassTypeID() method.
+                    // Ignore, because several of Apple's CFType subclasses don't contain a getClassTypeID() method.
                 }
             }
         }

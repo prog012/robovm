@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -62,10 +64,10 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     public void scheduleInRunLoop(NSRunLoop aRunLoop, NSRunLoopMode mode) {
-        scheduleInRunLoop(aRunLoop, mode.value());
+        scheduleInRunLoop(aRunLoop, mode.value().toString());
     }
     public void removeFromRunLoop(NSRunLoop aRunLoop, NSRunLoopMode mode) {
-        removeFromRunLoop(aRunLoop, mode.value());
+        removeFromRunLoop(aRunLoop, mode.value().toString());
     }
     /*<methods>*/
     @Method(selector = "initWithMachPort:")

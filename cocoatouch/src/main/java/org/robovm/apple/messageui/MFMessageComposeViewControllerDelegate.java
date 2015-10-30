@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -47,7 +48,7 @@ import org.robovm.apple.uikit.*;
     /*</properties>*/
     /*<methods>*/
     @Method(selector = "messageComposeViewController:didFinishWithResult:")
-    void didFinish(MFMessageComposeViewController controller, MessageComposeResult result);
+    void didFinish(MFMessageComposeViewController controller, MFMessageComposeResult result);
     /*</methods>*/
     /*<adapter>*/
     /*</adapter>*/

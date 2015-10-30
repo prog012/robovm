@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -60,37 +62,38 @@ import org.robovm.apple.dispatch.*;
         addTimer0(timer, mode);
     }
     public void addTimer(NSRunLoopMode mode, NSTimer timer) {
-        addTimer(mode.value(), timer);
+        addTimer(mode.value().toString(), timer);
     }
     public void addPort(String mode, NSPort port) {
         addPort0(port, mode);
     }
     public void addPort(NSRunLoopMode mode, NSPort port) {
-        addPort0(port, mode.value());
+        addPort0(port, mode.value().toString());
     }
     public void removePort(String mode, NSPort port) {
         removePort0(port, mode);
     }
     public void removePort(NSRunLoopMode mode, NSPort port) {
-        removePort0(port, mode.value());
+        removePort0(port, mode.value().toString());
     }
     public NSDate getDateLimit(NSRunLoopMode mode) {
-        return getDateLimit(mode.value());
+        return getDateLimit(mode.value().toString());
     }
     public void acceptInputUntil(NSRunLoopMode mode, NSDate limitDate) {
-        acceptInputUntil(mode.value(), limitDate);
+        acceptInputUntil(mode.value().toString(), limitDate);
     }
     public boolean runUntil(NSRunLoopMode mode, NSDate limitDate) {
-        return runUntil(mode.value(), limitDate);
+        return runUntil(mode.value().toString(), limitDate);
     }
     public void perform(Selector aSelector, NSObject target, NSObject arg, @MachineSizedUInt long order, NSRunLoopMode...modes) {
         List<String> list = new ArrayList<>();
         for (NSRunLoopMode mode : modes) {
-            list.add(mode.value());
+            list.add(mode.value().toString());
         }
         perform(aSelector, target, arg, order, list);
     }
     /*<methods>*/
+    @WeaklyLinked
     @Method(selector = "getCFRunLoop")
     public native CFRunLoop asCFRunLoop();
     @Method(selector = "addTimer:forMode:")

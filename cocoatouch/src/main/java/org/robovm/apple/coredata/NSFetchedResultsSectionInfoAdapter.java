@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -44,13 +45,13 @@ import org.robovm.apple.foundation.*;
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
     @NotImplemented("name")
-    public String getName() { throw new UnsupportedOperationException(); }
+    public String getName() { return null; }
     @NotImplemented("indexTitle")
-    public String getIndexTitle() { throw new UnsupportedOperationException(); }
+    public String getIndexTitle() { return null; }
     @NotImplemented("numberOfObjects")
-    public @MachineSizedUInt long getNumberOfObjects() { throw new UnsupportedOperationException(); }
+    public @MachineSizedUInt long getNumberOfObjects() { return 0; }
     @NotImplemented("objects")
-    public NSArray<NSManagedObject> getObjects() { throw new UnsupportedOperationException(); }
+    public NSArray<NSManagedObject> getObjects() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

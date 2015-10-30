@@ -23,19 +23,21 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -57,36 +59,36 @@ import org.robovm.apple.mediatoolbox.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("audioPlayerDidFinishPlaying:successfully:")
-    public void didFinishPlaying(AVAudioPlayer player, boolean flag) { throw new UnsupportedOperationException(); }
+    public void didFinishPlaying(AVAudioPlayer player, boolean flag) {}
     @NotImplemented("audioPlayerDecodeErrorDidOccur:error:")
-    public void decodeErrorDidOccur(AVAudioPlayer player, NSError error) { throw new UnsupportedOperationException(); }
+    public void decodeErrorDidOccur(AVAudioPlayer player, NSError error) {}
     /**
      * @since Available in iOS 2.2 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("audioPlayerBeginInterruption:")
-    public void beginInterruption(AVAudioPlayer player) { throw new UnsupportedOperationException(); }
+    public void beginInterruption(AVAudioPlayer player) {}
     /**
      * @since Available in iOS 6.0 and later.
      * @deprecated Deprecated in iOS 8.0.
      */
     @Deprecated
     @NotImplemented("audioPlayerEndInterruption:withOptions:")
-    public void endInterruptionWithOptions(AVAudioPlayer player, @MachineSizedUInt long flags) { throw new UnsupportedOperationException(); }
+    public void endInterruptionWithOptions(AVAudioPlayer player, @MachineSizedUInt long flags) {}
     /**
      * @since Available in iOS 4.0 and later.
      * @deprecated Deprecated in iOS 6.0.
      */
     @Deprecated
     @NotImplemented("audioPlayerEndInterruption:withFlags:")
-    public void endInterruptionWithFlags(AVAudioPlayer player, @MachineSizedUInt long flags) { throw new UnsupportedOperationException(); }
+    public void endInterruptionWithFlags(AVAudioPlayer player, @MachineSizedUInt long flags) {}
     /**
      * @since Available in iOS 2.2 and later.
      * @deprecated Deprecated in iOS 6.0.
      */
     @Deprecated
     @NotImplemented("audioPlayerEndInterruption:")
-    public void endInterruption(AVAudioPlayer player) { throw new UnsupportedOperationException(); }
+    public void endInterruption(AVAudioPlayer player) {}
     /*</methods>*/
 }

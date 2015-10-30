@@ -23,29 +23,34 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /*</javadoc>*/
-@Marshaler(AVLayerVideoGravity.Marshaler.class)
-/*<annotations>*/@Library("AVFoundation")/*</annotations>*/
+/*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+@Marshaler(/*<name>*/AVLayerVideoGravity/*</name>*/.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVLayerVideoGravity/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    extends /*<extends>*/GlobalValueEnumeration<NSString>/*</extends>*/
     /*<implements>*//*</implements>*/ {
-    
+
+    static { Bro.bind(/*<name>*/AVLayerVideoGravity/*</name>*/.class); }
+
+    /*<marshalers>*/
     public static class Marshaler {
         @MarshalsPointer
         public static AVLayerVideoGravity toObject(Class<AVLayerVideoGravity> cls, long handle, long flags) {
@@ -63,39 +68,57 @@ import org.robovm.apple.mediatoolbox.*;
             return NSObject.Marshaler.toNative(o.value(), flags);
         }
     }
+    public static class AsListMarshaler {
+        @SuppressWarnings("unchecked")
+        @MarshalsPointer
+        public static List<AVLayerVideoGravity> toObject(Class<? extends NSObject> cls, long handle, long flags) {
+            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
+            if (o == null) {
+                return null;
+            }
+            List<AVLayerVideoGravity> list = new ArrayList<>();
+            for (int i = 0; i < o.size(); i++) {
+                list.add(AVLayerVideoGravity.valueOf(o.get(i)));
+            }
+            return list;
+        }
+        @MarshalsPointer
+        public static long toNative(List<AVLayerVideoGravity> l, long flags) {
+            if (l == null) {
+                return 0L;
+            }
+            NSArray<NSString> array = new NSMutableArray<>();
+            for (AVLayerVideoGravity o : l) {
+                array.add(o.value());
+            }
+            return NSObject.Marshaler.toNative(array, flags);
+        }
+    }
+    /*</marshalers>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(AVLayerVideoGravity.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static final AVLayerVideoGravity ResizeAspect = new AVLayerVideoGravity("ResizeAspectValue");
+    public static final AVLayerVideoGravity ResizeAspect = new AVLayerVideoGravity("ResizeAspect");
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static final AVLayerVideoGravity ResizeAspectFill = new AVLayerVideoGravity("ResizeAspectFillValue");
+    public static final AVLayerVideoGravity ResizeAspectFill = new AVLayerVideoGravity("ResizeAspectFill");
     /**
      * @since Available in iOS 4.0 and later.
      */
-    public static final AVLayerVideoGravity Resize = new AVLayerVideoGravity("ResizeValue");
+    public static final AVLayerVideoGravity Resize = new AVLayerVideoGravity("Resize");
+    /*</constants>*/
     
-    private static AVLayerVideoGravity[] values = new AVLayerVideoGravity[] {ResizeAspect, ResizeAspectFill, Resize};
-    private final LazyGlobalValue<NSString> lazyGlobalValue;
+    private static /*<name>*/AVLayerVideoGravity/*</name>*/[] values = new /*<name>*/AVLayerVideoGravity/*</name>*/[] {/*<value_list>*/ResizeAspect, ResizeAspectFill, Resize/*</value_list>*/};
     
-    private AVLayerVideoGravity(String getterName) {
-        lazyGlobalValue = new LazyGlobalValue<>(getClass(), getterName);
-    }
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
-    public NSString value() {
-        return lazyGlobalValue.value();
+    /*<name>*/AVLayerVideoGravity/*</name>*/ (String getterName) {
+        super(Values.class, getterName);
     }
     
-    public static AVLayerVideoGravity valueOf(NSString value) {
-        for (AVLayerVideoGravity v : values) {
+    public static /*<name>*/AVLayerVideoGravity/*</name>*/ valueOf(/*<type>*/NSString/*</type>*/ value) {
+        for (/*<name>*/AVLayerVideoGravity/*</name>*/ v : values) {
             if (v.value().equals(value)) {
                 return v;
             }
@@ -103,21 +126,29 @@ import org.robovm.apple.mediatoolbox.*;
         throw new IllegalArgumentException("No constant with value " + value + " found in " 
             + /*<name>*/AVLayerVideoGravity/*</name>*/.class.getName());
     }
-    /*<methods>*/
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVLayerVideoGravityResizeAspect", optional=true)
-    protected static native NSString ResizeAspectValue();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVLayerVideoGravityResizeAspectFill", optional=true)
-    protected static native NSString ResizeAspectFillValue();
-    /**
-     * @since Available in iOS 4.0 and later.
-     */
-    @GlobalValue(symbol="AVLayerVideoGravityResize", optional=true)
-    protected static native NSString ResizeValue();
-    /*</methods>*/
+    
+    /*<methods>*//*</methods>*/
+    
+    /*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+    public static class Values {
+    	static { Bro.bind(Values.class); }
+
+        /*<values>*/
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVLayerVideoGravityResizeAspect", optional=true)
+        public static native NSString ResizeAspect();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVLayerVideoGravityResizeAspectFill", optional=true)
+        public static native NSString ResizeAspectFill();
+        /**
+         * @since Available in iOS 4.0 and later.
+         */
+        @GlobalValue(symbol="AVLayerVideoGravityResize", optional=true)
+        public static native NSString Resize();
+        /*</values>*/
+    }
 }

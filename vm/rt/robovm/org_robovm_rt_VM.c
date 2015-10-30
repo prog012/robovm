@@ -51,12 +51,12 @@ Object* Java_org_robovm_rt_VM_classPath(Env* env, Class* c) {
     return rvmNewStringUTF(env, classpath, -1);
 }
 
-Object* Java_org_robovm_rt_VM_basePath(Env* env, Class* c) {
-    return rvmNewStringUTF(env, env->vm->options->basePath, -1);
+Object* Java_org_robovm_rt_VM_resourcesPath(Env* env, Class* c) {
+    return rvmNewStringUTF(env, env->vm->options->resourcesPath, -1);
 }
 
-Object* Java_org_robovm_rt_VM_executablePath(Env* env, Class* c) {
-    return rvmNewStringUTF(env, env->vm->options->executablePath, -1);
+Object* Java_org_robovm_rt_VM_imagePath(Env* env, Class* c) {
+    return rvmNewStringUTF(env, env->vm->options->imagePath, -1);
 }
 
 ObjectArray* Java_org_robovm_rt_VM_staticLibs(Env* env, Class* c) {
@@ -81,6 +81,25 @@ ObjectArray* Java_org_robovm_rt_VM_staticLibs(Env* env, Class* c) {
     }
 
     return result;
+}
+
+ByteArray* Java_org_robovm_rt_VM_getRuntimeData0(Env* env, Class* c) {
+    Options* options = env->vm->options;
+    if (!options->runtimeData) {
+        return NULL;
+    }
+    void* p = options->runtimeData;
+    jint length = *((jint*) p);
+    if (length == 0) {
+        return NULL;
+    }
+    p += sizeof(jint);
+    ByteArray* data = rvmNewByteArray(env, length);
+    if (!data) {
+        return NULL;
+    }
+    memcpy(data->values, p, length);
+    return data;
 }
 
 ObjectArray* Java_org_robovm_rt_VM_getStackClasses(Env* env, Class* c, jint skipNum, jint maxDepth) {
@@ -421,7 +440,7 @@ DoubleArray* Java_org_robovm_rt_VM_newDoubleArray(Env* env, Class* c, jlong addr
     return array;
 }
 
-ObjectArray* Java_org_robovm_rt_VM_listClasses0(Env* env, Class* c, Class* instanceofClass, ClassLoader* classLoader) {
+ObjectArray* Java_org_robovm_rt_VM_listClasses0(Env* env, Class* c, Class* instanceofClass, Object* classLoader) {
     return rvmListClasses(env, instanceofClass, classLoader);
 }
 

@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -54,18 +55,18 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("textFieldShouldBeginEditing:")
-    public boolean shouldBeginEditing(UITextField textField) { throw new UnsupportedOperationException(); }
+    public boolean shouldBeginEditing(UITextField textField) { return true; }
     @NotImplemented("textFieldDidBeginEditing:")
-    public void didBeginEditing(UITextField textField) { throw new UnsupportedOperationException(); }
+    public void didBeginEditing(UITextField textField) {}
     @NotImplemented("textFieldShouldEndEditing:")
-    public boolean shouldEndEditing(UITextField textField) { throw new UnsupportedOperationException(); }
+    public boolean shouldEndEditing(UITextField textField) { return true; }
     @NotImplemented("textFieldDidEndEditing:")
-    public void didEndEditing(UITextField textField) { throw new UnsupportedOperationException(); }
+    public void didEndEditing(UITextField textField) {}
     @NotImplemented("textField:shouldChangeCharactersInRange:replacementString:")
-    public boolean shouldChangeCharacters(UITextField textField, @ByVal NSRange range, String string) { throw new UnsupportedOperationException(); }
+    public boolean shouldChangeCharacters(UITextField textField, @ByVal NSRange range, String string) { return true; }
     @NotImplemented("textFieldShouldClear:")
-    public boolean shouldClear(UITextField textField) { throw new UnsupportedOperationException(); }
+    public boolean shouldClear(UITextField textField) { return true; }
     @NotImplemented("textFieldShouldReturn:")
-    public boolean shouldReturn(UITextField textField) { throw new UnsupportedOperationException(); }
+    public boolean shouldReturn(UITextField textField) { return true; }
     /*</methods>*/
 }

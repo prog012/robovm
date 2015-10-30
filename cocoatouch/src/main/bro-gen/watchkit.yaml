@@ -13,11 +13,12 @@ enums:
     WKMenuItemIcon: {}
     WKTextInputMode: {}
     WKInterfaceMapPinColor: {}
-    WatchKitErrorCode: {}
+    WKErrorCode: {first: WatchKitUnknownError, suffix: Error}
         
 classes:
-    WatchKitError:
+    WKError:
         extends: NSError
+        annotations: ['@StronglyLinked']
     
     WKAccessibilityImageRegion: {} # DONE
     WKInterfaceController: # DONE
@@ -132,6 +133,9 @@ classes:
         methods:
             '-addAnnotation:.*':
                 trim_after_first_colon: true
+                annotations: ['@WeaklyLinked']
+            '-(setVisibleMapRect|setRegion):':
+                annotations: ['@WeaklyLinked']
     WKInterfaceSeparator: {} # DONE
     WKInterfaceSlider: {} # DONE
     WKInterfaceSwitch: {} # DONE
@@ -164,7 +168,7 @@ functions:
 
 values:
     WatchKitErrorDomain:
-        class: WatchKitError
+        class: WKError
         name: getClassDomain
    
     # Make sure we don't miss any values if new ones are introduced in a later version

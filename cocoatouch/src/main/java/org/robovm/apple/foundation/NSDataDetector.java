@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -49,23 +51,15 @@ import org.robovm.apple.dispatch.*;
     /*<ptr>*/public static class NSDataDetectorPtr extends Ptr<NSDataDetector, NSDataDetectorPtr> {}/*</ptr>*/
     /*<bind>*/static { ObjCRuntime.bind(NSDataDetector.class); }/*</bind>*/
     /*<constants>*//*</constants>*/
-    
-    /**
-     * 
-     * @param checkingTypes
-     * @throws NSErrorException
-     */
-    public NSDataDetector(NSTextCheckingType checkingTypes) throws NSErrorException { 
-        super((SkipInit) null);
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        initObject(init(checkingTypes, err));
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-    }
-
     /*<constructors>*/
     protected NSDataDetector(SkipInit skipInit) { super(skipInit); }
+    public NSDataDetector(NSTextCheckingType checkingTypes) throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(checkingTypes, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "checkingTypes")
@@ -74,6 +68,6 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithTypes:error:")
-    protected native @Pointer long init(NSTextCheckingType checkingTypes, NSError.NSErrorPtr error);
+    private native @Pointer long init(NSTextCheckingType checkingTypes, NSError.NSErrorPtr error);
     /*</methods>*/
 }

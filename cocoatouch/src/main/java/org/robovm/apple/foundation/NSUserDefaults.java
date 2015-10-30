@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -67,13 +69,20 @@ import org.robovm.apple.dispatch.*;
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getVolatileDomainNames();
     /*</properties>*/
     /*<members>*//*</members>*/
+    public int getInt(String defaultName) {
+        return (int) getLong(defaultName);
+    }
+    
     public void put(String defaultName, NSObject value) {
         setObject(value, defaultName);
     }
     public void put(String defaultName, String value) {
         setObject(new NSString(value), defaultName);
     }
-    public void put(String defaultName, @MachineSizedSInt long value) {
+    public void put(String defaultName, int value) {
+        setInteger(value, defaultName);
+    }
+    public void put(String defaultName, long value) {
         setInteger(value, defaultName);
     }
     public void put(String defaultName, float value) {
@@ -91,34 +100,37 @@ import org.robovm.apple.dispatch.*;
     public void put(String defaultName, NSURL url) {
         setURL(url, defaultName);
     }
+    public void put(String defaultName, List<String> strings) {
+        put(defaultName, NSArray.fromStrings(strings));
+    }
     
-    public void setVolatileDomain(String domainName, NSDictionary<?, ?> domain) {
+    public void setVolatileDomain(String domainName, NSDictionary domain) {
         setVolatileDomain(domain, domainName);
     }
-    public void setVolatileDomain(NSUserDefaultsDomain domainName, NSDictionary<?, ?> domain) {
-        setVolatileDomain(domain, domainName.value());
+    public void setVolatileDomain(NSUserDefaultsDomain domainName, NSDictionary domain) {
+        setVolatileDomain(domain, domainName.value().toString());
     } 
-    public void setPersistentDomain(String domainName, NSDictionary<?, ?> domain) {
+    public void setPersistentDomain(String domainName, NSDictionary domain) {
         setPersistentDomain(domain, domainName);
     }
-    public void setPersistentDomain(NSUserDefaultsDomain domainName, NSDictionary<?, ?> domain) {
-        setPersistentDomain(domain, domainName.value());
+    public void setPersistentDomain(NSUserDefaultsDomain domainName, NSDictionary domain) {
+        setPersistentDomain(domain, domainName.value().toString());
     }
     
-    public NSDictionary<?, ?> getVolatileDomain(NSUserDefaultsDomain domainName) {
-        return getVolatileDomain(domainName.value());
+    public NSDictionary getVolatileDomain(NSUserDefaultsDomain domainName) {
+        return getVolatileDomain(domainName.value().toString());
     }
     public void removeVolatileDomain(NSUserDefaultsDomain domainName) {
-        removeVolatileDomain(domainName.value());
+        removeVolatileDomain(domainName.value().toString());
     }
-    public NSDictionary<?, ?> getPersistentDomain(NSUserDefaultsDomain domainName) {
-        return getPersistentDomain(domainName.value());
+    public NSDictionary getPersistentDomain(NSUserDefaultsDomain domainName) {
+        return getPersistentDomain(domainName.value().toString());
     }
     public void removePersistentDomain(NSUserDefaultsDomain domainName) {
-        removePersistentDomain(domainName.value());
+        removePersistentDomain(domainName.value().toString());
     }
     public boolean isObjectForced(String key, NSUserDefaultsDomain domain) {
-        return isObjectForced(key, domain.value());
+        return isObjectForced(key, domain.value().toString());
     }
     /*<methods>*/
     @GlobalValue(symbol="NSUserDefaultsDidChangeNotification", optional=true)
@@ -135,13 +147,13 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "arrayForKey:")
     public native NSArray<?> getArray(String defaultName);
     @Method(selector = "dictionaryForKey:")
-    public native NSDictionary<?, ?> getDictionary(String defaultName);
+    public native NSDictionary getDictionary(String defaultName);
     @Method(selector = "dataForKey:")
     public native NSData getData(String defaultName);
     @Method(selector = "stringArrayForKey:")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getStringArray(String defaultName);
     @Method(selector = "integerForKey:")
-    public native @MachineSizedSInt long getInteger(String defaultName);
+    public native @MachineSizedSInt long getLong(String defaultName);
     @Method(selector = "floatForKey:")
     public native float getFloat(String defaultName);
     @Method(selector = "doubleForKey:")
@@ -167,17 +179,17 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "setURL:forKey:")
     protected native void setURL(NSURL url, String defaultName);
     @Method(selector = "registerDefaults:")
-    public native void registerDefaults(NSDictionary<?, ?> registrationDictionary);
+    public native void registerDefaults(NSDictionary registrationDictionary);
     @Method(selector = "addSuiteNamed:")
     public native void addSuite(String suiteName);
     @Method(selector = "removeSuiteNamed:")
     public native void removeSuite(String suiteName);
     @Method(selector = "dictionaryRepresentation")
-    public native NSDictionary<?, ?> asDictionary();
+    public native NSDictionary asDictionary();
     @Method(selector = "volatileDomainForName:")
-    public native NSDictionary<?, ?> getVolatileDomain(String domainName);
+    public native NSDictionary getVolatileDomain(String domainName);
     @Method(selector = "setVolatileDomain:forName:")
-    protected native void setVolatileDomain(NSDictionary<?, ?> domain, String domainName);
+    protected native void setVolatileDomain(NSDictionary domain, String domainName);
     @Method(selector = "removeVolatileDomainForName:")
     public native void removeVolatileDomain(String domainName);
     /**
@@ -188,9 +200,9 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "persistentDomainNames")
     public native @org.robovm.rt.bro.annotation.Marshaler(NSArray.AsStringListMarshaler.class) List<String> getPersistentDomainNames();
     @Method(selector = "persistentDomainForName:")
-    public native NSDictionary<?, ?> getPersistentDomain(String domainName);
+    public native NSDictionary getPersistentDomain(String domainName);
     @Method(selector = "setPersistentDomain:forName:")
-    protected native void setPersistentDomain(NSDictionary<?, ?> domain, String domainName);
+    protected native void setPersistentDomain(NSDictionary domain, String domainName);
     @Method(selector = "removePersistentDomainForName:")
     public native void removePersistentDomain(String domainName);
     @Method(selector = "synchronize")

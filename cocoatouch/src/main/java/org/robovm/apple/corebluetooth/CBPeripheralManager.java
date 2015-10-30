@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -47,10 +48,12 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*/
     public CBPeripheralManager() {}
     protected CBPeripheralManager(SkipInit skipInit) { super(skipInit); }
+    @WeaklyLinked
     public CBPeripheralManager(CBPeripheralManagerDelegate delegate, DispatchQueue queue) { super((SkipInit) null); initObject(init(delegate, queue)); }
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     public CBPeripheralManager(CBPeripheralManagerDelegate delegate, DispatchQueue queue, CBPeripheralManagerOptions options) { super((SkipInit) null); initObject(init(delegate, queue, options)); }
     /*</constructors>*/
     /*<properties>*/
@@ -65,11 +68,13 @@ import org.robovm.apple.dispatch.*;
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
+    @WeaklyLinked
     @Method(selector = "initWithDelegate:queue:")
     protected native @Pointer long init(CBPeripheralManagerDelegate delegate, DispatchQueue queue);
     /**
      * @since Available in iOS 7.0 and later.
      */
+    @WeaklyLinked
     @Method(selector = "initWithDelegate:queue:options:")
     protected native @Pointer long init(CBPeripheralManagerDelegate delegate, DispatchQueue queue, CBPeripheralManagerOptions options);
     @Method(selector = "startAdvertising:")
@@ -85,7 +90,7 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "removeAllServices")
     public native void removeAllServices();
     @Method(selector = "respondToRequest:withResult:")
-    public native void respondToRequest(CBATTRequest request, CBATTError result);
+    public native void respondToRequest(CBATTRequest request, CBATTErrorCode result);
     @Method(selector = "updateValue:forCharacteristic:onSubscribedCentrals:")
     public native boolean updateValue(NSData value, CBMutableCharacteristic characteristic, NSArray<CBCentral> centrals);
     /**

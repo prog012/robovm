@@ -23,19 +23,21 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -68,6 +70,7 @@ import org.robovm.apple.mediatoolbox.*;
     public AVVideoSettings getVideoSettings() {
         return new AVVideoSettings(getVideoSettings0());
     }
+    @WeaklyLinked
     public AVPixelBufferAttributes getPixelBufferSettings() {
         return new AVPixelBufferAttributes(getVideoSettings0().as(CFDictionary.class));
     }
@@ -75,7 +78,7 @@ import org.robovm.apple.mediatoolbox.*;
     @Property(selector = "videoTracks")
     public native NSArray<AVAssetTrack> getVideoTracks();
     @Property(selector = "videoSettings")
-    protected native NSDictionary<NSString, NSObject> getVideoSettings0();
+    protected native NSDictionary getVideoSettings0();
     @Property(selector = "videoComposition")
     public native AVVideoComposition getVideoComposition();
     @Property(selector = "setVideoComposition:")
@@ -96,8 +99,8 @@ import org.robovm.apple.mediatoolbox.*;
     }
     /*<methods>*/
     @Method(selector = "initWithVideoTracks:videoSettings:")
-    protected native @Pointer long init(NSArray<AVAssetTrack> videoTracks, NSDictionary<NSString, NSObject> videoSettings);
+    protected native @Pointer long init(NSArray<AVAssetTrack> videoTracks, NSDictionary videoSettings);
     @Method(selector = "assetReaderVideoCompositionOutputWithVideoTracks:videoSettings:")
-    protected static native AVAssetReaderVideoCompositionOutput create(NSArray<AVAssetTrack> videoTracks, NSDictionary<NSString, NSObject> videoSettings);
+    protected static native AVAssetReaderVideoCompositionOutput create(NSArray<AVAssetTrack> videoTracks, NSDictionary videoSettings);
     /*</methods>*/
 }

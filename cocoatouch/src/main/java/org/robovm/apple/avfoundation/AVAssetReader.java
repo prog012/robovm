@@ -23,19 +23,21 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,20 +56,14 @@ import org.robovm.apple.mediatoolbox.*;
     /*<constructors>*/
     public AVAssetReader() {}
     protected AVAssetReader(SkipInit skipInit) { super(skipInit); }
-    /*</constructors>*/
-    /**
-     * 
-     * @param asset
-     * @throws NSErrorException
-     */
     public AVAssetReader(AVAsset asset) throws NSErrorException {
-        super((SkipInit)null);
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        initObject(init(asset, err));
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(asset, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
     }
+    /*</constructors>*/
     /*<properties>*/
     @Property(selector = "asset")
     public native AVAsset getAsset();
@@ -83,23 +79,9 @@ import org.robovm.apple.mediatoolbox.*;
     public native NSArray<AVAssetReaderOutput> getOutputs();
     /*</properties>*/
     /*<members>*//*</members>*/
-    /**
-     * 
-     * @param asset
-     * @return
-     * @throws NSErrorException
-     */
-    public static AVAssetReader create(AVAsset asset) throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        AVAssetReader result = create(asset, err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
     /*<methods>*/
     @Method(selector = "initWithAsset:error:")
-    protected native @Pointer long init(AVAsset asset, NSError.NSErrorPtr outError);
+    private native @Pointer long init(AVAsset asset, NSError.NSErrorPtr outError);
     @Method(selector = "canAddOutput:")
     public native boolean canAddOutput(AVAssetReaderOutput output);
     @Method(selector = "addOutput:")
@@ -108,7 +90,13 @@ import org.robovm.apple.mediatoolbox.*;
     public native boolean startReading();
     @Method(selector = "cancelReading")
     public native void cancelReading();
+    public static AVAssetReader create(AVAsset asset) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       AVAssetReader result = create(asset, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "assetReaderWithAsset:error:")
-    protected static native AVAssetReader create(AVAsset asset, NSError.NSErrorPtr outError);
+    private static native AVAssetReader create(AVAsset asset, NSError.NSErrorPtr outError);
     /*</methods>*/
 }

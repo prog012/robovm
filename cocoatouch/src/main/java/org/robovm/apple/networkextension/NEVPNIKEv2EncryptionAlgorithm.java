@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -40,7 +41,9 @@ public enum /*<name>*/NEVPNIKEv2EncryptionAlgorithm/*</name>*/ implements Valued
     DES(1L),
     _3DES(2L),
     AES128(3L),
-    AES256(4L);
+    AES256(4L),
+    AES128GCM(5L),
+    AES256GCM(6L);
     /*</values>*/
 
     /*<bind>*/

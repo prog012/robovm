@@ -23,11 +23,12 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.coretext.*;
 import org.robovm.apple.opengles.*;
@@ -49,37 +50,37 @@ import org.robovm.apple.metal.*;
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
     @NotImplemented("beginTime")
-    public double getBeginTime() { throw new UnsupportedOperationException(); }
+    public double getBeginTime() { return 0; }
     @NotImplemented("setBeginTime:")
-    public void setBeginTime(double v) { throw new UnsupportedOperationException(); }
+    public void setBeginTime(double v) {}
     @NotImplemented("duration")
-    public double getDuration() { throw new UnsupportedOperationException(); }
+    public double getDuration() { return 0; }
     @NotImplemented("setDuration:")
-    public void setDuration(double v) { throw new UnsupportedOperationException(); }
+    public void setDuration(double v) {}
     @NotImplemented("speed")
-    public float getSpeed() { throw new UnsupportedOperationException(); }
+    public float getSpeed() { return 0; }
     @NotImplemented("setSpeed:")
-    public void setSpeed(float v) { throw new UnsupportedOperationException(); }
+    public void setSpeed(float v) {}
     @NotImplemented("timeOffset")
-    public double getTimeOffset() { throw new UnsupportedOperationException(); }
+    public double getTimeOffset() { return 0; }
     @NotImplemented("setTimeOffset:")
-    public void setTimeOffset(double v) { throw new UnsupportedOperationException(); }
+    public void setTimeOffset(double v) {}
     @NotImplemented("repeatCount")
-    public float getRepeatCount() { throw new UnsupportedOperationException(); }
+    public float getRepeatCount() { return 0; }
     @NotImplemented("setRepeatCount:")
-    public void setRepeatCount(float v) { throw new UnsupportedOperationException(); }
+    public void setRepeatCount(float v) {}
     @NotImplemented("repeatDuration")
-    public double getRepeatDuration() { throw new UnsupportedOperationException(); }
+    public double getRepeatDuration() { return 0; }
     @NotImplemented("setRepeatDuration:")
-    public void setRepeatDuration(double v) { throw new UnsupportedOperationException(); }
+    public void setRepeatDuration(double v) {}
     @NotImplemented("autoreverses")
-    public boolean autoreverses() { throw new UnsupportedOperationException(); }
+    public boolean autoreverses() { return false; }
     @NotImplemented("setAutoreverses:")
-    public void setAutoreverses(boolean v) { throw new UnsupportedOperationException(); }
+    public void setAutoreverses(boolean v) {}
     @NotImplemented("fillMode")
-    public CAFillMode getFillMode() { throw new UnsupportedOperationException(); }
+    public CAFillMode getFillMode() { return null; }
     @NotImplemented("setFillMode:")
-    public void setFillMode(CAFillMode v) { throw new UnsupportedOperationException(); }
+    public void setFillMode(CAFillMode v) {}
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

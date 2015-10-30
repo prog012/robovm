@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -54,12 +55,12 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("navigationBar:shouldPushItem:")
-    public boolean shouldPushItem(UINavigationBar navigationBar, UINavigationItem item) { throw new UnsupportedOperationException(); }
+    public boolean shouldPushItem(UINavigationBar navigationBar, UINavigationItem item) { return false; }
     @NotImplemented("navigationBar:didPushItem:")
-    public void didPushItem(UINavigationBar navigationBar, UINavigationItem item) { throw new UnsupportedOperationException(); }
+    public void didPushItem(UINavigationBar navigationBar, UINavigationItem item) {}
     @NotImplemented("navigationBar:shouldPopItem:")
-    public boolean shouldPopItem(UINavigationBar navigationBar, UINavigationItem item) { throw new UnsupportedOperationException(); }
+    public boolean shouldPopItem(UINavigationBar navigationBar, UINavigationItem item) { return false; }
     @NotImplemented("navigationBar:didPopItem:")
-    public void didPopItem(UINavigationBar navigationBar, UINavigationItem item) { throw new UnsupportedOperationException(); }
+    public void didPopItem(UINavigationBar navigationBar, UINavigationItem item) {}
     /*</methods>*/
 }

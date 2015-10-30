@@ -23,12 +23,12 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
-import org.robovm.apple.accounts.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -53,26 +53,26 @@ import org.robovm.apple.accounts.*;
      * @since Available in iOS 3.0 and later.
      */
     @NotImplemented("paymentQueue:updatedTransactions:")
-    public void updatedTransactions(SKPaymentQueue queue, NSArray<SKPaymentTransaction> transactions) { throw new UnsupportedOperationException(); }
+    public void updatedTransactions(SKPaymentQueue queue, NSArray<SKPaymentTransaction> transactions) {}
     /**
      * @since Available in iOS 3.0 and later.
      */
     @NotImplemented("paymentQueue:removedTransactions:")
-    public void removedTransactions(SKPaymentQueue queue, NSArray<SKPaymentTransaction> transactions) { throw new UnsupportedOperationException(); }
+    public void removedTransactions(SKPaymentQueue queue, NSArray<SKPaymentTransaction> transactions) {}
     /**
      * @since Available in iOS 3.0 and later.
      */
     @NotImplemented("paymentQueue:restoreCompletedTransactionsFailedWithError:")
-    public void restoreCompletedTransactionsFailed(SKPaymentQueue queue, NSError error) { throw new UnsupportedOperationException(); }
+    public void restoreCompletedTransactionsFailed(SKPaymentQueue queue, NSError error) {}
     /**
      * @since Available in iOS 3.0 and later.
      */
     @NotImplemented("paymentQueueRestoreCompletedTransactionsFinished:")
-    public void restoreCompletedTransactionsFinished(SKPaymentQueue queue) { throw new UnsupportedOperationException(); }
+    public void restoreCompletedTransactionsFinished(SKPaymentQueue queue) {}
     /**
      * @since Available in iOS 6.0 and later.
      */
     @NotImplemented("paymentQueue:updatedDownloads:")
-    public void updatedDownloads(SKPaymentQueue queue, NSArray<SKDownload> downloads) { throw new UnsupportedOperationException(); }
+    public void updatedDownloads(SKPaymentQueue queue, NSArray<SKDownload> downloads) {}
     /*</methods>*/
 }

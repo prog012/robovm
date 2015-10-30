@@ -23,19 +23,21 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -70,8 +72,10 @@ import org.robovm.apple.mediatoolbox.*;
     protected AVAudioEngine(SkipInit skipInit) { super(skipInit); }
     /*</constructors>*/
     /*<properties>*/
+    @WeaklyLinked
     @Property(selector = "musicSequence")
     public native MusicSequence getMusicSequence();
+    @WeaklyLinked
     @Property(selector = "setMusicSequence:")
     public native void setMusicSequence(MusicSequence v);
     @Property(selector = "outputNode")
@@ -84,19 +88,6 @@ import org.robovm.apple.mediatoolbox.*;
     public native boolean isRunning();
     /*</properties>*/
     /*<members>*//*</members>*/
-    /**
-     * 
-     * @return
-     * @throws NSErrorException
-     */
-    public boolean start() throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        boolean result = start(err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
     /*<methods>*/
     /**
      * @since Available in iOS 8.0 and later.
@@ -122,8 +113,14 @@ import org.robovm.apple.mediatoolbox.*;
     public native void disconnectNodeOutput(AVAudioNode node);
     @Method(selector = "prepare")
     public native void prepare();
+    public boolean start() throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = start(ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "startAndReturnError:")
-    protected native boolean start(NSError.NSErrorPtr outError);
+    private native boolean start(NSError.NSErrorPtr outError);
     @Method(selector = "pause")
     public native void pause();
     @Method(selector = "reset")

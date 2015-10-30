@@ -16,15 +16,16 @@ typedefs:
 enums:
     HMCharacteristicValueDoorState: {}
     HMCharacteristicValueHeatingCooling: {}
-    HMCharacteristicValueRotationDirection: { prefix: HMCharacteristicValueRotationDirection }
+    HMCharacteristicValueRotationDirection: {prefix: HMCharacteristicValueRotationDirection}
     HMCharacteristicValueTemperatureUnit: {}
     HMCharacteristicValueLockMechanismState: {}
-    HMCharacteristicValueLockMechanism: {}
+    HMCharacteristicValueLockMechanismLastKnownAction: {}
     HMErrorCode: {}
         
 classes:
     HMError:
         extends: NSError
+        annotations: ['@StronglyLinked']
     
     HMAccessory: # DONE
         properties:
@@ -68,7 +69,8 @@ classes:
             'characteristicType':
                 type: HMCharacteristicType
             'properties':
-                type: '@org.robovm.rt.bro.annotation.Marshaler(HMCharacteristicProperty.AsListMarshaler.class) List<HMCharacteristicProperty>'
+                type: List<HMCharacteristicProperty>
+                marshaler: HMCharacteristicProperty.AsListMarshaler
         methods:
             '-writeValue:completionHandler:':
                 trim_after_first_colon: true
@@ -116,7 +118,8 @@ classes:
                 return_type: NSArray<HMService>
                 parameters:
                     serviceTypes:
-                        type: '@org.robovm.rt.bro.annotation.Marshaler(HMServiceType.AsListMarshaler.class) List<HMServiceType>'
+                        type: List<HMServiceType>
+                        marshaler: HMServiceType.AsListMarshaler
             '-unblockAccessory:completionHandler:':
                 trim_after_first_colon: true
             '-addUserWithCompletionHandler:':
@@ -351,34 +354,29 @@ values:
 
     # HMCharacteristic
     HMCharacteristicProperty(.*):
-        class: HMCharacteristicProperty
-        name: '#{g[0]}Value'
+        enum: HMCharacteristicProperty
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
     HMCharacteristicType(.*):
-        class: HMCharacteristicType
-        name: '#{g[0]}Value'
+        enum: HMCharacteristicType
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
     
     # HMCharacteristicMetadata
     HMCharacteristicMetadataFormat(.*):
-        class: HMCharacteristicMetadataFormat
-        name: '#{g[0]}Value'
+        enum: HMCharacteristicMetadataFormat
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
     HMCharacteristicMetadataUnits(.*):
-        class: HMCharacteristicMetadataUnits
-        name: '#{g[0]}Value'
+        enum: HMCharacteristicMetadataUnits
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
 
     # HMService
     HMServiceType(.*):
-        class: HMServiceType
-        name: '#{g[0]}Value'
+        enum: HMServiceType
+        name: '#{g[0]}'
         type: NSString
-        visibility: protected
    
     # Make sure we don't miss any values if new ones are introduced in a later version
     (k?HM.*):

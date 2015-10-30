@@ -23,16 +23,21 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.dispatch.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.dispatch.*;
+import org.robovm.apple.coreservices.*;
+import org.robovm.apple.coremedia.*;
+import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /*</javadoc>*/
-/*<annotations>*/@Library("CoreFoundation")/*</annotations>*/
+/*<annotations>*/@Library("CoreFoundation") @StronglyLinked/*</annotations>*/
 @Marshaler(/*<name>*/CFURLFileSystemProperty/*</name>*/.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CFURLFileSystemProperty/*</name>*/ 
     extends /*<extends>*/GlobalValueEnumeration<CFString>/*</extends>*/
@@ -61,7 +66,7 @@ import org.robovm.apple.foundation.*;
     public static class AsListMarshaler {
         @MarshalsPointer
         public static List<CFURLFileSystemProperty> toObject(Class<? extends CFType> cls, long handle, long flags) {
-            CFArray o = (CFArray) CFType.Marshaler.toObject(cls, handle, flags);
+            CFArray o = (CFArray) CFType.Marshaler.toObject(CFArray.class, handle, flags);
             if (o == null) {
                 return null;
             }
@@ -77,8 +82,8 @@ import org.robovm.apple.foundation.*;
                 return 0L;
             }
             CFArray array = CFMutableArray.create();
-            for (CFURLFileSystemProperty i : l) {
-                array.add(i.value());
+            for (CFURLFileSystemProperty o : l) {
+                array.add(o.value());
             }
             return CFType.Marshaler.toNative(array, flags);
         }
@@ -246,7 +251,7 @@ import org.robovm.apple.foundation.*;
     
     /*<methods>*//*</methods>*/
     
-    /*<annotations>*/@Library("CoreFoundation")/*</annotations>*/
+    /*<annotations>*/@Library("CoreFoundation") @StronglyLinked/*</annotations>*/
     public static class Values {
     	static { Bro.bind(Values.class); }
 

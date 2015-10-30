@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -55,6 +56,12 @@ import org.robovm.apple.dispatch.*;
     public native void setLabel(String v);
     /*</properties>*/
     /*<members>*//*</members>*/
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    public void setBytes(byte[] bytes, long index) {
+        setBytes(VM.getArrayValuesAddress(bytes), bytes.length, index);
+    }
     public void setBuffers(MTLBuffer[] buffers, long[] offsets, @ByVal NSRange range) {
         MTLBuffer.MTLBufferPtr bptr = new MTLBuffer.MTLBufferPtr();
         bptr.set(buffers);
@@ -85,8 +92,18 @@ import org.robovm.apple.dispatch.*;
     /*<methods>*/
     @Method(selector = "setComputePipelineState:")
     public native void setComputePipelineState(MTLComputePipelineState state);
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    @Method(selector = "setBytes:length:atIndex:")
+    protected native void setBytes(@Pointer long bytes, @MachineSizedUInt long length, @MachineSizedUInt long index);
     @Method(selector = "setBuffer:offset:atIndex:")
     public native void setBuffer(MTLBuffer buffer, @MachineSizedUInt long offset, @MachineSizedUInt long index);
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    @Method(selector = "setBufferOffset:atIndex:")
+    public native void setBufferOffset(@MachineSizedUInt long offset, @MachineSizedUInt long index);
     @Method(selector = "setBuffers:offsets:withRange:")
     protected native void setBuffers(MTLBuffer.MTLBufferPtr buffers, MachineSizedUIntPtr offsets, @ByVal NSRange range);
     @Method(selector = "setTexture:atIndex:")

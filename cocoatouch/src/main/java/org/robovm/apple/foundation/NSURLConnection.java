@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -35,6 +37,7 @@ import org.robovm.apple.coremedia.*;
 import org.robovm.apple.security.*;
 import org.robovm.apple.dispatch.*;
 /*</imports>*/
+import org.robovm.rt.annotation.WeaklyLinked;
 import org.robovm.apple.newsstandkit.NKAssetDownload;
 
 /*<javadoc>*/
@@ -70,30 +73,15 @@ import org.robovm.apple.newsstandkit.NKAssetDownload;
     public native NSURLRequest getCurrentRequest();
     /*</properties>*/
     /*<members>*//*</members>*/
-    /**
-     * 
-     * @param request
-     * @param response
-     * @return
-     * @throws NSErrorException
-     */
-    public static NSData sendSynchronousRequest(NSURLRequest request, NSURLResponse.NSURLResponsePtr response) throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        NSData result = sendSynchronousRequest(request, response, err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
-    
     public void scheduleInRunLoop(NSRunLoop aRunLoop, NSRunLoopMode mode) {
-        scheduleInRunLoop(aRunLoop, mode.value());
+        scheduleInRunLoop(aRunLoop, mode.value().toString());
     }
     public void unscheduleFromRunLoop(NSRunLoop aRunLoop, NSRunLoopMode mode) {
-        unscheduleFromRunLoop(aRunLoop, mode.value());
+        unscheduleFromRunLoop(aRunLoop, mode.value().toString());
     }
 
     /* NewsstandKit extensions */
+    @WeaklyLinked
     public NKAssetDownload getNewsstandAssetDownload() {
         return org.robovm.apple.newsstandkit.NSURLConnectionExtensions.getNewsstandAssetDownload(this);
     }
@@ -131,8 +119,14 @@ import org.robovm.apple.newsstandkit.NKAssetDownload;
     public static native NSURLConnection create(NSURLRequest request, NSURLConnectionDelegate delegate);
     @Method(selector = "canHandleRequest:")
     public static native boolean canHandleRequest(NSURLRequest request);
+    public static NSData sendSynchronousRequest(NSURLRequest request, NSURLResponse.NSURLResponsePtr response) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       NSData result = sendSynchronousRequest(request, response, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "sendSynchronousRequest:returningResponse:error:")
-    protected static native NSData sendSynchronousRequest(NSURLRequest request, NSURLResponse.NSURLResponsePtr response, NSError.NSErrorPtr error);
+    private static native NSData sendSynchronousRequest(NSURLRequest request, NSURLResponse.NSURLResponsePtr response, NSError.NSErrorPtr error);
     /**
      * @since Available in iOS 5.0 and later.
      */

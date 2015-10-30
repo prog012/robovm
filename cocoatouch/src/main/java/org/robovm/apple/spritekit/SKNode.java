@@ -23,13 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
 import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreimage.*;
 import org.robovm.apple.avfoundation.*;
@@ -181,11 +181,13 @@ import org.robovm.apple.scenekit.*;
     public native @ByVal CGPoint convertPointToNode(@ByVal CGPoint point, SKNode node);
     @Method(selector = "intersectsNode:")
     public native boolean intersectsNode(SKNode node);
+    @Method(selector = "isEqualToNode:")
+    public native boolean equalsTo(SKNode node);
     @Method(selector = "node")
     public static native SKNode create();
     @Method(selector = "nodeWithFileNamed:")
     private static native SKNode create(String filename);
     @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder aCoder);
+    public native void encode(NSCoder coder);
     /*</methods>*/
 }

@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -50,7 +51,7 @@ import org.robovm.apple.accounts.*;
     /*<constructors>*/
     public TWRequest() {}
     protected TWRequest(SkipInit skipInit) { super(skipInit); }
-    public TWRequest(NSURL url, NSDictionary<NSString, ?> parameters, TWRequestMethod requestMethod) { super((SkipInit) null); initObject(init(url, parameters, requestMethod)); }
+    public TWRequest(NSURL url, NSDictionary parameters, TWRequestMethod requestMethod) { super((SkipInit) null); initObject(init(url, parameters, requestMethod)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "account")
@@ -62,12 +63,12 @@ import org.robovm.apple.accounts.*;
     @Property(selector = "URL")
     public native NSURL getURL();
     @Property(selector = "parameters")
-    public native NSDictionary<NSString, ?> getParameters();
+    public native NSDictionary getParameters();
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithURL:parameters:requestMethod:")
-    protected native @Pointer long init(NSURL url, NSDictionary<NSString, ?> parameters, TWRequestMethod requestMethod);
+    protected native @Pointer long init(NSURL url, NSDictionary parameters, TWRequestMethod requestMethod);
     @Method(selector = "addMultiPartData:withName:type:")
     public native void addMultiPartData(NSData data, String name, String type);
     @Method(selector = "signedURLRequest")

@@ -23,29 +23,34 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /*</javadoc>*/
-@Marshaler(AVVideoScalingMode.Marshaler.class)
-/*<annotations>*/@Library("AVFoundation")/*</annotations>*/
+/*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+@Marshaler(/*<name>*/AVVideoScalingMode/*</name>*/.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/AVVideoScalingMode/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    extends /*<extends>*/GlobalValueEnumeration<NSString>/*</extends>*/
     /*<implements>*//*</implements>*/ {
-    
+
+    static { Bro.bind(/*<name>*/AVVideoScalingMode/*</name>*/.class); }
+
+    /*<marshalers>*/
     public static class Marshaler {
         @MarshalsPointer
         public static AVVideoScalingMode toObject(Class<AVVideoScalingMode> cls, long handle, long flags) {
@@ -63,43 +68,61 @@ import org.robovm.apple.mediatoolbox.*;
             return NSObject.Marshaler.toNative(o.value(), flags);
         }
     }
+    public static class AsListMarshaler {
+        @SuppressWarnings("unchecked")
+        @MarshalsPointer
+        public static List<AVVideoScalingMode> toObject(Class<? extends NSObject> cls, long handle, long flags) {
+            NSArray<NSString> o = (NSArray<NSString>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
+            if (o == null) {
+                return null;
+            }
+            List<AVVideoScalingMode> list = new ArrayList<>();
+            for (int i = 0; i < o.size(); i++) {
+                list.add(AVVideoScalingMode.valueOf(o.get(i)));
+            }
+            return list;
+        }
+        @MarshalsPointer
+        public static long toNative(List<AVVideoScalingMode> l, long flags) {
+            if (l == null) {
+                return 0L;
+            }
+            NSArray<NSString> array = new NSMutableArray<>();
+            for (AVVideoScalingMode o : l) {
+                array.add(o.value());
+            }
+            return NSObject.Marshaler.toNative(array, flags);
+        }
+    }
+    /*</marshalers>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
-    /*<bind>*/static { Bro.bind(AVVideoScalingMode.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
+    /*<constants>*/
     /**
      * @since Available in iOS 5.0 and later.
      */
-    public static final AVVideoScalingMode Fit = new AVVideoScalingMode("FitValue");
+    public static final AVVideoScalingMode Fit = new AVVideoScalingMode("Fit");
     /**
      * @since Available in iOS 5.0 and later.
      */
-    public static final AVVideoScalingMode Resize = new AVVideoScalingMode("ResizeValue");
+    public static final AVVideoScalingMode Resize = new AVVideoScalingMode("Resize");
     /**
      * @since Available in iOS 5.0 and later.
      */
-    public static final AVVideoScalingMode ResizeAspect = new AVVideoScalingMode("ResizeAspectValue");
+    public static final AVVideoScalingMode ResizeAspect = new AVVideoScalingMode("ResizeAspect");
     /**
      * @since Available in iOS 5.0 and later.
      */
-    public static final AVVideoScalingMode ResizeAspectFill = new AVVideoScalingMode("ResizeAspectFillValue");
+    public static final AVVideoScalingMode ResizeAspectFill = new AVVideoScalingMode("ResizeAspectFill");
+    /*</constants>*/
     
-    private static AVVideoScalingMode[] values = new AVVideoScalingMode[] {Fit, Resize, ResizeAspect, ResizeAspectFill};
-    private final LazyGlobalValue<NSString> lazyGlobalValue;
+    private static /*<name>*/AVVideoScalingMode/*</name>*/[] values = new /*<name>*/AVVideoScalingMode/*</name>*/[] {/*<value_list>*/Fit, Resize, ResizeAspect, ResizeAspectFill/*</value_list>*/};
     
-    private AVVideoScalingMode(String getterName) {
-        lazyGlobalValue = new LazyGlobalValue<>(getClass(), getterName);
-    }
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
-    public NSString value() {
-        return lazyGlobalValue.value();
+    /*<name>*/AVVideoScalingMode/*</name>*/ (String getterName) {
+        super(Values.class, getterName);
     }
     
-    public static AVVideoScalingMode valueOf(NSString value) {
-        for (AVVideoScalingMode v : values) {
+    public static /*<name>*/AVVideoScalingMode/*</name>*/ valueOf(/*<type>*/NSString/*</type>*/ value) {
+        for (/*<name>*/AVVideoScalingMode/*</name>*/ v : values) {
             if (v.value().equals(value)) {
                 return v;
             }
@@ -107,26 +130,34 @@ import org.robovm.apple.mediatoolbox.*;
         throw new IllegalArgumentException("No constant with value " + value + " found in " 
             + /*<name>*/AVVideoScalingMode/*</name>*/.class.getName());
     }
-    /*<methods>*/
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoScalingModeFit", optional=true)
-    protected static native NSString FitValue();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoScalingModeResize", optional=true)
-    protected static native NSString ResizeValue();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoScalingModeResizeAspect", optional=true)
-    protected static native NSString ResizeAspectValue();
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    @GlobalValue(symbol="AVVideoScalingModeResizeAspectFill", optional=true)
-    protected static native NSString ResizeAspectFillValue();
-    /*</methods>*/
+    
+    /*<methods>*//*</methods>*/
+    
+    /*<annotations>*/@Library("AVFoundation") @StronglyLinked/*</annotations>*/
+    public static class Values {
+    	static { Bro.bind(Values.class); }
+
+        /*<values>*/
+        /**
+         * @since Available in iOS 5.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoScalingModeFit", optional=true)
+        public static native NSString Fit();
+        /**
+         * @since Available in iOS 5.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoScalingModeResize", optional=true)
+        public static native NSString Resize();
+        /**
+         * @since Available in iOS 5.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoScalingModeResizeAspect", optional=true)
+        public static native NSString ResizeAspect();
+        /**
+         * @since Available in iOS 5.0 and later.
+         */
+        @GlobalValue(symbol="AVVideoScalingModeResizeAspectFill", optional=true)
+        public static native NSString ResizeAspectFill();
+        /*</values>*/
+    }
 }

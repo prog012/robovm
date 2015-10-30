@@ -23,12 +23,12 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
-import org.robovm.apple.addressbook.*;
 import org.robovm.apple.mediaplayer.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.avkit.*;
@@ -56,14 +56,14 @@ import org.robovm.apple.avkit.*;
      * @since Available in iOS 5.0 and later.
      */
     @NotImplemented("bannerViewWillLoadAd:")
-    public void willLoadAd(ADBannerView banner) { throw new UnsupportedOperationException(); }
+    public void willLoadAd(ADBannerView banner) {}
     @NotImplemented("bannerViewDidLoadAd:")
-    public void didLoadAd(ADBannerView banner) { throw new UnsupportedOperationException(); }
+    public void didLoadAd(ADBannerView banner) {}
     @NotImplemented("bannerView:didFailToReceiveAdWithError:")
-    public void didFailToReceiveAd(ADBannerView banner, NSError error) { throw new UnsupportedOperationException(); }
+    public void didFailToReceiveAd(ADBannerView banner, NSError error) {}
     @NotImplemented("bannerViewActionShouldBegin:willLeaveApplication:")
-    public boolean actionShouldBegin(ADBannerView banner, boolean willLeave) { throw new UnsupportedOperationException(); }
+    public boolean actionShouldBegin(ADBannerView banner, boolean willLeave) { return false; }
     @NotImplemented("bannerViewActionDidFinish:")
-    public void actionDidFinish(ADBannerView banner) { throw new UnsupportedOperationException(); }
+    public void actionDidFinish(ADBannerView banner) {}
     /*</methods>*/
 }

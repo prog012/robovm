@@ -23,30 +23,32 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
-import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
+import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.opengles.*;
 import org.robovm.apple.corevideo.*;
 import org.robovm.apple.imageio.*;
+import org.robovm.apple.uikit.*;
 /*</imports>*/
 
 /*<javadoc>*/
 /*</javadoc>*/
-@Marshaler(CIDetectorFeatureOptions.Marshaler.class)
 /*<annotations>*/@Library("CoreImage")/*</annotations>*/
+@Marshaler(/*<name>*/CIDetectorFeatureOptions/*</name>*/.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CIDetectorFeatureOptions/*</name>*/ 
-    extends /*<extends>*/CocoaUtility/*</extends>*/ 
+    extends /*<extends>*/NSDictionaryWrapper/*</extends>*/
     /*<implements>*//*</implements>*/ {
-    
+
+    /*<marshalers>*/
     public static class Marshaler {
-        @SuppressWarnings("unchecked")
         @MarshalsPointer
         public static CIDetectorFeatureOptions toObject(Class<CIDetectorFeatureOptions> cls, long handle, long flags) {
-            NSDictionary<NSString, NSObject> o = (NSDictionary<NSString, NSObject>) NSObject.Marshaler.toObject(NSDictionary.class, handle, flags);
+            NSDictionary o = (NSDictionary) NSObject.Marshaler.toObject(NSDictionary.class, handle, flags);
             if (o == null) {
                 return null;
             }
@@ -60,50 +62,62 @@ import org.robovm.apple.imageio.*;
             return NSObject.Marshaler.toNative(o.data, flags);
         }
     }
+    public static class AsListMarshaler {
+        @MarshalsPointer
+        public static List<CIDetectorFeatureOptions> toObject(Class<? extends NSObject> cls, long handle, long flags) {
+            NSArray<NSDictionary> o = (NSArray<NSDictionary>) NSObject.Marshaler.toObject(NSArray.class, handle, flags);
+            if (o == null) {
+                return null;
+            }
+            List<CIDetectorFeatureOptions> list = new ArrayList<>();
+            for (int i = 0; i < o.size(); i++) {
+                list.add(new CIDetectorFeatureOptions(o.get(i)));
+            }
+            return list;
+        }
+        @MarshalsPointer
+        public static long toNative(List<CIDetectorFeatureOptions> l, long flags) {
+            if (l == null) {
+                return 0L;
+            }
+            NSArray<NSDictionary> array = new NSMutableArray<>();
+            for (CIDetectorFeatureOptions i : l) {
+                array.add(i.getDictionary());
+            }
+            return NSObject.Marshaler.toNative(array, flags);
+        }
+    }
+    /*</marshalers>*/
 
-    /*<ptr>*/
-    /*</ptr>*/
-    private NSDictionary<NSString, NSObject> data;
-    
-    protected CIDetectorFeatureOptions(NSDictionary<NSString, NSObject> data) {
-        this.data = data;
+    /*<constructors>*/
+    CIDetectorFeatureOptions(NSDictionary data) {
+        super(data);
     }
-    public CIDetectorFeatureOptions() {
-        this.data = new NSMutableDictionary<>();
+    public CIDetectorFeatureOptions() {}
+    /*</constructors>*/
+
+    /*<methods>*/
+    public boolean has(NSString key) {
+        return data.containsKey(key);
     }
-    /*<bind>*/static { Bro.bind(CIDetectorFeatureOptions.class); }/*</bind>*/
-    /*<constants>*//*</constants>*/
-    /*<constructors>*//*</constructors>*/
-    /*<properties>*//*</properties>*/
-    /*<members>*//*</members>*/
-    public NSDictionary<NSString, NSObject> getDictionary() {
-        return data;
-    }
-    
-    
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    public CGImagePropertyOrientation getImageOrientation() {
-        if (data.containsKey(ImageOrientationKey())) {
-            NSNumber val = (NSNumber)data.get(ImageOrientationKey());
-            return CGImagePropertyOrientation.valueOf(val.intValue());
+    public NSObject get(NSString key) {
+        if (has(key)) {
+            return data.get(key);
         }
-        return CGImagePropertyOrientation.Up;
+        return null;
     }
-    /**
-     * @since Available in iOS 5.0 and later.
-     */
-    public CIDetectorFeatureOptions setImageOrientation(CGImagePropertyOrientation orientation) {
-        data.put(ImageOrientationKey(), NSNumber.valueOf(orientation.value()));
+    public CIDetectorFeatureOptions set(NSString key, NSObject value) {
+        data.put(key, value);
         return this;
     }
+    
+
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public boolean isRecognizingEyeBlinks() {
-        if (data.containsKey(EyeBlinkKey())) {
-            NSNumber val = (NSNumber)data.get(EyeBlinkKey());
+    public boolean recognizesEyeBlinks() {
+        if (has(Keys.EyeBlink())) {
+            NSNumber val = (NSNumber) get(Keys.EyeBlink());
             return val.booleanValue();
         }
         return false;
@@ -111,16 +125,16 @@ import org.robovm.apple.imageio.*;
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public CIDetectorFeatureOptions setRecognizeEyeBlinks(boolean recognize) {
-        data.put(EyeBlinkKey(), NSNumber.valueOf(recognize));
+    public CIDetectorFeatureOptions setRecognizesEyeBlinks(boolean recognizesEyeBlinks) {
+        set(Keys.EyeBlink(), NSNumber.valueOf(recognizesEyeBlinks));
         return this;
     }
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public boolean isRecognizingSmiles() {
-        if (data.containsKey(SmileKey())) {
-            NSNumber val = (NSNumber)data.get(SmileKey());
+    public boolean recognizesSmiles() {
+        if (has(Keys.Smile())) {
+            NSNumber val = (NSNumber) get(Keys.Smile());
             return val.booleanValue();
         }
         return false;
@@ -128,16 +142,16 @@ import org.robovm.apple.imageio.*;
     /**
      * @since Available in iOS 7.0 and later.
      */
-    public CIDetectorFeatureOptions setRecognizeSmiles() {
-        data.put(SmileKey(), NSNumber.valueOf(SmileKey()));
+    public CIDetectorFeatureOptions setRecognizesSmiles(boolean recognizesSmiles) {
+        set(Keys.Smile(), NSNumber.valueOf(recognizesSmiles));
         return this;
     }
     /**
      * @since Available in iOS 8.0 and later.
      */
     public double getFocalLength() {
-        if (data.containsKey(FocalLengthKey())) {
-            NSNumber val = (NSNumber)data.get(FocalLengthKey());
+        if (has(Keys.FocalLength())) {
+            NSNumber val = (NSNumber) get(Keys.FocalLength());
             return val.doubleValue();
         }
         return 0;
@@ -146,15 +160,15 @@ import org.robovm.apple.imageio.*;
      * @since Available in iOS 8.0 and later.
      */
     public CIDetectorFeatureOptions setFocalLength(double focalLength) {
-        data.put(FocalLengthKey(), NSNumber.valueOf(focalLength));
+        set(Keys.FocalLength(), NSNumber.valueOf(focalLength));
         return this;
     }
     /**
      * @since Available in iOS 8.0 and later.
      */
     public double getAspectRatio() {
-        if (data.containsKey(AspectRatioKey())) {
-            NSNumber val = (NSNumber)data.get(AspectRatioKey());
+        if (has(Keys.AspectRatio())) {
+            NSNumber val = (NSNumber) get(Keys.AspectRatio());
             return val.doubleValue();
         }
         return 0;
@@ -162,40 +176,60 @@ import org.robovm.apple.imageio.*;
     /**
      * @since Available in iOS 8.0 and later.
      */
-    public CIDetectorFeatureOptions setFAspectRatio(double aspectRatio) {
-        data.put(AspectRatioKey(), NSNumber.valueOf(aspectRatio));
+    public CIDetectorFeatureOptions setAspectRatio(double aspectRatio) {
+        set(Keys.AspectRatio(), NSNumber.valueOf(aspectRatio));
         return this;
     }
-    /*<methods>*/
+    /*</methods>*/
     /**
      * @since Available in iOS 5.0 and later.
      */
-    @GlobalValue(symbol="CIDetectorImageOrientation", optional=true)
-    protected static native NSString ImageOrientationKey();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="CIDetectorEyeBlink", optional=true)
-    protected static native NSString EyeBlinkKey();
-    /**
-     * @since Available in iOS 7.0 and later.
-     */
-    @GlobalValue(symbol="CIDetectorSmile", optional=true)
-    protected static native NSString SmileKey();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @GlobalValue(symbol="CIDetectorFocalLength", optional=true)
-    protected static native NSString FocalLengthKey();
-    /**
-     * @since Available in iOS 8.0 and later.
-     */
-    @GlobalValue(symbol="CIDetectorAspectRatio", optional=true)
-    protected static native NSString AspectRatioKey();
-    /*</methods>*/
-    @Override
-    public String toString() {
-        if (data != null) return data.toString();
-        return super.toString();
+    @WeaklyLinked
+    public CGImagePropertyOrientation getImageOrientation() {
+        if (has(Keys.ImageOrientation())) {
+            NSNumber val = (NSNumber) get(Keys.ImageOrientation());
+            return CGImagePropertyOrientation.valueOf(val.longValue());
+        }
+        return null;
     }
+    /**
+     * @since Available in iOS 5.0 and later.
+     */
+    @WeaklyLinked
+    public CIDetectorFeatureOptions setImageOrientation(CGImagePropertyOrientation imageOrientation) {
+        set(Keys.ImageOrientation(), NSNumber.valueOf(imageOrientation.value()));
+        return this;
+    }
+    
+    /*<keys>*/
+    @Library("CoreImage")
+    public static class Keys {
+        static { Bro.bind(Keys.class); }
+        /**
+         * @since Available in iOS 5.0 and later.
+         */
+        @GlobalValue(symbol="CIDetectorImageOrientation", optional=true)
+        public static native NSString ImageOrientation();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="CIDetectorEyeBlink", optional=true)
+        public static native NSString EyeBlink();
+        /**
+         * @since Available in iOS 7.0 and later.
+         */
+        @GlobalValue(symbol="CIDetectorSmile", optional=true)
+        public static native NSString Smile();
+        /**
+         * @since Available in iOS 8.0 and later.
+         */
+        @GlobalValue(symbol="CIDetectorFocalLength", optional=true)
+        public static native NSString FocalLength();
+        /**
+         * @since Available in iOS 8.0 and later.
+         */
+        @GlobalValue(symbol="CIDetectorAspectRatio", optional=true)
+        public static native NSString AspectRatio();
+    }
+    /*</keys>*/
 }

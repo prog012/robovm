@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -32,7 +33,7 @@ import org.robovm.apple.corefoundation.*;
 
 /*<javadoc>*/
 /*</javadoc>*/
-/*<annotations>*/@Library("CFNetwork")/*</annotations>*/
+/*<annotations>*/@Library("CFNetwork") @StronglyLinked/*</annotations>*/
 @Marshaler(/*<name>*/CFStreamSocketSecurityLevel/*</name>*/.Marshaler.class)
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/CFStreamSocketSecurityLevel/*</name>*/ 
     extends /*<extends>*/GlobalValueEnumeration<CFString>/*</extends>*/
@@ -61,7 +62,7 @@ import org.robovm.apple.corefoundation.*;
     public static class AsListMarshaler {
         @MarshalsPointer
         public static List<CFStreamSocketSecurityLevel> toObject(Class<? extends CFType> cls, long handle, long flags) {
-            CFArray o = (CFArray) CFType.Marshaler.toObject(cls, handle, flags);
+            CFArray o = (CFArray) CFType.Marshaler.toObject(CFArray.class, handle, flags);
             if (o == null) {
                 return null;
             }
@@ -77,8 +78,8 @@ import org.robovm.apple.corefoundation.*;
                 return 0L;
             }
             CFArray array = CFMutableArray.create();
-            for (CFStreamSocketSecurityLevel i : l) {
-                array.add(i.value());
+            for (CFStreamSocketSecurityLevel o : l) {
+                array.add(o.value());
             }
             return CFType.Marshaler.toNative(array, flags);
         }
@@ -126,7 +127,7 @@ import org.robovm.apple.corefoundation.*;
     
     /*<methods>*//*</methods>*/
     
-    /*<annotations>*/@Library("CFNetwork")/*</annotations>*/
+    /*<annotations>*/@Library("CFNetwork") @StronglyLinked/*</annotations>*/
     public static class Values {
     	static { Bro.bind(Values.class); }
 

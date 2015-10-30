@@ -23,12 +23,12 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
-import org.robovm.apple.accounts.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -94,6 +94,16 @@ import org.robovm.apple.accounts.*;
      */
     @Property(selector = "setRequestData:")
     public native void setRequestData(NSData v);
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    @Property(selector = "simulatesAskToBuyInSandbox")
+    public native boolean simulatesAskToBuyInSandbox();
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    @Property(selector = "setSimulatesAskToBuyInSandbox:")
+    public native void setSimulatesAskToBuyInSandbox(boolean v);
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/

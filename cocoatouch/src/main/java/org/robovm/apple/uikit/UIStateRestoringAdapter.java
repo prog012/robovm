@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -50,17 +51,17 @@ import org.robovm.apple.corelocation.*;
     /*<constructors>*//*</constructors>*/
     /*<properties>*/
     @NotImplemented("restorationParent")
-    public UIStateRestoring getRestorationParent() { throw new UnsupportedOperationException(); }
+    public UIStateRestoring getRestorationParent() { return null; }
     @NotImplemented("objectRestorationClass")
-    public Class<?> getObjectRestorationClass() { throw new UnsupportedOperationException(); }
+    public Class<?> getObjectRestorationClass() { return null; }
     /*</properties>*/
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("encodeRestorableStateWithCoder:")
-    public void encodeRestorableState(NSCoder coder) { throw new UnsupportedOperationException(); }
+    public void encodeRestorableState(NSCoder coder) {}
     @NotImplemented("decodeRestorableStateWithCoder:")
-    public void decodeRestorableState(NSCoder coder) { throw new UnsupportedOperationException(); }
+    public void decodeRestorableState(NSCoder coder) {}
     @NotImplemented("applicationFinishedRestoringState")
-    public void applicationFinishedRestoringState() { throw new UnsupportedOperationException(); }
+    public void applicationFinishedRestoringState() {}
     /*</methods>*/
 }

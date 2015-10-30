@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -54,12 +55,12 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("prepareForPopoverPresentation:")
-    public void prepareForPopoverPresentation(UIPopoverPresentationController popoverPresentationController) { throw new UnsupportedOperationException(); }
+    public void prepareForPopoverPresentation(UIPopoverPresentationController popoverPresentationController) {}
     @NotImplemented("popoverPresentationControllerShouldDismissPopover:")
-    public boolean shouldDismissPopover(UIPopoverPresentationController popoverPresentationController) { throw new UnsupportedOperationException(); }
+    public boolean shouldDismissPopover(UIPopoverPresentationController popoverPresentationController) { return false; }
     @NotImplemented("popoverPresentationControllerDidDismissPopover:")
-    public void didDismissPopover(UIPopoverPresentationController popoverPresentationController) { throw new UnsupportedOperationException(); }
+    public void didDismissPopover(UIPopoverPresentationController popoverPresentationController) {}
     @NotImplemented("popoverPresentationController:willRepositionPopoverToRect:inView:")
-    public void willRepositionPopover(UIPopoverPresentationController popoverPresentationController, CGRect rect, UIView.UIViewPtr view) { throw new UnsupportedOperationException(); }
+    public void willRepositionPopover(UIPopoverPresentationController popoverPresentationController, CGRect rect, UIView.UIViewPtr view) {}
     /*</methods>*/
 }

@@ -23,13 +23,14 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.uikit.*;
-import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.glkit.*;
 import org.robovm.apple.spritekit.*;
@@ -37,7 +38,9 @@ import org.robovm.apple.opengles.*;
 /*</imports>*/
 
 /*<javadoc>*/
-
+/**
+ * @since Available in iOS 8.0 and later.
+ */
 /*</javadoc>*/
 /*<annotations>*/@Library("SceneKit") @NativeClass/*</annotations>*/
 /*<visibility>*/public/*</visibility>*/ class /*<name>*/SCNProgram/*</name>*/ 
@@ -60,8 +63,14 @@ import org.robovm.apple.opengles.*;
     public native String getFragmentShader();
     @Property(selector = "setFragmentShader:")
     public native void setFragmentShader(String v);
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "isOpaque")
     public native boolean isOpaque();
+    /**
+     * @since Available in iOS 8.0 and later.
+     */
     @Property(selector = "setOpaque:")
     public native void setOpaque(boolean v);
     @Property(selector = "delegate")

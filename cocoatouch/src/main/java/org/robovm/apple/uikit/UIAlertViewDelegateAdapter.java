@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -54,18 +55,18 @@ import org.robovm.apple.corelocation.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("alertView:clickedButtonAtIndex:")
-    public void clicked(UIAlertView alertView, @MachineSizedSInt long buttonIndex) { throw new UnsupportedOperationException(); }
+    public void clicked(UIAlertView alertView, @MachineSizedSInt long buttonIndex) {}
     @NotImplemented("alertViewCancel:")
-    public void cancel(UIAlertView alertView) { throw new UnsupportedOperationException(); }
+    public void cancel(UIAlertView alertView) {}
     @NotImplemented("willPresentAlertView:")
-    public void willPresent(UIAlertView alertView) { throw new UnsupportedOperationException(); }
+    public void willPresent(UIAlertView alertView) {}
     @NotImplemented("didPresentAlertView:")
-    public void didPresent(UIAlertView alertView) { throw new UnsupportedOperationException(); }
+    public void didPresent(UIAlertView alertView) {}
     @NotImplemented("alertView:willDismissWithButtonIndex:")
-    public void willDismiss(UIAlertView alertView, @MachineSizedSInt long buttonIndex) { throw new UnsupportedOperationException(); }
+    public void willDismiss(UIAlertView alertView, @MachineSizedSInt long buttonIndex) {}
     @NotImplemented("alertView:didDismissWithButtonIndex:")
-    public void didDismiss(UIAlertView alertView, @MachineSizedSInt long buttonIndex) { throw new UnsupportedOperationException(); }
+    public void didDismiss(UIAlertView alertView, @MachineSizedSInt long buttonIndex) {}
     @NotImplemented("alertViewShouldEnableFirstOtherButton:")
-    public boolean shouldEnableFirstOtherButton(UIAlertView alertView) { throw new UnsupportedOperationException(); }
+    public boolean shouldEnableFirstOtherButton(UIAlertView alertView) { return false; }
     /*</methods>*/
 }

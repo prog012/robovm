@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -52,21 +53,6 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     @Property(selector = "mergeType")
     public native NSMergePolicyType getMergeType();
     /*</properties>*/
-    /*<members>*//*</members>*/
-    /**
-     * 
-     * @param list
-     * @return
-     * @throws NSErrorException
-     */
-    public boolean resolveConflicts(NSArray<NSMergeConflict> list) throws NSErrorException {
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        boolean result = resolveConflicts(list, err);
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-        return result;
-    }
     /*<methods>*/
     /**
      * @since Available in iOS 3.0 and later.
@@ -96,7 +82,13 @@ import org.robovm.apple.foundation.NSError.NSErrorPtr;
     
     @Method(selector = "initWithMergeType:")
     protected native @Pointer long init(NSMergePolicyType ty);
+    public boolean resolveConflicts(NSArray<NSMergeConflict> list) throws NSErrorException {
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       boolean result = resolveConflicts(list, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       return result;
+    }
     @Method(selector = "resolveConflicts:error:")
-    protected native boolean resolveConflicts(NSArray<NSMergeConflict> list, NSError.NSErrorPtr error);
+    private native boolean resolveConflicts(NSArray<NSMergeConflict> list, NSError.NSErrorPtr error);
     /*</methods>*/
 }

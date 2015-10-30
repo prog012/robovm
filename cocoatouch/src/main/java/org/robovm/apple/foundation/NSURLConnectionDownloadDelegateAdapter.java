@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -55,10 +57,10 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @NotImplemented("connection:didWriteData:totalBytesWritten:expectedTotalBytes:")
-    public void didWriteData(NSURLConnection connection, long bytesWritten, long totalBytesWritten, long expectedTotalBytes) { throw new UnsupportedOperationException(); }
+    public void didWriteData(NSURLConnection connection, long bytesWritten, long totalBytesWritten, long expectedTotalBytes) {}
     @NotImplemented("connectionDidResumeDownloading:totalBytesWritten:expectedTotalBytes:")
-    public void didResumeDownloading(NSURLConnection connection, long totalBytesWritten, long expectedTotalBytes) { throw new UnsupportedOperationException(); }
+    public void didResumeDownloading(NSURLConnection connection, long totalBytesWritten, long expectedTotalBytes) {}
     @NotImplemented("connectionDidFinishDownloading:destinationURL:")
-    public void didFinishDownloading(NSURLConnection connection, NSURL destinationURL) { throw new UnsupportedOperationException(); }
+    public void didFinishDownloading(NSURLConnection connection, NSURL destinationURL) {}
     /*</methods>*/
 }

@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -52,6 +54,7 @@ import org.robovm.apple.dispatch.*;
     /*<constructors>*/
     public NSTextCheckingResult() {}
     protected NSTextCheckingResult(SkipInit skipInit) { super(skipInit); }
+    public NSTextCheckingResult(NSCoder aDecoder) { super((SkipInit) null); initObject(init(aDecoder)); }
     /*</constructors>*/
     /*<properties>*/
     @Property(selector = "resultType")
@@ -165,6 +168,8 @@ import org.robovm.apple.dispatch.*;
     @Method(selector = "transitInformationCheckingResultWithRange:components:")
     public static native NSTextCheckingResult createTransitInformationCheckingResult(@ByVal NSRange range, NSTextCheckingTransitComponents components);
     @Method(selector = "encodeWithCoder:")
-    public native void encode(NSCoder aCoder);
+    public native void encode(NSCoder coder);
+    @Method(selector = "initWithCoder:")
+    protected native @Pointer long init(NSCoder aDecoder);
     /*</methods>*/
 }

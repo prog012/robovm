@@ -23,6 +23,7 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
@@ -42,11 +43,16 @@ import org.robovm.apple.addressbook.*;
     /*<implements>*//*</implements>*/ {
 
     public static class Notifications {
-        public static NSObject observeDidChange(final VoidBlock1<PKPassLibraryNotificationArgs> block) {
+        public static NSObject observeDidChange(final VoidBlock1<PKPassLibraryNotification> block) {
             return NSNotificationCenter.getDefaultCenter().addObserver(DidChangeNotification(), null, NSOperationQueue.getMainQueue(), new VoidBlock1<NSNotification>() {
                 @Override
                 public void invoke (NSNotification a) {
-                    block.invoke(new PKPassLibraryNotificationArgs(a));
+                    NSDictionary<NSString, NSObject> userInfo = a.getUserInfo();
+                    PKPassLibraryNotification data = null;
+                    if (userInfo != null) {
+                        data = new PKPassLibraryNotification(userInfo);
+                    }
+                    block.invoke(data);
                 }
             });
         }
@@ -90,6 +96,11 @@ import org.robovm.apple.addressbook.*;
      */
     @Method(selector = "addPasses:withCompletionHandler:")
     public native void addPasses(NSArray<PKPass> passes, @Block VoidBlock1<PKPassLibraryAddPassesStatus> completion);
+    /**
+     * @since Available in iOS 8.3 and later.
+     */
+    @Method(selector = "openPaymentSetup")
+    public native void openPaymentSetup();
     /**
      * @since Available in iOS 8.0 and later.
      */

@@ -23,11 +23,13 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.uikit.*;
+import org.robovm.apple.coretext.*;
 import org.robovm.apple.coreanimation.*;
 import org.robovm.apple.coredata.*;
 import org.robovm.apple.coregraphics.*;
@@ -51,7 +53,7 @@ import org.robovm.apple.dispatch.*;
                 @Override
                 public void invoke(NSNotification a) {
                     List<String> classes = null;
-                    NSDictionary<NSString, NSObject> data = a.getUserInfo();
+                    NSDictionary<?, ?> data = a.getUserInfo();
                     if (data.containsKey(LoadedClassesKey())) {
                         NSArray<NSString> val = (NSArray<NSString>)data.get(LoadedClassesKey());
                         classes = val.asStringList();
@@ -140,9 +142,9 @@ import org.robovm.apple.dispatch.*;
     @Property(selector = "bundleIdentifier")
     public native String getBundleIdentifier();
     @Property(selector = "infoDictionary")
-    public native NSDictionary<?, ?> getInfoDictionary();
+    public native NSDictionary getInfoDictionary();
     @Property(selector = "localizedInfoDictionary")
-    public native NSDictionary<?, ?> getLocalizedInfoDictionary();
+    public native NSDictionary getLocalizedInfoDictionary();
     @Property(selector = "principalClass")
     public native Class<?> getPrincipalClass();
     @Property(selector = "preferredLocalizations")
@@ -160,6 +162,7 @@ import org.robovm.apple.dispatch.*;
     /*<members>*//*</members>*/
     
     /* UIKit extensions */
+    @WeaklyLinked
     public NSArray<?> loadNib(String name, NSObject owner, UINibLoadingOptions options) {
         return NSBundleExtensions.loadNib(this, name, owner, options);
     }

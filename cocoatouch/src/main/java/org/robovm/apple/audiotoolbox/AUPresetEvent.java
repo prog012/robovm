@@ -23,15 +23,15 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
 import org.robovm.apple.corefoundation.*;
-import org.robovm.apple.coregraphics.*;
-import org.robovm.apple.opengles.*;
+import org.robovm.apple.audiounit.*;
 import org.robovm.apple.coreaudio.*;
-import org.robovm.apple.coremedia.*;
+import org.robovm.apple.coremidi.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -48,7 +48,7 @@ import org.robovm.apple.coremedia.*;
     /*<constants>*//*</constants>*/
     /*<constructors>*/
     public AUPresetEvent() {}
-    public AUPresetEvent(int scope, int element, CFType preset) {
+    public AUPresetEvent(AUScope scope, int element, NSPropertyList preset) {
         this.setScope(scope);
         this.setElement(element);
         this.setPreset(preset);
@@ -56,12 +56,12 @@ import org.robovm.apple.coremedia.*;
     /*</constructors>*/
     /*<properties>*//*</properties>*/
     /*<members>*/
-    @StructMember(0) public native int getScope();
-    @StructMember(0) public native AUPresetEvent setScope(int scope);
+    @StructMember(0) public native AUScope getScope();
+    @StructMember(0) public native AUPresetEvent setScope(AUScope scope);
     @StructMember(1) public native int getElement();
     @StructMember(1) public native AUPresetEvent setElement(int element);
-    @StructMember(2) public native CFType getPreset();
-    @StructMember(2) public native AUPresetEvent setPreset(CFType preset);
+    @StructMember(2) public native NSPropertyList getPreset();
+    @StructMember(2) public native AUPresetEvent setPreset(NSPropertyList preset);
     /*</members>*/
     /*<methods>*//*</methods>*/
 }

@@ -23,19 +23,21 @@ import org.robovm.objc.*;
 import org.robovm.objc.annotation.*;
 import org.robovm.objc.block.*;
 import org.robovm.rt.*;
+import org.robovm.rt.annotation.*;
 import org.robovm.rt.bro.*;
 import org.robovm.rt.bro.annotation.*;
 import org.robovm.rt.bro.ptr.*;
 import org.robovm.apple.foundation.*;
+import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.dispatch.*;
 import org.robovm.apple.coreanimation.*;
-import org.robovm.apple.corefoundation.*;
 import org.robovm.apple.coregraphics.*;
 import org.robovm.apple.coreaudio.*;
 import org.robovm.apple.coremedia.*;
 import org.robovm.apple.corevideo.*;
-import org.robovm.apple.audiotoolbox.*;
 import org.robovm.apple.mediatoolbox.*;
+import org.robovm.apple.audiotoolbox.*;
+import org.robovm.apple.audiounit.*;
 /*</imports>*/
 
 /*<javadoc>*/
@@ -54,35 +56,21 @@ import org.robovm.apple.mediatoolbox.*;
     /*<constructors>*/
     public AVMIDIPlayer() {}
     protected AVMIDIPlayer(SkipInit skipInit) { super(skipInit); }
+    public AVMIDIPlayer(NSURL inURL, NSURL bankURL) throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(inURL, bankURL, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
+    public AVMIDIPlayer(NSData data, NSURL bankURL) throws NSErrorException {
+       super((SkipInit) null);
+       NSError.NSErrorPtr ptr = new NSError.NSErrorPtr();
+       long handle = init(data, bankURL, ptr);
+       if (ptr.get() != null) { throw new NSErrorException(ptr.get()); }
+       initObject(handle);
+    }
     /*</constructors>*/
-    /**
-     * 
-     * @param contentsURL
-     * @param soundBankURL
-     * @throws NSErrorException
-     */
-    public AVMIDIPlayer(NSURL contentsURL, NSURL soundBankURL) throws NSErrorException {
-        super((SkipInit)null);
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        initObject(init(contentsURL, soundBankURL, err));
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-    }
-    /**
-     * 
-     * @param data
-     * @param soundBankURL
-     * @throws NSErrorException
-     */
-    public AVMIDIPlayer(NSData data, NSURL soundBankURL) throws NSErrorException {
-        super((SkipInit)null);
-        NSError.NSErrorPtr err = new NSError.NSErrorPtr();
-        initObject(init(data, soundBankURL, err));
-        if (err.get() != null) {
-            throw new NSErrorException(err.get());
-        }
-    }
     /*<properties>*/
     @Property(selector = "duration")
     public native double getDuration();
@@ -100,9 +88,9 @@ import org.robovm.apple.mediatoolbox.*;
     /*<members>*//*</members>*/
     /*<methods>*/
     @Method(selector = "initWithContentsOfURL:soundBankURL:error:")
-    protected native @Pointer long init(NSURL inURL, NSURL bankURL, NSError.NSErrorPtr outError);
+    private native @Pointer long init(NSURL inURL, NSURL bankURL, NSError.NSErrorPtr outError);
     @Method(selector = "initWithData:soundBankURL:error:")
-    protected native @Pointer long init(NSData data, NSURL bankURL, NSError.NSErrorPtr outError);
+    private native @Pointer long init(NSData data, NSURL bankURL, NSError.NSErrorPtr outError);
     @Method(selector = "prepareToPlay")
     public native void prepareToPlay();
     @Method(selector = "play:")
